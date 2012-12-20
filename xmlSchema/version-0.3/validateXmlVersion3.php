@@ -14,9 +14,6 @@ function libxml_return_error($error)
             break;
     }
     $return .= trim($error->message);
-    if ($error->file) {
-        $return .=    " in $error->file";
-    }
     $return .= " on line $error->line\n";
 
     return $return;
