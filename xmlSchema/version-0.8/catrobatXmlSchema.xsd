@@ -68,31 +68,43 @@
   </xs:complexType>
 
   <xs:complexType name="look">
-    <xs:sequence>
-      <xs:element name="fileName" type="xs:string"/>
-      <xs:element name="name" type="xs:string"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="lookRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="fileName" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="lookRef">
-    <xs:attribute name="reference" type="xs:string"/>
+    <xs:attribute name="reference" type="xs:string" default=""/>
   </xs:complexType>
 
   <xs:complexType name="soundList">
     <xs:sequence>
-      <xs:element name="sound" type="soundRef" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="sound" type="sound" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="sound">
-    <xs:sequence>
-      <xs:element name="fileName" type="xs:string"/>
-      <xs:element name="name" type="xs:string"/>
-    </xs:sequence>
+    <xs:complexContent>
+      <xs:extension base="soundRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="fileName" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+          </xs:sequence>      
+        </xs:choice>
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="soundRef">
-    <xs:attribute name="reference" type="xs:string"/>
+    <xs:attribute name="reference" type="xs:string" default=""/>
   </xs:complexType>
 
   <xs:complexType name="scriptList">
@@ -129,8 +141,8 @@
       <xs:element name="goNStepsBackBrick" type="goNStepsBackBrick"/>
       <xs:element name="hideBrick" type="hideBrick"/>
       <xs:element name="ifLogicBeginBrick" type="ifLogicBeginBrick"/>
-      <xs:element name="ifLogicElseBrick" type="ifLogicElseBrickRef"/>
-      <xs:element name="ifLogicEndBrick" type="ifLogicEndBrickRef"/>
+      <xs:element name="ifLogicElseBrick" type="ifLogicElseBrick"/>
+      <xs:element name="ifLogicEndBrick" type="ifLogicEndBrick"/>
       <xs:element name="ifOnEdgeBounceBrick" type="ifOnEdgeBounceBrick"/>
       <xs:element name="legoNxtMotorActionBrick" type="legoNxtMotorActionBrick"/>
       <xs:element name="legoNxtMotorStopBrick" type="legoNxtMotorStopBrick"/>
@@ -200,7 +212,7 @@
 
   <xs:complexType name="brick" abstract="true">
     <xs:sequence>
-      <xs:element name="object" type="objectRef"/>
+      <xs:element name="object" type="object" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -356,49 +368,68 @@
   </xs:complexType>
 
   <xs:complexType name="ifLogicBeginBrickRef">
-    <xs:attribute name="reference" type="xs:string"/>
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="ifLogicBeginBrick">
     <xs:complexContent>
-      <xs:extension base="brick">
-        <xs:sequence>
-          <xs:element name="ifCondition" type="formula" minOccurs="0"/>
-          <xs:element name="ifElseBrick" type="ifLogicElseBrick" minOccurs="0"/>
-          <xs:element name="ifEndBrick" type="ifLogicEndBrickRef" minOccurs="0"/>
-        </xs:sequence>
+      <xs:extension base="ifLogicBeginBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifCondition" type="formula" minOccurs="0"/>
+            <xs:element name="ifElseBrick" type="ifLogicElseBrick" minOccurs="0"/>
+            <xs:element name="ifEndBrick" type="ifLogicEndBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="ifLogicElseBrickRef">
-    <xs:attribute name="reference" type="xs:string"/>
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="ifLogicElseBrick">
     <xs:complexContent>
-      <xs:extension base="brick">
-        <xs:sequence>
-          <xs:element name="ifBeginBrick" type="ifLogicBeginBrickRef" minOccurs="0"/>
-          <xs:element name="ifEndBrick" type="ifLogicEndBrick" minOccurs="0"/>
-        </xs:sequence>
+      <xs:extension base="ifLogicElseBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifBeginBrick" type="ifLogicBeginBrick" minOccurs="0"/>
+            <xs:element name="ifEndBrick" type="ifLogicEndBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="ifLogicEndBrick">
     <xs:complexContent>
-      <xs:extension base="brick">
-        <xs:sequence>
-          <xs:element name="ifBeginBrick" type="ifLogicBeginBrickRef" minOccurs="0"/>
-          <xs:element name="ifElseBrick" type="ifLogicElseBrickRef" minOccurs="0"/>
-        </xs:sequence>
+      <xs:extension base="ifLogicEndBrickRef">
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:sequence>
+            <xs:element name="ifBeginBrick" type="ifLogicBeginBrick" minOccurs="0"/>
+            <xs:element name="ifElseBrick" type="ifLogicElseBrick" minOccurs="0"/>
+          </xs:sequence>  
+        </xs:choice>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
 
+
   <xs:complexType name="ifLogicEndBrickRef">
-    <xs:attribute name="reference" type="xs:string"/>
+    <xs:complexContent>
+      <xs:extension base="brick">
+        <xs:attribute name="reference" type="xs:string"/>    
+      </xs:extension>
+    </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="ifOnEdgeBounceBrick">
@@ -490,7 +521,7 @@
     <xs:complexContent>
       <xs:extension base="brick">
         <xs:sequence>
-          <xs:element name="Motor" type="xs:string"/>
+          <xs:element name="motor" type="xs:string"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -511,7 +542,7 @@
     <xs:complexContent>
       <xs:extension base="brick">
         <xs:sequence>
-          <xs:element name="durationInMilliSeconds" type="formula"/>
+          <xs:element name="durationInSeconds" type="formula"/>
           <xs:element name="frequency" type="formula"/>
         </xs:sequence>
       </xs:extension>
@@ -583,7 +614,7 @@
     <xs:complexContent>
       <xs:extension base="brick">
         <xs:sequence>
-          <xs:element name="look" type="lookRef" minOccurs="0"/>
+          <xs:element name="look" type="look" minOccurs="0"/>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
