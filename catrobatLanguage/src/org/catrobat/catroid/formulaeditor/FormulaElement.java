@@ -24,10 +24,17 @@ package org.catrobat.catroid.formulaeditor;
 
 import java.io.Serializable;
 
-public class Formula implements Serializable {
+public class FormulaElement implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	public FormulaElement formulaTree;
+
+	public static enum ElementType {
+		OPERATOR, FUNCTION, NUMBER, SENSOR, USER_VARIABLE, BRACKET
+	}
+
+	public ElementType type;
+	public String value;
+	public FormulaElement leftChild = null;
+	public FormulaElement rightChild = null;
 
 }
