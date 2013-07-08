@@ -28,4 +28,5 @@ public class BroadcastScript extends Script{
 	private static final long serialVersionUID = 1L;
 	
 	public String receivedMessage;
+	
 }

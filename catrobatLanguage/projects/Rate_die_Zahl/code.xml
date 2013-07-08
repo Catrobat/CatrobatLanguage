@@ -1,0 +1,3133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<program>
+  <header>
+    <applicationBuildName></applicationBuildName>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Catroid</applicationName>
+    <applicationVersion>0.7.1beta-1528-debug</applicationVersion>
+    <catrobatLanguageVersion>0.8</catrobatLanguageVersion>
+    <dateTimeUpload></dateTimeUpload>
+    <description>Finde die richtige Zahl. Mit den Pfeiltasten wählst du eine Zahl aus. Mit dem Fragezeichen siehst du, ob du richtig liegst.</description>
+    <deviceName>Galaxy Nexus</deviceName>
+    <mediaLicense></mediaLicense>
+    <platform>Android</platform>
+    <platformVersion>17</platformVersion>
+    <programLicense></programLicense>
+    <programName>Rate die Zahl</programName>
+    <remixOf></remixOf>
+    <screenHeight>1184</screenHeight>
+    <screenWidth>720</screenWidth>
+    <tags></tags>
+    <url>https://pocketcode.org/details/820</url>
+    <userHandle></userHandle>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>EAEC6F391BECF50EF85A4143D85AA4A7_Aussehen.png</fileName>
+          <name>Aussehen</name>
+        </look>
+        <look>
+          <fileName>02D9265D7F8A8B2CD1012382272E245C_arrow_up.png</fileName>
+          <name>arrow_up</name>
+        </look>
+        <look>
+          <fileName>0BAB4832B0DB7860519A3F1246B6076A_arrow_down.png</fileName>
+          <name>arrow_down</name>
+        </look>
+        <look>
+          <fileName>5A076BACAB10BDD773B4B8228D6BE6F8_2013_10_22_121000.png</fileName>
+          <name>2013_10_22_121000</name>
+        </look>
+      </lookList>
+      <name>Hintergrund</name>
+      <scriptList>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[4]"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>too_low</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>too_high</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06B9336372BC43C9C52846F4670038CA_number_0-1.PNG</fileName>
+          <name>number_0-1</name>
+        </look>
+        <look>
+          <fileName>62592B8B12EE670652DAB014977E0C90_number_1-1.PNG</fileName>
+          <name>number_1-1</name>
+        </look>
+      </lookList>
+      <name>Hunderter</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>200</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>aktuell_hunderter</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>hunderter_0</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>hunderter_1</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06B9336372BC43C9C52846F4670038CA_number_0-1.PNG</fileName>
+          <name>number_0-1</name>
+        </look>
+        <look>
+          <fileName>62592B8B12EE670652DAB014977E0C90_number_1-1.PNG</fileName>
+          <name>number_1-1</name>
+        </look>
+        <look>
+          <fileName>79C3305D5F86AD3F7EC7DA2ED0A115BD_number_2-1.PNG</fileName>
+          <name>number_2-1</name>
+        </look>
+        <look>
+          <fileName>35745231B68722E7D4B55FD075C4BA19_number_3-1.PNG</fileName>
+          <name>number_3-1</name>
+        </look>
+        <look>
+          <fileName>EE2178AD61C8FBA2FD524FBB54A79863_number_4-1.PNG</fileName>
+          <name>number_4-1</name>
+        </look>
+        <look>
+          <fileName>133FDA30748B0E2319F75DC0D3D778CD_number_5.PNG</fileName>
+          <name>number_5</name>
+        </look>
+        <look>
+          <fileName>6AE65BC6BDF7CC694A522258D7866BD2_number_6-1.PNG</fileName>
+          <name>number_6-1</name>
+        </look>
+        <look>
+          <fileName>D724F3E92EB50FA93332099B13C31266_number_7-1.PNG</fileName>
+          <name>number_7-1</name>
+        </look>
+        <look>
+          <fileName>43DCBA878305D397212E5558D4229647_number_8-1.PNG</fileName>
+          <name>number_8-1</name>
+        </look>
+        <look>
+          <fileName>B8E43536590420D067577B5EB58A812B_number_9.PNG</fileName>
+          <name>number_9</name>
+        </look>
+      </lookList>
+      <name>Zehner</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>aktuell_zehner</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_0</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_1</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_2</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[4]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_3</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[5]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_4</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[6]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_5</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[7]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_6</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[8]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_7</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[9]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_8</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[10]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>zehner_9</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>06B9336372BC43C9C52846F4670038CA_number_0-1.PNG</fileName>
+          <name>number_0-1</name>
+        </look>
+        <look>
+          <fileName>62592B8B12EE670652DAB014977E0C90_number_1-1.PNG</fileName>
+          <name>number_1-1</name>
+        </look>
+        <look>
+          <fileName>79C3305D5F86AD3F7EC7DA2ED0A115BD_number_2-1.PNG</fileName>
+          <name>number_2-1</name>
+        </look>
+        <look>
+          <fileName>35745231B68722E7D4B55FD075C4BA19_number_3-1.PNG</fileName>
+          <name>number_3-1</name>
+        </look>
+        <look>
+          <fileName>EE2178AD61C8FBA2FD524FBB54A79863_number_4-1.PNG</fileName>
+          <name>number_4-1</name>
+        </look>
+        <look>
+          <fileName>133FDA30748B0E2319F75DC0D3D778CD_number_5.PNG</fileName>
+          <name>number_5</name>
+        </look>
+        <look>
+          <fileName>6AE65BC6BDF7CC694A522258D7866BD2_number_6-1.PNG</fileName>
+          <name>number_6-1</name>
+        </look>
+        <look>
+          <fileName>D724F3E92EB50FA93332099B13C31266_number_7-1.PNG</fileName>
+          <name>number_7-1</name>
+        </look>
+        <look>
+          <fileName>43DCBA878305D397212E5558D4229647_number_8-1.PNG</fileName>
+          <name>number_8-1</name>
+        </look>
+        <look>
+          <fileName>B8E43536590420D067577B5EB58A812B_number_9.PNG</fileName>
+          <name>number_9</name>
+        </look>
+      </lookList>
+      <name>Einer</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <setSizeToBrick>
+              <object reference="../../../../.."/>
+              <size>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>20</value>
+                </formulaTree>
+              </size>
+            </setSizeToBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>150</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>aktuell_einer</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_0</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_1</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_2</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[4]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_3</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[5]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_4</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[6]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_5</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[7]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_6</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[8]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_7</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[9]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_8</receivedMessage>
+        </broadcastScript>
+        <broadcastScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[10]"/>
+            </setLookBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>einer_9</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>02D9265D7F8A8B2CD1012382272E245C_arrow_up.png</fileName>
+          <name>arrow_up</name>
+        </look>
+      </lookList>
+      <name>Hunderter_up</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>170</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_hunderter</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_hunderter</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_1</broadcastMessage>
+            </broadcastBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_0</broadcastMessage>
+            </broadcastBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_0</broadcastMessage>
+            </broadcastBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0BAB4832B0DB7860519A3F1246B6076A_arrow_down.png</fileName>
+          <name>arrow_down</name>
+        </look>
+      </lookList>
+      <name>Hunderter_down</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>180</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>200</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_hunderter</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_hunderter</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_1</broadcastMessage>
+            </broadcastBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_0</broadcastMessage>
+            </broadcastBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>02D9265D7F8A8B2CD1012382272E245C_arrow_up.png</fileName>
+          <name>arrow_up</name>
+        </look>
+      </lookList>
+      <name>Zehner_up</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>9</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>SMALLER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_1</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[3]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_2</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[4]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_3</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[5]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>4</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_4</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[6]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_5</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[7]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_6</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[8]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>7</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_7</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[9]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>8</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_8</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[10]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_9</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[10]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[9]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[8]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[7]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[6]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[5]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[4]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[3]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0BAB4832B0DB7860519A3F1246B6076A_arrow_down.png</fileName>
+          <name>arrow_down</name>
+        </look>
+      </lookList>
+      <name>Zehner_down</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>200</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>9</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_1</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[3]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_2</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[4]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_3</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[5]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>4</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_4</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[6]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_5</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[7]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_6</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[8]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>7</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_7</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[9]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>8</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_8</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[10]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>zehner_9</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[10]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[9]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[8]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[7]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[6]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[5]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[4]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[3]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>02D9265D7F8A8B2CD1012382272E245C_arrow_up.png</fileName>
+          <name>arrow_up</name>
+        </look>
+      </lookList>
+      <name>Einer_up</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>170</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>200</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>9</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>SMALLER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_1</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[3]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_2</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[4]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_3</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[5]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>4</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_4</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[6]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_5</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[7]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_6</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[8]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>7</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_7</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[9]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>8</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_8</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[10]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_9</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[10]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[9]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[8]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[7]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[6]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[5]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[4]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[3]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>0BAB4832B0DB7860519A3F1246B6076A_arrow_down.png</fileName>
+          <name>arrow_down</name>
+        </look>
+      </lookList>
+      <name>Einer_down</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>160</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>200</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <broadcastScript>
+          <brickList>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+          </brickList>
+          <object reference="../../.."/>
+          <receivedMessage>gewonnen</receivedMessage>
+        </broadcastScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>GREATER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <changeVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </variableFormula>
+            </changeVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>9</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../../../../../object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>hunderter_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>0</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_0</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>1</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_1</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[3]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>2</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_2</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[4]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>3</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_3</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[5]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>4</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_4</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[6]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>5</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_5</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[7]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>6</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_6</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[8]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>7</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_7</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[9]/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>aktuell_einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>8</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_8</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[10]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>einer_9</broadcastMessage>
+            </broadcastBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[10]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[9]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[8]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[7]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[6]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[5]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[4]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[3]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+    <object>
+      <lookList>
+        <look>
+          <fileName>F24B3FC38FE53643725AFCEACA545FA2_question.png</fileName>
+          <name>question</name>
+        </look>
+        <look>
+          <fileName>02D9265D7F8A8B2CD1012382272E245C_arrow_up.png</fileName>
+          <name>arrow_up</name>
+        </look>
+        <look>
+          <fileName>0BAB4832B0DB7860519A3F1246B6076A_arrow_down.png</fileName>
+          <name>arrow_down</name>
+        </look>
+      </lookList>
+      <name>Question</name>
+      <scriptList>
+        <startScript>
+          <brickList>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look"/>
+            </setLookBrick>
+            <placeAtBrick>
+              <object reference="../../../../.."/>
+              <xPosition>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>100</value>
+                </formulaTree>
+              </xPosition>
+              <yPosition>
+                <formulaTree>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>400</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>MINUS</value>
+                </formulaTree>
+              </yPosition>
+            </placeAtBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>einer</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>10</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>ROUND</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>zehner</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <leftChild>
+                    <leftChild>
+                      <type>NUMBER</type>
+                      <value>0</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>10</value>
+                    </rightChild>
+                    <type>FUNCTION</type>
+                    <value>RAND</value>
+                  </leftChild>
+                  <type>FUNCTION</type>
+                  <value>ROUND</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>einer</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>10</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>EQUAL</value>
+                  </leftChild>
+                  <rightChild>
+                    <leftChild>
+                      <type>USER_VARIABLE</type>
+                      <value>zehner</value>
+                    </leftChild>
+                    <rightChild>
+                      <type>NUMBER</type>
+                      <value>10</value>
+                    </rightChild>
+                    <type>OPERATOR</type>
+                    <value>EQUAL</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>LOGICAL_AND</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable>
+                <name>hunderter</name>
+              </userVariable>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>1</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick[2]/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick[3]/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>einer</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <type>USER_VARIABLE</type>
+                    <value>zehner</value>
+                  </leftChild>
+                  <rightChild>
+                    <type>NUMBER</type>
+                    <value>10</value>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <setVariableBrick>
+              <object reference="../../../../.."/>
+              <userVariable reference="../../setVariableBrick[2]/userVariable"/>
+              <variableFormula>
+                <formulaTree>
+                  <type>NUMBER</type>
+                  <value>0</value>
+                </formulaTree>
+              </variableFormula>
+            </setVariableBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[3]/ifElseBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[3]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+        </startScript>
+        <whenScript>
+          <brickList>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>aktuell_einer</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>aktuell_zehner</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>10</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MULT</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>aktuell_hunderter</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>100</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>PLUS</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>einer</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>zehner</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>10</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MULT</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>hunderter</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>100</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>PLUS</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>EQUAL</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>gewonnen</broadcastMessage>
+            </broadcastBrick>
+            <hideBrick>
+              <object reference="../../../../.."/>
+            </hideBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick/ifElseBrick"/>
+            <ifLogicBeginBrick>
+              <object reference="../../../../.."/>
+              <ifCondition>
+                <formulaTree>
+                  <leftChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>aktuell_einer</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>aktuell_zehner</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>10</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MULT</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>aktuell_hunderter</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>100</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>PLUS</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </leftChild>
+                  <rightChild>
+                    <rightChild>
+                      <leftChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>einer</value>
+                        </leftChild>
+                        <rightChild>
+                          <leftChild>
+                            <type>USER_VARIABLE</type>
+                            <value>zehner</value>
+                          </leftChild>
+                          <rightChild>
+                            <type>NUMBER</type>
+                            <value>10</value>
+                          </rightChild>
+                          <type>OPERATOR</type>
+                          <value>MULT</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>PLUS</value>
+                      </leftChild>
+                      <rightChild>
+                        <leftChild>
+                          <type>USER_VARIABLE</type>
+                          <value>hunderter</value>
+                        </leftChild>
+                        <rightChild>
+                          <type>NUMBER</type>
+                          <value>100</value>
+                        </rightChild>
+                        <type>OPERATOR</type>
+                        <value>MULT</value>
+                      </rightChild>
+                      <type>OPERATOR</type>
+                      <value>PLUS</value>
+                    </rightChild>
+                    <type>BRACKET</type>
+                  </rightChild>
+                  <type>OPERATOR</type>
+                  <value>SMALLER_THAN</value>
+                </formulaTree>
+              </ifCondition>
+              <ifElseBrick>
+                <object reference="../../../../../.."/>
+                <ifBeginBrick reference="../.."/>
+                <ifEndBrick>
+                  <object reference="../../../../../../.."/>
+                  <ifBeginBrick reference="../../.."/>
+                  <ifElseBrick reference="../.."/>
+                </ifEndBrick>
+              </ifElseBrick>
+              <ifEndBrick reference="../ifElseBrick/ifEndBrick"/>
+            </ifLogicBeginBrick>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>too_low</broadcastMessage>
+            </broadcastBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[2]"/>
+            </setLookBrick>
+            <ifLogicElseBrick reference="../ifLogicBeginBrick[2]/ifElseBrick"/>
+            <broadcastBrick>
+              <object reference="../../../../.."/>
+              <broadcastMessage>too_high</broadcastMessage>
+            </broadcastBrick>
+            <setLookBrick>
+              <object reference="../../../../.."/>
+              <look reference="../../../../../lookList/look[3]"/>
+            </setLookBrick>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick[2]/ifElseBrick/ifEndBrick"/>
+            <ifLogicEndBrick reference="../ifLogicBeginBrick/ifElseBrick/ifEndBrick"/>
+          </brickList>
+          <object reference="../../.."/>
+          <action>Tapped</action>
+        </whenScript>
+      </scriptList>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList>
+      <entry>
+        <object reference="../../../../objectList/object[6]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[3]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[11]"/>
+        <list>
+          <userVariable reference="../../../../../objectList/object[11]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[11]/scriptList/startScript/brickList/setVariableBrick[2]/userVariable"/>
+          <userVariable reference="../../../../../objectList/object[11]/scriptList/startScript/brickList/setVariableBrick[3]/userVariable"/>
+        </list>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[10]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[2]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[9]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[5]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[7]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[4]"/>
+        <list/>
+      </entry>
+      <entry>
+        <object reference="../../../../objectList/object[8]"/>
+        <list/>
+      </entry>
+    </objectVariableList>
+    <programVariableList>
+      <userVariable reference="../../../objectList/object[4]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[3]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+      <userVariable reference="../../../objectList/object[2]/scriptList/startScript/brickList/setVariableBrick/userVariable"/>
+    </programVariableList>
+  </variables>
+</program>

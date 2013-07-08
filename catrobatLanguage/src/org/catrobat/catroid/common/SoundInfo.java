@@ -30,4 +30,5 @@ public class SoundInfo implements Serializable{
 
 	public String name;
 	public String fileName;
+	
 }

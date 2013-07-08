@@ -34,7 +34,7 @@ public class FormulaElement implements Serializable {
 
 	public ElementType type;
 	public String value;
-	public FormulaElement leftChild = null;
-	public FormulaElement rightChild = null;
+	public FormulaElement leftChild;
+	public FormulaElement rightChild;
 
 }
