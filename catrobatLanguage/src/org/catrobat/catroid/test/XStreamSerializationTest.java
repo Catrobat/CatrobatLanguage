@@ -16,6 +16,26 @@ import org.xml.sax.SAXException;
 public class XStreamSerializationTest {
 
 	@Test
+	public void EmptyProjectTest() throws IOException, SAXException {
+		File xmlProject = new File("projects/EmptyProject/code.xml");
+		assertNotNull("File was not found!", xmlProject);
+
+		@SuppressWarnings("resource")
+		BufferedReader inputStream = new BufferedReader(new FileReader(xmlProject));
+		StringBuffer inputString = new StringBuffer();
+		while (inputStream.ready()) {
+			 inputString.append(inputStream.readLine());
+		}
+
+		Project testProject = Translator.getInstance().loadProjectFromXML(
+				xmlProject);
+		String outputString = Translator.getInstance().getXMLStringOfAProject(
+				testProject);
+		
+		assertXMLEqual(inputString.toString(), outputString);	
+	}
+	
+	@Test
 	public void AirFightTest() throws IOException, SAXException {
 		File xmlProject = new File("projects/Air_fight_0.1/code.xml");
 		assertNotNull("File was not found!", xmlProject);
@@ -94,5 +114,64 @@ public class XStreamSerializationTest {
 		
 		assertXMLEqual(inputString.toString(), outputString);	
 	}
+
+	@Test
+	public void SimonSaysTest() throws IOException, SAXException {
+		File xmlProject = new File("projects/SimonSays/code.xml");
+		assertNotNull("File was not found!", xmlProject);
+
+		@SuppressWarnings("resource")
+		BufferedReader inputStream = new BufferedReader(new FileReader(xmlProject));
+		StringBuffer inputString = new StringBuffer();
+		while (inputStream.ready()) {
+			 inputString.append(inputStream.readLine());
+		}
+
+		Project testProject = Translator.getInstance().loadProjectFromXML(
+				xmlProject);
+		String outputString = Translator.getInstance().getXMLStringOfAProject(
+				testProject);
+		
+		assertXMLEqual(inputString.toString(), outputString);	
+	}
 	
+	@Test
+	public void Tic_Tac_Toe_MasterTest() throws IOException, SAXException {
+		File xmlProject = new File("projects/Tic-Tac-Toe_Master/code.xml");
+		assertNotNull("File was not found!", xmlProject);
+
+		@SuppressWarnings("resource")
+		BufferedReader inputStream = new BufferedReader(new FileReader(xmlProject));
+		StringBuffer inputString = new StringBuffer();
+		while (inputStream.ready()) {
+			 inputString.append(inputStream.readLine());
+		}
+
+		Project testProject = Translator.getInstance().loadProjectFromXML(
+				xmlProject);
+		String outputString = Translator.getInstance().getXMLStringOfAProject(
+				testProject);
+		
+		assertXMLEqual(inputString.toString(), outputString);	
+	}
+	
+	@Test
+	public void Whack_A_MoleTest() throws IOException, SAXException {
+		File xmlProject = new File("projects/Whack_A_Mole/code.xml");
+		assertNotNull("File was not found!", xmlProject);
+
+		@SuppressWarnings("resource")
+		BufferedReader inputStream = new BufferedReader(new FileReader(xmlProject));
+		StringBuffer inputString = new StringBuffer();
+		while (inputStream.ready()) {
+			 inputString.append(inputStream.readLine());
+		}
+
+		Project testProject = Translator.getInstance().loadProjectFromXML(
+				xmlProject);
+		String outputString = Translator.getInstance().getXMLStringOfAProject(
+				testProject);
+		
+		assertXMLEqual(inputString.toString(), outputString);	
+	}
 }
