@@ -95,23 +95,27 @@ import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.converters.reflection.FieldDictionary;
+import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
 
 public class Translator {
 
 	private static Translator instance;
 	private XStream xstream;
-	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n";
+	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 	private ReentrantLock saveLoadLock = new ReentrantLock();
 
 	private Translator() throws IOException {
 
-		//xstream = new XStream(new PureJavaReflectionProvider(new FieldDictionary(new CatroidFieldKeySorter())));
-		xstream = new XStream(new DomDriver());
+		xstream = new XStream(new PureJavaReflectionProvider(new FieldDictionary(new CatroidFieldKeySorter())));
 		xstream.processAnnotations(Project.class);
 		xstream.processAnnotations(XmlHeader.class);
 		xstream.processAnnotations(UserVariablesContainer.class);
 		setXstreamAliases();
+	}
+	
+	public static String getXMLHeader() {
+		return XML_HEADER;
 	}
 
 	private void setXstreamAliases() {
@@ -215,7 +219,7 @@ public class Translator {
 		}
 		try {
 			String projectFile = xstream.toXML(project);
-			File projectXML = new File("code.xml");
+			File projectXML = new File("result.xml");
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter(projectXML));
 			writer.write(XML_HEADER.concat(projectFile));

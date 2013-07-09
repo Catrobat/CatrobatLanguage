@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <program>
   <header>
-    <applicationBuildName></applicationBuildName>
+    <applicationBuildName/>
     <applicationBuildNumber>0</applicationBuildNumber>
     <applicationName>Catroid</applicationName>
     <applicationVersion>0.7.0beta-1479-debug</applicationVersion>
     <catrobatLanguageVersion>0.8</catrobatLanguageVersion>
-    <dateTimeUpload></dateTimeUpload>
-    <description></description>
-    <deviceName></deviceName>
-    <mediaLicense></mediaLicense>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName/>
+    <mediaLicense/>
     <platform>Android</platform>
     <platformVersion>16</platformVersion>
-    <programLicense></programLicense>
+    <programLicense/>
     <programName>Default Project</programName>
-    <remixOf></remixOf>
+    <remixOf/>
     <screenHeight>800</screenHeight>
     <screenWidth>480</screenWidth>
-    <tags></tags>
-    <url></url>
-    <userHandle></userHandle>
+    <tags/>
+    <url/>
+    <userHandle/>
   </header>
   <objectList>
     <object>
@@ -67,7 +67,7 @@
           <brickList>
             <setLookBrick>
               <object reference="../../../../.."/>
-              <look reference="../../../../../lookList/look"/>
+              <look reference="../../../../../lookList/look[2]"/>
             </setLookBrick>
             <waitBrick>
               <object reference="../../../../.."/>
@@ -80,7 +80,7 @@
             </waitBrick>
             <setLookBrick>
               <object reference="../../../../.."/>
-              <look reference="../../../../../lookList/look[2]"/>
+              <look reference="../../../../../lookList/look[3]"/>
             </setLookBrick>
             <waitBrick>
               <object reference="../../../../.."/>

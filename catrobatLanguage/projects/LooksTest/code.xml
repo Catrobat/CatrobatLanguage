@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<program>
+  <header>
+    <applicationBuildName/>
+    <applicationBuildNumber>0</applicationBuildNumber>
+    <applicationName>Catroid</applicationName>
+    <applicationVersion>0.7.0beta-1479-debug</applicationVersion>
+    <catrobatLanguageVersion>0.8</catrobatLanguageVersion>
+    <dateTimeUpload/>
+    <description/>
+    <deviceName/>
+    <mediaLicense/>
+    <platform>Android</platform>
+    <platformVersion>16</platformVersion>
+    <programLicense/>
+    <programName>LooksTest</programName>
+    <remixOf/>
+    <screenHeight>800</screenHeight>
+    <screenWidth>480</screenWidth>
+    <tags/>
+    <url/>
+    <userHandle/>
+  </header>
+  <objectList>
+    <object>
+      <lookList>
+        <look>
+          <fileName>3BA1586870400E96BE0BB523D5F12E12_Hintergrund</fileName>
+          <name>white</name>
+        </look>
+        <look>
+          <fileName>A0305EC2DCBD2858B836C5029D275DAB_background.png</fileName>
+          <name>logo</name>
+        </look>
+      </lookList>
+      <name>Background</name>
+      <scriptList/>
+      <soundList/>
+    </object>
+  </objectList>
+  <variables>
+    <objectVariableList/>
+    <programVariableList/>
+  </variables>
+</program>
