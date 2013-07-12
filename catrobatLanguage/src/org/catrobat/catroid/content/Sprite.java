@@ -29,12 +29,29 @@ import java.util.List;
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
 
-public class Sprite implements Serializable, Cloneable {
-	
+public class Sprite implements Serializable{
+
 	private static final long serialVersionUID = 1L;
+
+	public String name = "";
+	public List<Script> scriptList = new ArrayList<Script>();
+	public ArrayList<LookData> lookList = new ArrayList<LookData>();
+	public ArrayList<SoundInfo> soundList = new ArrayList<SoundInfo>();
+
+	public boolean equals(Object arg0) {
+
+		if (!(arg0 instanceof Sprite))
+			return false;
+		Sprite arg = (Sprite) arg0;
+
+		return (name.equals(arg.name) &&
+				scriptList.equals(arg.scriptList) &&
+				lookList.equals(arg.lookList) &&
+				soundList.equals(arg.soundList));
+	}
 	
-	public String name;
-	public List<Script> scriptList;
-	public ArrayList<LookData> lookList;
-	public ArrayList<SoundInfo> soundList;
+	public int hashCode() {
+		return name.hashCode();
+	}
+
 }

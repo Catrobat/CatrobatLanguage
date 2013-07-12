@@ -29,6 +29,11 @@ public class ChangeVariableBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public UserVariable userVariable;
-	public Formula variableFormula;
+	public UserVariable userVariable = new UserVariable();
+	public Formula variableFormula = new Formula();
+	
+	public boolean equals(ChangeVariableBrick arg) {
+		return (userVariable.equals(arg.userVariable) &&
+				variableFormula.equals(arg.variableFormula));
+	}
 }

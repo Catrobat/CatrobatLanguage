@@ -26,4 +26,5 @@ import java.io.Serializable;
 
 public interface Brick extends Serializable {
 
+	public boolean equals(Object arg);
 }

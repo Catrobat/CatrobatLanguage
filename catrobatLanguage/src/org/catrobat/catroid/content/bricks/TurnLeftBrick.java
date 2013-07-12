@@ -28,5 +28,9 @@ public class TurnLeftBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 
-	public Formula degrees;
+	public Formula degrees = new Formula();
+	
+	public boolean equals(TurnLeftBrick arg) {
+		return (degrees.equals(arg.degrees));
+	}
 }

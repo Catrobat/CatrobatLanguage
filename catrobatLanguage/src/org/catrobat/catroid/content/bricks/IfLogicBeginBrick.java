@@ -27,8 +27,12 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class IfLogicBeginBrick extends NestingBrick {
 	private static final long serialVersionUID = 1L;
 	
-	public Formula ifCondition;
+	public Formula ifCondition = new Formula();
 	public IfLogicElseBrick ifElseBrick;
 	public IfLogicEndBrick ifEndBrick;
+	
+	public boolean equals(IfLogicBeginBrick arg) {
+		return (ifCondition.equals(arg.ifCondition));
+	}
 
 }

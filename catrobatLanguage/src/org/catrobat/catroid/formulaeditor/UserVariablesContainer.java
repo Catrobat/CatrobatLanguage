@@ -23,6 +23,8 @@
 package org.catrobat.catroid.formulaeditor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +33,20 @@ import org.catrobat.catroid.content.Sprite;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 public class UserVariablesContainer implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@XStreamAlias("programVariableList")
-	public List<UserVariable> projectVariables;
+	public List<UserVariable> projectVariables = new ArrayList<UserVariable>();
 	@XStreamAlias("objectVariableList")
-	public Map<Sprite, List<UserVariable>> spriteVariables;
+	public Map<Sprite, List<UserVariable>> spriteVariables = new HashMap<Sprite, List<UserVariable>>();
+
+	public boolean equals(Object arg0) {
+		if (!(arg0 instanceof UserVariablesContainer))
+			return false;
+		UserVariablesContainer arg = (UserVariablesContainer) arg0;
+		
+		return (projectVariables.equals(arg.projectVariables) && 
+				spriteVariables.equals(arg.spriteVariables));
+	}
 }

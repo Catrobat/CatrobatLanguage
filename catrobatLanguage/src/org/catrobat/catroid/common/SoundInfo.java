@@ -28,7 +28,17 @@ public class SoundInfo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	public String name;
-	public String fileName;
+	public String name = "";
+	public String fileName = "";
+	
+	public boolean equals(Object arg0) {
+		
+		if (!(arg0 instanceof SoundInfo))
+			return false;
+		SoundInfo arg = (SoundInfo) arg0;
+		
+		return (name.equals(arg.name) &&
+				fileName.equals(arg.fileName));
+	}
 	
 }

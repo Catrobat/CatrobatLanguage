@@ -27,5 +27,9 @@ import org.catrobat.catroid.content.BroadcastScript;
 public class BroadcastReceiverBrick extends ScriptBrick{
 	private static final long serialVersionUID = 1L;
 	
-	public BroadcastScript receiveScript;
+	public BroadcastScript receiveScript = new BroadcastScript();
+	
+	public boolean equals(BroadcastReceiverBrick arg) {
+		return (receiveScript.equals(arg.receiveScript));
+	}
 }

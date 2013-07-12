@@ -28,6 +28,10 @@ public class WhenBrick extends ScriptBrick {
 
 	private static final long serialVersionUID = 1L;
 	
-	public WhenScript whenScript;
+	public WhenScript whenScript = new WhenScript();
+	
+	public boolean equals(WhenBrick arg) {
+		return (whenScript.equals(arg.whenScript));
+	}
 
 }

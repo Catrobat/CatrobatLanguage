@@ -40,5 +40,12 @@ public class Project implements Serializable {
 	@XStreamAlias("objectList")
 	public List<Sprite> spriteList = new ArrayList<Sprite>();
 	@XStreamAlias("variables")
-	public UserVariablesContainer userVariables = null;
-}
+	public UserVariablesContainer userVariables = new UserVariablesContainer();
+	
+	public boolean equals(Project arg) {
+		return (xmlHeader.equals(arg.xmlHeader) &&
+				spriteList.equals(arg.spriteList) &&
+				userVariables.equals(arg.userVariables));
+	}
+	
+	}

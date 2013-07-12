@@ -27,6 +27,11 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class PlaceAtBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula xPosition;
-	public Formula yPosition;
+	public Formula xPosition = new Formula();
+	public Formula yPosition = new Formula();
+	
+	public boolean equals(PlaceAtBrick arg) {
+		return (xPosition.equals(arg.xPosition) &&
+				yPosition.equals(arg.yPosition));
+	}
 }

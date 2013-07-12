@@ -27,5 +27,9 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class ChangeXByNBrick extends BrickBaseType{
 	private static final long serialVersionUID = 1L;
 	
-	public Formula xMovement;
+	public Formula xMovement = new Formula();
+	
+	public boolean equals(ChangeXByNBrick arg) {
+		return (xMovement.equals(arg.xMovement));
+	}
 }

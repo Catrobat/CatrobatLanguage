@@ -27,5 +27,10 @@ public class WhenScript extends Script {
 
 	private static final long serialVersionUID = 1L;
 	
-	public String action;
+	public String action = "";
+	
+	public boolean equals(WhenScript arg) {
+		return (action.equals(arg.action));
+	}
+	
 }

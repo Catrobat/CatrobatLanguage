@@ -27,5 +27,9 @@ import org.catrobat.catroid.common.LookData;
 public class SetLookBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public LookData look;
+	public LookData look = new LookData();
+	
+	public boolean equals(SetLookBrick arg) {
+		return (look.equals(arg.look));
+	}
 }

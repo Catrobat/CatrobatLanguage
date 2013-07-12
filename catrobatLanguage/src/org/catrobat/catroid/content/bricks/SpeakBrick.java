@@ -26,5 +26,9 @@ public class SpeakBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
 	public String text = "";
+	
+	public boolean equals(SpeakBrick arg) {
+		return (text.equals(arg.text));
+	}
 
 }

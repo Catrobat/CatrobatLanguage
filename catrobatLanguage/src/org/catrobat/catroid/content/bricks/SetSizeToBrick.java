@@ -27,5 +27,9 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class SetSizeToBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula size;
+	public Formula size = new Formula();
+	
+	public boolean equals(SetSizeToBrick arg) {
+		return (size.equals(arg.size));
+	}
 }

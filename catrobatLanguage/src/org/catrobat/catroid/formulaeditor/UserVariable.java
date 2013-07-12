@@ -28,5 +28,18 @@ public class UserVariable implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public String name;
+	public String name = "";
+	
+	public boolean equals(Object arg0) {
+		
+		if (!(arg0 instanceof UserVariable))
+			return false;
+		UserVariable arg = (UserVariable) arg0;
+		
+		return name.equals(arg.name);
+	}
+	
+	public int hashCode() {
+		return name.hashCode();
+	}
 }

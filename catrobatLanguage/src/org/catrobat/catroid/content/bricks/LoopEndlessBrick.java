@@ -26,4 +26,8 @@ package org.catrobat.catroid.content.bricks;
 public class LoopEndlessBrick extends LoopEndBrick implements DeadEndBrick {
 
 	private static final long serialVersionUID = 1L;
+	
+	public boolean equals(LoopEndlessBrick arg) {
+		return (true);
+	}
 }

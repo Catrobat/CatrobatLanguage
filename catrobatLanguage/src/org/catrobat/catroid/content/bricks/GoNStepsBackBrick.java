@@ -28,5 +28,9 @@ public class GoNStepsBackBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Formula steps;
+	public Formula steps = new Formula();
+	
+	public boolean equals(GoNStepsBackBrick arg) {
+		return (steps.equals(arg.steps));
+	}
 }

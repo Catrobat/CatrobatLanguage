@@ -28,6 +28,10 @@ public class Formula implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public FormulaElement formulaTree;
+	public FormulaElement formulaTree = new FormulaElement();
+	
+	public boolean equals(Formula arg) {
+		return (formulaTree.equals(arg.formulaTree));
+	}
 
 }

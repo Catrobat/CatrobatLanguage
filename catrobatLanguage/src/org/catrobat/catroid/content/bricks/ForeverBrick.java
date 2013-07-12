@@ -25,4 +25,8 @@ package org.catrobat.catroid.content.bricks;
 public class ForeverBrick extends LoopBeginBrick {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public boolean equals(ForeverBrick arg) {
+		return (true);
+	}
 }

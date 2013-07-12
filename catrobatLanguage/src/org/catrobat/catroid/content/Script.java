@@ -31,7 +31,22 @@ public abstract class Script implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public ArrayList<Brick> brickList;
+	public ArrayList<Brick> brickList = new ArrayList<Brick>();
 	public Sprite object;
+	
+	public boolean equals(Object arg0) {
+		
+		if (!(arg0 instanceof Script))
+			return false;
+		Script arg = (Script) arg0;
+		
+		return (((arg instanceof StartScript) && (this instanceof StartScript) 
+						&& ((StartScript) this).equals((StartScript) arg)) ||
+				((arg instanceof WhenScript) && (this instanceof WhenScript) 
+						&& ((WhenScript) this).equals((WhenScript) arg)) ||
+				((arg instanceof BroadcastScript) && (this instanceof BroadcastScript)
+						&& ((BroadcastScript) this).equals((BroadcastScript) arg)) &&
+				brickList.equals(arg.brickList));
+	}
 
 }

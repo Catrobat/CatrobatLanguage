@@ -30,15 +30,15 @@ public class XmlHeader implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String programName;
-	public String description;
+	public String programName = "";
+	public String description = "";
 
 	@XStreamAlias("screenWidth")
 	public int virtualScreenWidth = 0;
 	@XStreamAlias("screenHeight")
 	public int virtualScreenHeight = 0;
 
-	public float catrobatLanguageVersion;
+	public float catrobatLanguageVersion = (float) 0.8;
 
 	public String applicationBuildName = "";
 	public int applicationBuildNumber = 0;
@@ -54,4 +54,25 @@ public class XmlHeader implements Serializable {
 	public String tags = "";
 	public String url = "";
 	public String userHandle = "";
+	
+	public boolean equals(XmlHeader arg) {
+		return (programName.equals(arg.programName) &&
+				description.equals(arg.description) &&
+				virtualScreenHeight == arg.virtualScreenHeight &&
+				virtualScreenWidth == arg.virtualScreenWidth &&
+				catrobatLanguageVersion == arg.catrobatLanguageVersion &&
+				applicationBuildName.equals(arg.applicationBuildName) &&
+				applicationBuildNumber == arg.applicationBuildNumber &&
+				applicationName.equals(arg.applicationName) &&
+				applicationVersion.equals(arg.applicationVersion) &&
+				dateTimeUpload.equals(arg.dateTimeUpload) &&
+				deviceName.equals(arg.deviceName) &&
+				mediaLicense.equals(arg.mediaLicense) &&
+				platform.equals(arg.platform) &&
+				platformVersion == arg.platformVersion &&
+				remixOf.equals(arg.remixOf) &&
+				tags.equals(arg.tags) &&
+				url.equals(arg.url) &&
+				userHandle.equals(arg.userHandle));
+	}
 }

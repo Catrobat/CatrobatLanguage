@@ -27,4 +27,7 @@ public class ClearGraphicEffectBrick extends BrickBaseType {
 	
 	private static final long serialVersionUID = 1L;
 
+	public boolean equals(ClearGraphicEffectBrick arg) {
+		return (true);
+	}
 }

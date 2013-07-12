@@ -32,9 +32,19 @@ public class FormulaElement implements Serializable {
 		OPERATOR, FUNCTION, NUMBER, SENSOR, USER_VARIABLE, BRACKET
 	}
 
-	public ElementType type;
-	public String value;
-	public FormulaElement leftChild;
-	public FormulaElement rightChild;
+	public ElementType type = ElementType.NUMBER;
+	public String value = "";
+	public FormulaElement leftChild = null;
+	public FormulaElement rightChild = null;
+	
+	public boolean equals(FormulaElement arg) {
+		return (type.equals(arg.type) &&
+				value.equals(arg.value) &&
+				((leftChild == null && arg.leftChild == null) ||
+						leftChild.equals(arg.leftChild)) &&
+				((rightChild == null && arg.rightChild == null) || 
+						rightChild.equals(arg.rightChild)) );
+	}
+	
 
 }

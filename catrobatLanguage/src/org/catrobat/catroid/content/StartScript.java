@@ -26,5 +26,9 @@ package org.catrobat.catroid.content;
 public class StartScript extends Script {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	public boolean equals(StartScript arg) {
+		return true;
+	}
+	
 }

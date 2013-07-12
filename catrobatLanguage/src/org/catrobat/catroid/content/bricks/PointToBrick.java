@@ -28,5 +28,9 @@ public class PointToBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Sprite pointedObject;
+	public Sprite pointedObject = new Sprite();
+	
+	public boolean equals(PointToBrick arg) {
+		return (pointedObject.equals(arg.pointedObject));
+	}
 }

@@ -26,4 +26,8 @@ package org.catrobat.catroid.content.bricks;
 public class ComeToFrontBrick extends BrickBaseType {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public boolean equals(ComeToFrontBrick arg) {
+		return (true);
+	}
 }

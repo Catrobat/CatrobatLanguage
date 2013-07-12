@@ -27,7 +27,13 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class GlideToBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula xDestination;
-	public Formula yDestination;
-	public Formula durationInSeconds;
+	public Formula xDestination = new Formula();
+	public Formula yDestination = new Formula();
+	public Formula durationInSeconds = new Formula();
+	
+	public boolean equals(GlideToBrick arg) {
+		return (xDestination.equals(arg.xDestination) &&
+				yDestination.equals(arg.yDestination) &&
+				durationInSeconds.equals(arg.durationInSeconds));
+	}
 }

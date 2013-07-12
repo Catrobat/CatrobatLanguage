@@ -27,4 +27,8 @@ public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBri
 	private static final long serialVersionUID = 1L;
 	
 	public LoopBeginBrick loopBeginBrick;
+	
+	public boolean equals(LoopEndBrick arg) {
+		return (true);
+	}
 }

@@ -28,5 +28,9 @@ public class ChangeBrightnessByNBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Formula changeBrightness;
+	public Formula changeBrightness = new Formula();
+	
+	public boolean equals(ChangeBrightnessByNBrick arg) {
+		return (changeBrightness.equals(arg.changeBrightness));
+	}
 }

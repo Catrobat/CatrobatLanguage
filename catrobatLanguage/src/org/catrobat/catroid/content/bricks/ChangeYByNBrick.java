@@ -28,5 +28,9 @@ public class ChangeYByNBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Formula yMovement;
+	public Formula yMovement = new Formula();
+	
+	public boolean equals(ChangeYByNBrick arg) {
+		return (yMovement.equals(arg.yMovement));
+	}
 }

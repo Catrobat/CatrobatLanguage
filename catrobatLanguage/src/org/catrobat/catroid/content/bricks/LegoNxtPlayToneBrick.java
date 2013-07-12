@@ -27,6 +27,11 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class LegoNxtPlayToneBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula frequency;
-	public Formula durationInSeconds;
+	public Formula frequency = new Formula();
+	public Formula durationInSeconds = new Formula();
+	
+	public boolean equals(LegoNxtPlayToneBrick arg) {
+		return (frequency.equals(arg.frequency) &&
+				durationInSeconds.equals(arg.durationInSeconds));
+	}
 }

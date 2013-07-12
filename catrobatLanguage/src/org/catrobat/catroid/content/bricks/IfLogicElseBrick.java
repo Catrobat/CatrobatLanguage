@@ -29,5 +29,9 @@ public class IfLogicElseBrick extends NestingBrick implements AllowedAfterDeadEn
 	
 	public IfLogicBeginBrick ifBeginBrick;
 	public IfLogicEndBrick ifEndBrick;
+	
+	public boolean equals(IfLogicElseBrick arg) {
+		return (true);
+	}
 
 }

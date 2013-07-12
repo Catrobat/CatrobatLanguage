@@ -25,5 +25,9 @@ package org.catrobat.catroid.content.bricks;
 public class LegoNxtMotorStopBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public String motor;
+	public String motor = "";
+	
+	public boolean equals(LegoNxtMotorStopBrick arg) {
+		return (motor.equals(arg.motor));
+	}
 }

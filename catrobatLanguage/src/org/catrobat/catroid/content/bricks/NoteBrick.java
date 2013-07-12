@@ -28,4 +28,8 @@ public class NoteBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
 	public String note = "";
+	
+	public boolean equals(NoteBrick arg) {
+		return (note.equals(arg.note));
+	}
 }

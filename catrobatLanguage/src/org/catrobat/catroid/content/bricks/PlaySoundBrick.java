@@ -27,5 +27,9 @@ import org.catrobat.catroid.common.SoundInfo;
 public class PlaySoundBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public SoundInfo sound;
+	public SoundInfo sound = new SoundInfo();
+	
+	public boolean equals(PlaySoundBrick arg) {
+		return (sound.equals(arg.sound));
+	}
 }
