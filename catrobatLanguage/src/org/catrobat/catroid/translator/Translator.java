@@ -25,6 +25,7 @@ package org.catrobat.catroid.translator;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -94,6 +95,8 @@ import org.catrobat.catroid.content.bricks.WhenStartedBrick;
 import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
 
+import com.esotericsoftware.yamlbeans.YamlReader;
+import com.esotericsoftware.yamlbeans.YamlWriter;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.reflection.FieldDictionary;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
@@ -104,6 +107,8 @@ public class Translator {
 	private XStream xstream;
 	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 	private ReentrantLock saveLoadLock = new ReentrantLock();
+	private YamlReader yamlReader;
+	private YamlWriter yamlWriter;
 
 	private Translator() throws IOException {
 
@@ -219,7 +224,7 @@ public class Translator {
 		}
 		try {
 			String projectFile = xstream.toXML(project);
-			File projectXML = new File("result.xml");
+			File projectXML = new File("code.xml");
 
 			BufferedWriter writer = new BufferedWriter(new FileWriter(projectXML));
 			writer.write(XML_HEADER.concat(projectFile));
@@ -236,6 +241,46 @@ public class Translator {
 
 	public String getXMLStringOfAProject(Project project) {
 		return xstream.toXML(project);
+	}
+	
+	public boolean saveProjectToYAML(Project project) {
+		saveLoadLock.lock();
+		if (project == null) {
+			saveLoadLock.unlock();
+			return false;
+		}
+		try {
+			File projectYAML = new File("code.yml");
+
+			yamlWriter =  new YamlWriter(new FileWriter(projectYAML));
+			
+			yamlWriter.write(project);
+			yamlWriter.close();
+			
+			saveLoadLock.unlock();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			saveLoadLock.unlock();
+			return false;
+		}
+	}
+	
+	public Project loadProjectFromYAML(File yamlProject) {
+		saveLoadLock.lock();
+		try {
+				yamlReader = new YamlReader(new FileReader(yamlProject));
+	
+				Project returned = (Project) yamlReader.read();
+				yamlReader.close();
+				saveLoadLock.unlock();
+				return returned;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			saveLoadLock.unlock();
+			return null;
+		}
 	}
 
 }

@@ -1,0 +1,62 @@
+!org.catrobat.catroid.content.Project
+spriteList: 
+- &1 !org.catrobat.catroid.content.Sprite
+   name: Background
+   lookList: 
+   - &2 !org.catrobat.catroid.common.LookData
+      name: whack-a-mole-BG
+      fileName: 1D687270C999067F2DDFCB8CA59046E7_whack-a-mole-BG.png
+   - !org.catrobat.catroid.common.LookData
+      name: whack-a-mole-BG_copy
+      fileName: 4137DB0956BAA9780A087C874900B5EB_whack-a-mole-BG.png
+   scriptList: 
+   - !org.catrobat.catroid.content.StartScript
+      brickList: 
+      - !org.catrobat.catroid.content.bricks.SetLookBrick
+         look: *2
+         sprite: *1
+      object: *1
+- &3 !org.catrobat.catroid.content.Sprite
+   name: ' Cat '
+   lookList: 
+   - &4 !org.catrobat.catroid.common.LookData
+      name: ' normalCat'
+      fileName: ' normal_cat.jpg'
+   - &5 !org.catrobat.catroid.common.LookData
+      name: ' banzaiCat'
+      fileName: ' banzai_cat.jpg'
+   - &6 !org.catrobat.catroid.common.LookData
+      name: ' cheshireCat'
+      fileName: ' cheshire_cat.jpg'
+   scriptList: 
+   - !org.catrobat.catroid.content.WhenScript
+      action: Tapped
+      brickList: 
+      - !org.catrobat.catroid.content.bricks.SetLookBrick
+         look: *5
+         sprite: *3
+      - !org.catrobat.catroid.content.bricks.WaitBrick
+         sprite: *3
+         timeToWaitInSeconds: 
+            formulaTree: 
+               value: 1.0
+      - !org.catrobat.catroid.content.bricks.SetLookBrick
+         look: *6
+         sprite: *3
+      - !org.catrobat.catroid.content.bricks.WaitBrick
+         sprite: *3
+         timeToWaitInSeconds: 
+            formulaTree: 
+               value: 1.0
+      - !org.catrobat.catroid.content.bricks.SetLookBrick
+         look: *4
+         sprite: *3
+      object: *3
+xmlHeader: 
+   applicationName: Catroid
+   applicationVersion: 0.7.0beta-1479-debug
+   platform: Android
+   platformVersion: 16
+   programName: Default Project
+   virtualScreenHeight: 800
+   virtualScreenWidth: 480
