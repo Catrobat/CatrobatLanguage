@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
+import org.catrobat.catroid.yaml.YamlProject;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -36,16 +37,38 @@ public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XStreamAlias("header")
-	public XmlHeader xmlHeader = new XmlHeader();
+	public XmlHeader xmlHeader;
 	@XStreamAlias("objectList")
-	public List<Sprite> spriteList = new ArrayList<Sprite>();
+	public List<Sprite> spriteList;
 	@XStreamAlias("variables")
-	public UserVariablesContainer userVariables = new UserVariablesContainer();
-	
+	public UserVariablesContainer userVariables;
+
+	public Project(YamlProject project) {
+		xmlHeader = new XmlHeader();
+		spriteList = new ArrayList<Sprite>();
+		userVariables = new UserVariablesContainer();
+		
+		if (project.header != null)
+			xmlHeader = project.header;
+		else if (project.objects != null) {
+			for (String name : project.objects.keySet()) {
+				spriteList.add(new Sprite(name, project.objects.get(name)));
+			}
+		}
+		if (project.variables != null)
+			userVariables = project.variables;
+	}
+
+	public Project() {
+		xmlHeader = new XmlHeader();
+		spriteList = new ArrayList<Sprite>();
+		userVariables = new UserVariablesContainer();
+	}
+
 	public boolean equals(Project arg) {
-		return (xmlHeader.equals(arg.xmlHeader) &&
-				spriteList.equals(arg.spriteList) &&
+		return (xmlHeader.equals(arg.xmlHeader) && 
+				spriteList.equals(arg.spriteList) && 
 				userVariables.equals(arg.userVariables));
 	}
-	
-	}
+
+}

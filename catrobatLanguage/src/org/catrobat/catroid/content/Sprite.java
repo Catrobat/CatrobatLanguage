@@ -28,15 +28,39 @@ import java.util.List;
 
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
+import org.catrobat.catroid.yaml.YamlSprite;
 
-public class Sprite implements Serializable{
+public class Sprite implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String name = "";
-	public List<Script> scriptList = new ArrayList<Script>();
-	public ArrayList<LookData> lookList = new ArrayList<LookData>();
-	public ArrayList<SoundInfo> soundList = new ArrayList<SoundInfo>();
+	public String name;
+	public List<Script> scriptList;
+	public ArrayList<LookData> lookList;
+	public ArrayList<SoundInfo> soundList;
+
+	public Sprite(String name, YamlSprite sprite) {
+		name = "";
+		scriptList = new ArrayList<Script>();
+		lookList = new ArrayList<LookData>();
+		soundList = new ArrayList<SoundInfo>();
+		
+		if (!(name == null))
+			this.name = name;
+		if (!(sprite.scripts == null))
+			scriptList = sprite.scripts;
+		if (!(sprite.looks == null))
+			lookList = sprite.looks;
+		if (!(sprite.sounds == null))
+			soundList = sprite.sounds;
+	}
+
+	public Sprite() {
+		name = "";
+		scriptList = new ArrayList<Script>();
+		lookList = new ArrayList<LookData>();
+		soundList = new ArrayList<SoundInfo>();
+	}
 
 	public boolean equals(Object arg0) {
 
@@ -44,12 +68,11 @@ public class Sprite implements Serializable{
 			return false;
 		Sprite arg = (Sprite) arg0;
 
-		return (name.equals(arg.name) &&
-				scriptList.equals(arg.scriptList) &&
-				lookList.equals(arg.lookList) &&
-				soundList.equals(arg.soundList));
+		return (name.equals(arg.name) && scriptList.equals(arg.scriptList)
+				&& lookList.equals(arg.lookList) && soundList
+					.equals(arg.soundList));
 	}
-	
+
 	public int hashCode() {
 		return name.hashCode();
 	}

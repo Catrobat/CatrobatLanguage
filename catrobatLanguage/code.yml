@@ -1,62 +1,2954 @@
-!org.catrobat.catroid.content.Project
-spriteList: 
-- &1 !org.catrobat.catroid.content.Sprite
-   name: Background
-   lookList: 
-   - &2 !org.catrobat.catroid.common.LookData
-      name: whack-a-mole-BG
-      fileName: 1D687270C999067F2DDFCB8CA59046E7_whack-a-mole-BG.png
-   - !org.catrobat.catroid.common.LookData
-      name: whack-a-mole-BG_copy
-      fileName: 4137DB0956BAA9780A087C874900B5EB_whack-a-mole-BG.png
-   scriptList: 
-   - !org.catrobat.catroid.content.StartScript
-      brickList: 
-      - !org.catrobat.catroid.content.bricks.SetLookBrick
-         look: *2
-         sprite: *1
-      object: *1
-- &3 !org.catrobat.catroid.content.Sprite
-   name: ' Cat '
-   lookList: 
-   - &4 !org.catrobat.catroid.common.LookData
-      name: ' normalCat'
-      fileName: ' normal_cat.jpg'
-   - &5 !org.catrobat.catroid.common.LookData
-      name: ' banzaiCat'
-      fileName: ' banzai_cat.jpg'
-   - &6 !org.catrobat.catroid.common.LookData
-      name: ' cheshireCat'
-      fileName: ' cheshire_cat.jpg'
-   scriptList: 
-   - !org.catrobat.catroid.content.WhenScript
-      action: Tapped
-      brickList: 
-      - !org.catrobat.catroid.content.bricks.SetLookBrick
-         look: *5
-         sprite: *3
-      - !org.catrobat.catroid.content.bricks.WaitBrick
-         sprite: *3
-         timeToWaitInSeconds: 
-            formulaTree: 
-               value: 1.0
-      - !org.catrobat.catroid.content.bricks.SetLookBrick
-         look: *6
-         sprite: *3
-      - !org.catrobat.catroid.content.bricks.WaitBrick
-         sprite: *3
-         timeToWaitInSeconds: 
-            formulaTree: 
-               value: 1.0
-      - !org.catrobat.catroid.content.bricks.SetLookBrick
-         look: *4
-         sprite: *3
-      object: *3
-xmlHeader: 
+!program
+header: 
    applicationName: Catroid
-   applicationVersion: 0.7.0beta-1479-debug
+   applicationVersion: 0.7.3beta
+   deviceName: Nexus 4
+   mediaLicense: http://developer.catrobat.org/ccbysa_v3
    platform: Android
-   platformVersion: 16
-   programName: Default Project
-   virtualScreenHeight: 800
-   virtualScreenWidth: 480
+   platformVersion: 17
+   programLicense: http://developer.catrobat.org/agpl_v3
+   programName: SimonSays
+   remixOf: https://pocketcode.org/details/732
+   url: http://pocketcode.org/details/732
+   userHandle: Felly
+   virtualScreenHeight: 1184
+   virtualScreenWidth: 768
+objects: 
+   Startscreen: 
+      looks: &1
+      - &2
+         name: welcome
+         fileName: C7017B69599379514F460CCDD80621D0_welcome.png
+      scripts: &3
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *2
+            sprite: &4
+               name: Startscreen
+               lookList: *1
+               scriptList: *3
+         object: *4
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *4
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *4
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.StopAllSoundsBrick
+            sprite: *4
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *4
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *4
+         receivedMessage: menu
+   green: 
+      looks: &5
+      - &6
+         name: green
+         fileName: 7BAE5705A58F2FBC0517B4007B23F5A1_green.png
+      - &7
+         name: green_pressed_2
+         fileName: B763CCB4D5592163B5DD696FAA6DBF95_green_pressed_2.png
+      scripts: &8
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &9
+               name: green
+               lookList: *5
+               scriptList: *8
+               soundList: &10
+               - &11 !org.catrobat.catroid.common.SoundInfo
+                  name: send
+                  fileName: 841245C303F564156CEB1B91FE0ED7A2_send.mp4
+            xPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 200
+                  type: OPERATOR
+                  value: MINUS
+            yPosition: 
+               formulaTree: 
+                  value: 200
+         - !org.catrobat.catroid.content.bricks.SetSizeToBrick
+            size: 
+               formulaTree: 
+                  value: 200
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *6
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *9
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *9
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *9
+         object: *9
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *11
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *7
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *9
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *9
+         object: *9
+         receivedMessage: green
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - &12 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_time
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &13
+               ifBeginBrick: *12
+               ifEndBrick: &14
+                  ifBeginBrick: *12
+                  ifElseBrick: *13
+                  sprite: *9
+               sprite: *9
+            ifEndBrick: *14
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *9
+            userVariable: &15
+               name: button_pressed
+            variableFormula: 
+               formulaTree: 
+                  value: 2
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: pressed
+            sprite: *9
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: green
+            sprite: *9
+         - *13
+         - *14
+         object: *9
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *9
+         object: *9
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *9
+         object: *9
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *9
+         object: *9
+         receivedMessage: init
+      sounds: *10
+   normal: 
+      looks: &16
+      - &17
+         name: normal
+         fileName: 1E78F628BFC7F15FB32DA1455E821872_normal.png
+      scripts: &18
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &19
+               name: normal
+               lookList: *16
+               scriptList: *18
+            xPosition: 
+               formulaTree: 
+                  value: 0
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 200
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *17
+            sprite: *19
+         object: *19
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *19
+            userVariable: &20
+               name: waiting
+            variableFormula: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *19
+            userVariable: &21
+               name: time_left
+            variableFormula: 
+               formulaTree: 
+                  value: 5
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: init
+            sprite: *19
+         object: *19
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *19
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *19
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *19
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *19
+         receivedMessage: menu
+   try_again: 
+      looks: &22
+      - &23
+         name: try_again
+         fileName: 3E2BA99985F5174E7F8DC1B05785F86B_try_again.png
+      scripts: &24
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetYBrick
+            sprite: &25
+               name: try_again
+               lookList: *22
+               scriptList: *24
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 300
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *25
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *23
+            sprite: *25
+         object: *25
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *25
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *25
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: menu
+            sprite: *25
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *25
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *25
+   Background: 
+      looks: &26
+      - &27
+         name: white
+         fileName: 3BA1586870400E96BE0BB523D5F12E12_Hintergrund
+      - &28
+         name: logo
+         fileName: A0305EC2DCBD2858B836C5029D275DAB_background.png
+      scripts: &29
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *27
+            sprite: &30
+               name: Background
+               lookList: *26
+               scriptList: *29
+         object: *30
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *28
+            sprite: *30
+         object: *30
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *27
+            sprite: *30
+         object: *30
+         receivedMessage: menu
+   lifes: 
+      looks: &31
+      - &32
+         name: lifes-3
+         fileName: FB69B8CC1A1664C8A6C8F2F7B3E4A3FD_lifes-3.png
+      -  name: lifes-2
+         fileName: 3B1FF46011AD1B716596BC1CEC287807_lifes-2.png
+      -  name: lifes-1
+         fileName: E7497ED0204DD28019EE6EF5B4FF048F_lifes-1.png
+      -  name: lifes-0
+         fileName: A3D5CCE7BD3C659504EA9B2C981F8342_lifes-0.png
+      scripts: &33
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &34
+               name: lifes
+               lookList: *31
+               scriptList: *33
+               soundList: &35
+               - &36 !org.catrobat.catroid.common.SoundInfo
+                  name: dodoo
+                  fileName: FAC90E0A519A330C7A3F5CFECD6676A2_dodoo.mp4
+            xPosition: 
+               formulaTree: 
+                  value: 250
+            yPosition: 
+               formulaTree: 
+                  value: 550
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *34
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *34
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *34
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *34
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *34
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *34
+            userVariable: &37
+               name: lifes
+            variableFormula: 
+               formulaTree: 
+                  value: 3
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *32
+            sprite: *34
+         object: *34
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *36
+            sprite: *34
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *34
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 1
+         - &38 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: lifes
+                  rightChild: 
+                     value: 0
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &39
+               ifBeginBrick: *38
+               ifEndBrick: &40
+                  ifBeginBrick: *38
+                  ifElseBrick: *39
+                  sprite: *34
+               sprite: *34
+            ifEndBrick: *40
+            sprite: *34
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: game_over
+            sprite: *34
+         - *39
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *34
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *34
+            userVariable: &41
+               name: counter
+            variableFormula: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *34
+            userVariable: *37
+            variableFormula: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: start
+            sprite: *34
+         - *40
+         object: *34
+         receivedMessage: wrong
+      sounds: *35
+   yellow: 
+      looks: &42
+      - &43
+         name: yellow
+         fileName: 514FFD20F76228E80C86E344F53E4718_yellow.png
+      - &44
+         name: yellow_pressed_2
+         fileName: 19F6ED9A853C145DA46166D88B075716_yellow_pressed_2.png
+      scripts: &45
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &46
+               name: yellow
+               lookList: *42
+               scriptList: *45
+               soundList: &47
+               - &48 !org.catrobat.catroid.common.SoundInfo
+                  name: send
+                  fileName: 841245C303F564156CEB1B91FE0ED7A2_send.mp4
+            xPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 200
+                  type: OPERATOR
+                  value: MINUS
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 200
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetSizeToBrick
+            size: 
+               formulaTree: 
+                  value: 200
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *43
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *46
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *46
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *46
+         object: *46
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *48
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *44
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *46
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *46
+         object: *46
+         receivedMessage: yellow
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - &49 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_time
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &50
+               ifBeginBrick: *49
+               ifEndBrick: &51
+                  ifBeginBrick: *49
+                  ifElseBrick: *50
+                  sprite: *46
+               sprite: *46
+            ifEndBrick: *51
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *46
+            userVariable: *15
+            variableFormula: 
+               formulaTree: 
+                  value: 4
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: pressed
+            sprite: *46
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: yellow
+            sprite: *46
+         - *50
+         - *51
+         object: *46
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *46
+         object: *46
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *46
+         object: *46
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *46
+         object: *46
+         receivedMessage: init
+      sounds: *47
+   time_left_text: 
+      looks: &52
+      - &53
+         name: time_left
+         fileName: BFB2013983302174FA9D240EDED5F690_time_left.png
+      scripts: &54
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &55
+               name: time_left_text
+               lookList: *52
+               scriptList: *54
+            xPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 250
+                  type: OPERATOR
+                  value: MINUS
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 400
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *53
+            sprite: *55
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *55
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *55
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *55
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *55
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *55
+            userVariable: &56
+               name: invisible
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *55
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *55
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - &57 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: invisible
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &58
+               ifBeginBrick: *57
+               ifEndBrick: &59
+                  ifBeginBrick: *57
+                  ifElseBrick: *58
+                  sprite: *55
+               sprite: *55
+            ifEndBrick: *59
+            sprite: *55
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *55
+            userVariable: *56
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - *58
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *55
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - *59
+         object: *55
+         receivedMessage: menu
+   menu_button: 
+      looks: &60
+      - &61
+         name: menu
+         fileName: 8DD91E282BE0AE24B9E9289B50FF82CF_menu.png
+      scripts: &62
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &63
+               name: menu_button
+               lookList: *60
+               scriptList: *62
+            xPosition: 
+               formulaTree: 
+                  value: 200
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 500
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *61
+            sprite: *63
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *63
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *63
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *63
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *63
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *63
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *63
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *63
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: menu
+            sprite: *63
+         object: *63
+   red: 
+      looks: &64
+      - &65
+         name: red
+         fileName: B067508E2ACE0D30E5477BA600CC587F_red.png
+      - &66
+         name: red_pressed_2
+         fileName: 39CF2B096B7806C660160FC03F63EBC8_red_pressed_2.png
+      scripts: &67
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &68
+               name: red
+               lookList: *64
+               scriptList: *67
+               soundList: &69
+               - &70 !org.catrobat.catroid.common.SoundInfo
+                  name: send
+                  fileName: 841245C303F564156CEB1B91FE0ED7A2_send.mp4
+            xPosition: 
+               formulaTree: 
+                  value: 200
+            yPosition: 
+               formulaTree: 
+                  value: 200
+         - !org.catrobat.catroid.content.bricks.SetSizeToBrick
+            size: 
+               formulaTree: 
+                  value: 200
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *65
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *68
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *68
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *68
+         object: *68
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *70
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *66
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *68
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *68
+         object: *68
+         receivedMessage: red
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - &71 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_time
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &72
+               ifBeginBrick: *71
+               ifEndBrick: &73
+                  ifBeginBrick: *71
+                  ifElseBrick: *72
+                  sprite: *68
+               sprite: *68
+            ifEndBrick: *73
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *68
+            userVariable: *15
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: pressed
+            sprite: *68
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: red
+            sprite: *68
+         - *72
+         - *73
+         object: *68
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *68
+         object: *68
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *68
+         object: *68
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *68
+         object: *68
+         receivedMessage: menu
+      sounds: *69
+   count_1: 
+      looks: &74
+      - &75
+         name: 1_0
+         fileName: 31BBAE354BA22157496579205BB5D613_1_0.png
+      -  name: 1_1
+         fileName: 3985BCA0AAF737619A901DF059C06D1F_1_1.png
+      -  name: 1_2
+         fileName: F8CFD0779F0CDA43A67DFE203D53DC8D_1_2.png
+      -  name: 1_3
+         fileName: 0ABBF6E3591E6551C81A45CF5C4BF53D_1_3.png
+      -  name: 1_4
+         fileName: 0491A6B1A8DEAAA3A53399FDF32597D8_1_4.png
+      -  name: 1_5
+         fileName: A26ACEC9912EA1C16EECB9B19E5965AE_1_5.png
+      -  name: 1_6
+         fileName: 80EE05C649C08DAB0E587EFC2AAE260D_1_6.png
+      -  name: 1_7
+         fileName: F42598194FAFE3FC2D211818FF2869B3_1_7.png
+      -  name: 1_8
+         fileName: 8AA1E0E69588DD470B383A6DE9EA386D_1_8.png
+      -  name: 1_9
+         fileName: E46098D53F2B55228A0786A1A59F3518_1_9.png
+      scripts: &76
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: &77
+               name: count_1
+               lookList: *74
+               scriptList: *76
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *77
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *77
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *75
+            sprite: *77
+         object: *77
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *77
+         object: *77
+         receivedMessage: count
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *77
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *77
+         receivedMessage: menu
+   easy: 
+      looks: &78
+      - &79
+         name: easy
+         fileName: 5C7A0D1BB33DAB685CCE3BBBB91CF34E_easy.png
+      scripts: &80
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &81
+               name: easy
+               lookList: *78
+               scriptList: *80
+            xPosition: 
+               formulaTree: 
+                  value: 0
+            yPosition: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *79
+            sprite: *81
+         object: *81
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *81
+            userVariable: *20
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *81
+            userVariable: *21
+            variableFormula: 
+               formulaTree: 
+                  value: 9
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: init
+            sprite: *81
+         object: *81
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *81
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *81
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *81
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *81
+         receivedMessage: menu
+   blue: 
+      looks: &82
+      - &83
+         name: blue
+         fileName: F675DFDB371AC39D695F59B5823475F0_blue.png
+      - &84
+         name: blue_pressed_2
+         fileName: EF5ADFF97793AED4D7A0E49E39D553DB_blue_pressed_2.png
+      scripts: &85
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &86
+               name: blue
+               lookList: *82
+               scriptList: *85
+               soundList: &87
+               - &88 !org.catrobat.catroid.common.SoundInfo
+                  name: send
+                  fileName: 841245C303F564156CEB1B91FE0ED7A2_send.mp4
+            xPosition: 
+               formulaTree: 
+                  value: 200
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 200
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetSizeToBrick
+            size: 
+               formulaTree: 
+                  value: 200
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *83
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *86
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *86
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *86
+         object: *86
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *88
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *84
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *86
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *86
+         object: *86
+         receivedMessage: blue
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - &89 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_time
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &90
+               ifBeginBrick: *89
+               ifEndBrick: &91
+                  ifBeginBrick: *89
+                  ifElseBrick: *90
+                  sprite: *86
+               sprite: *86
+            ifEndBrick: *91
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *86
+            userVariable: *15
+            variableFormula: 
+               formulaTree: 
+                  value: 3
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: pressed
+            sprite: *86
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: blue
+            sprite: *86
+         - *90
+         - *91
+         object: *86
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *86
+         object: *86
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *86
+         object: *86
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *86
+         object: *86
+         receivedMessage: init
+      sounds: *87
+   time_left_counter: 
+      looks: &92
+      - &93
+         name: 1_9
+         fileName: E46098D53F2B55228A0786A1A59F3518_1_9.png
+      -  name: 1_8
+         fileName: 8AA1E0E69588DD470B383A6DE9EA386D_1_8.png
+      -  name: 1_7
+         fileName: F42598194FAFE3FC2D211818FF2869B3_1_7.png
+      -  name: 1_6
+         fileName: 80EE05C649C08DAB0E587EFC2AAE260D_1_6.png
+      -  name: 1_5
+         fileName: A26ACEC9912EA1C16EECB9B19E5965AE_1_5.png
+      -  name: 1_4
+         fileName: 0491A6B1A8DEAAA3A53399FDF32597D8_1_4.png
+      -  name: 1_3
+         fileName: 0ABBF6E3591E6551C81A45CF5C4BF53D_1_3.png
+      -  name: 1_2
+         fileName: F8CFD0779F0CDA43A67DFE203D53DC8D_1_2.png
+      -  name: 1_1
+         fileName: 3985BCA0AAF737619A901DF059C06D1F_1_1.png
+      -  name: 1_0
+         fileName: 31BBAE354BA22157496579205BB5D613_1_0.png
+      scripts: &94
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: &95
+               name: time_left_counter
+               lookList: *92
+               scriptList: *94
+               soundList: &96
+               - &97 !org.catrobat.catroid.common.SoundInfo
+                  name: chan
+                  fileName: D87215C94549EEE3A2B57A4BA42E0F95_chan.mp4
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *93
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: &98
+               name: internal_counter
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: &99
+               name: internal_time_left
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: time_left
+         - &100 !org.catrobat.catroid.content.bricks.RepeatBrick
+            loopEndBrick: &101
+               loopBeginBrick: *100
+               sprite: *95
+            sprite: *95
+            timesToRepeat: 
+               formulaTree: 
+                  leftChild: 
+                     value: 9
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: time_left
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *95
+         - *101
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *95
+         object: *95
+         receivedMessage: timer_reset
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: *95
+            xPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 280
+                  type: OPERATOR
+                  value: MINUS
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 500
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *95
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - &102 !org.catrobat.catroid.content.bricks.ForeverBrick
+            loopEndBrick: &103 !org.catrobat.catroid.content.bricks.LoopEndlessBrick
+               loopBeginBrick: *102
+               sprite: *95
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *95
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.1
+         - &104 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_time
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &105
+               ifBeginBrick: *104
+               ifEndBrick: &106
+                  ifBeginBrick: *104
+                  ifElseBrick: *105
+                  sprite: *95
+               sprite: *95
+            ifEndBrick: *106
+            sprite: *95
+         - &107 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: internal_counter
+                     rightChild: 
+                        value: 0
+                     type: OPERATOR
+                     value: EQUAL
+                  rightChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: internal_time_left
+                     rightChild: 
+                        leftChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: time_left
+                           rightChild: 
+                              value: 3
+                           type: OPERATOR
+                           value: DIVIDE
+                        type: FUNCTION
+                        value: ROUND
+                     type: OPERATOR
+                     value: SMALLER_OR_EQUAL
+                  type: OPERATOR
+                  value: LOGICAL_AND
+            ifElseBrick: &108
+               ifBeginBrick: *107
+               ifEndBrick: &109
+                  ifBeginBrick: *107
+                  ifElseBrick: *108
+                  sprite: *95
+               sprite: *95
+            ifEndBrick: *109
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *97
+            sprite: *95
+         - *108
+         - *109
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *95
+            userVariable: *98
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - &110 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: internal_counter
+                  rightChild: 
+                     value: 10
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &111
+               ifBeginBrick: *110
+               ifEndBrick: &112
+                  ifBeginBrick: *110
+                  ifElseBrick: *111
+                  sprite: *95
+               sprite: *95
+            ifEndBrick: *112
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: *98
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *95
+            userVariable: *99
+            variableFormula: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: MINUS
+         - &113 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: internal_time_left
+                  rightChild: 
+                     value: 0
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &114
+               ifBeginBrick: *113
+               ifEndBrick: &115
+                  ifBeginBrick: *113
+                  ifElseBrick: *114
+                  sprite: *95
+               sprite: *95
+            ifEndBrick: *115
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: &116
+               name: guessing_time
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: wrong
+            sprite: *95
+         - *114
+         - *115
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *95
+         - *111
+         - *112
+         - *105
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: *98
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: *99
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: time_left
+         - *106
+         - *103
+         object: *95
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: timer_reset
+            sprite: *95
+         object: *95
+         receivedMessage: start
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: timer_reset
+            sprite: *95
+         object: *95
+         receivedMessage: pressed
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *95
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *95
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: &117
+               name: invisible
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *95
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *95
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - &118 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: invisible
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &119
+               ifBeginBrick: *118
+               ifEndBrick: &120
+                  ifBeginBrick: *118
+                  ifElseBrick: *119
+                  sprite: *95
+               sprite: *95
+            ifEndBrick: *120
+            sprite: *95
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *95
+            userVariable: *117
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - *119
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *95
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - *120
+         object: *95
+         receivedMessage: menu
+      sounds: *96
+   count_10: 
+      looks: &121
+      - &122
+         name: 10_1
+         fileName: E021CB0DCC43F849D68500B450B00C91_10_1.png
+      -  name: 10_2
+         fileName: F46DC83596D0348486FB9B53E1F722D4_10_2.png
+      -  name: 10_3
+         fileName: 2A14BE5819D390C7282A0199DE16649D_10_3.png
+      scripts: &123
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: &124
+               name: count_10
+               lookList: *121
+               scriptList: *123
+            userVariable: &125
+               name: score
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         object: *124
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.HideBrick
+            sprite: *124
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *124
+            userVariable: *125
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         object: *124
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *124
+            userVariable: *125
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - &126 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: score
+                  rightChild: 
+                     value: 10
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &127
+               ifBeginBrick: *126
+               ifEndBrick: &128
+                  ifBeginBrick: *126
+                  ifElseBrick: *127
+                  sprite: *124
+               sprite: *124
+            ifEndBrick: *128
+            sprite: *124
+         - !org.catrobat.catroid.content.bricks.ShowBrick
+            sprite: *124
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *122
+            sprite: *124
+         - *127
+         - &129 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: score
+                     rightChild: 
+                        value: 20
+                     type: OPERATOR
+                     value: EQUAL
+                  rightChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: score
+                     rightChild: 
+                        value: 30
+                     type: OPERATOR
+                     value: EQUAL
+                  type: OPERATOR
+                  value: LOGICAL_OR
+            ifElseBrick: &130
+               ifBeginBrick: *129
+               ifEndBrick: &131
+                  ifBeginBrick: *129
+                  ifElseBrick: *130
+                  sprite: *124
+               sprite: *124
+            ifEndBrick: *131
+            sprite: *124
+         - !org.catrobat.catroid.content.bricks.NextLookBrick
+            sprite: *124
+         - *130
+         - *131
+         - *128
+         object: *124
+         receivedMessage: count
+   controller: 
+      scripts: &132
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: &133
+               name: controller
+               scriptList: *132
+               soundList: &134
+               - !org.catrobat.catroid.common.SoundInfo
+                  name: dodoo
+                  fileName: FAC90E0A519A330C7A3F5CFECD6676A2_dodoo.mp4
+               - &135 !org.catrobat.catroid.common.SoundInfo
+                  name: applause
+                  fileName: 4A5C73CA7A68C2FA71AC6FE4E7D2E0DA_applause.mp4
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: start
+            sprite: *133
+         object: *133
+         receivedMessage: init
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: init_vars
+            sprite: *133
+         object: *133
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: init_vars
+            sprite: *133
+         object: *133
+         receivedMessage: menu
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: init vars
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *41
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &136
+               name: colors
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &137
+               name: color_length
+            variableFormula: 
+               formulaTree: 
+                  value: 6
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &138
+               name: colors_array_length
+            variableFormula: 
+               formulaTree: 
+                  value: 5
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *116
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &139
+               name: i
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - &140 !org.catrobat.catroid.content.bricks.RepeatBrick
+            loopEndBrick: &141
+               loopBeginBrick: *140
+               sprite: *133
+            sprite: *133
+            timesToRepeat: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_array_length
+         - &142 !org.catrobat.catroid.content.bricks.RepeatBrick
+            loopEndBrick: &143
+               loopBeginBrick: *142
+               sprite: *133
+            sprite: *133
+            timesToRepeat: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: color_length
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &144
+               name: random
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     leftChild: 
+                        value: 0
+                     rightChild: 
+                        value: 3
+                     type: FUNCTION
+                     value: RAND
+                  type: FUNCTION
+                  value: ROUND
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: random
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors
+                  rightChild: 
+                     value: 10
+                  type: OPERATOR
+                  value: MULT
+         - *143
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *139
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors
+                  rightChild: 
+                     value: 10
+                  type: OPERATOR
+                  value: DIVIDE
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: add to array
+            sprite: *133
+         - &145 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &146
+               ifBeginBrick: *145
+               ifEndBrick: &147
+                  ifBeginBrick: *145
+                  ifElseBrick: *146
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *147
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &148
+               name: colors_1
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *146
+         - &149 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     value: 2
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &150
+               ifBeginBrick: *149
+               ifEndBrick: &151
+                  ifBeginBrick: *149
+                  ifElseBrick: *150
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *151
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &152
+               name: colors_2
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *150
+         - &153 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     value: 3
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &154
+               ifBeginBrick: *153
+               ifEndBrick: &155
+                  ifBeginBrick: *153
+                  ifElseBrick: *154
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *155
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &156
+               name: colors_3
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *154
+         - &157 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     value: 4
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &158
+               ifBeginBrick: *157
+               ifEndBrick: &159
+                  ifBeginBrick: *157
+                  ifElseBrick: *158
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *159
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &160
+               name: colors_4
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *158
+         - &161 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     value: 5
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &162
+               ifBeginBrick: *161
+               ifEndBrick: &163
+                  ifBeginBrick: *161
+                  ifElseBrick: *162
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *163
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &164
+               name: colors_5
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *162
+         - *163
+         - *159
+         - *155
+         - *151
+         - *147
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  value: 0.0
+         - *141
+         object: *133
+         receivedMessage: init_vars
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *139
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &165
+               name: set_colors_array_i
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: i
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: set_colors_array
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &166
+               name: color_iterator
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - &167 !org.catrobat.catroid.content.bricks.RepeatBrick
+            loopEndBrick: &168
+               loopBeginBrick: *167
+               sprite: *133
+            sprite: *133
+            timesToRepeat: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: counter
+         - &169 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     leftChild: 
+                        rightChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: colors_array_pos
+                           rightChild: 
+                              value: 1
+                           type: OPERATOR
+                           value: PLUS
+                        type: BRACKET
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: GREATER_THAN
+            ifElseBrick: &170
+               ifBeginBrick: *169
+               ifEndBrick: &171
+                  ifBeginBrick: *169
+                  ifElseBrick: *170
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *171
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *165
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: i
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: set_colors_array
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *166
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *170
+         - *171
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *133
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: waiting
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &172
+               name: first_pos_offset_i
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: colors_array_pos
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: first_pos_offset
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: red
+            sprite: *133
+         - &173 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: temp
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &174
+               ifBeginBrick: *173
+               ifEndBrick: &175
+                  ifBeginBrick: *173
+                  ifElseBrick: *174
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *175
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: red
+            sprite: *133
+         - *174
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: green
+            sprite: *133
+         - &176 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     leftChild: 
+                        value: 2
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: temp
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &177
+               ifBeginBrick: *176
+               ifEndBrick: &178
+                  ifBeginBrick: *176
+                  ifElseBrick: *177
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *178
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: green
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *166
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: temp
+                  type: OPERATOR
+                  value: MINUS
+         - *177
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: blue
+            sprite: *133
+         - &179 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     leftChild: 
+                        value: 3
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: temp
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &180
+               ifBeginBrick: *179
+               ifEndBrick: &181
+                  ifBeginBrick: *179
+                  ifElseBrick: *180
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *181
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: blue
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *166
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     leftChild: 
+                        value: 2
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: temp
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: MINUS
+         - *180
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: yellow
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: yellow
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *166
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_iterator
+                  rightChild: 
+                     leftChild: 
+                        value: 3
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: temp
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: MINUS
+         - *181
+         - *178
+         - *175
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *139
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - *168
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *41
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *133
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 0.5
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: guessing_time
+            sprite: *133
+         object: *133
+         receivedMessage: start
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *116
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &182
+               name: guessing_i
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *165
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: guessing_i
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: set_colors_array
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &183
+               name: guessing_iterator
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         object: *133
+         receivedMessage: guessing_time
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *116
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         object: *133
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - &184 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_i
+                  rightChild: 
+                     leftChild: 
+                        rightChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: colors_array_pos
+                           rightChild: 
+                              value: 1
+                           type: OPERATOR
+                           value: PLUS
+                        type: BRACKET
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: GREATER_THAN
+            ifElseBrick: &185
+               ifBeginBrick: *184
+               ifEndBrick: &186
+                  ifBeginBrick: *184
+                  ifElseBrick: *185
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *186
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *165
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: guessing_i
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: set_colors_array
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *183
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors
+         - *185
+         - *186
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *172
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_i
+                  rightChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: colors_array_pos
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: first_pos_offset
+            sprite: *133
+         - &187 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     rightChild: 
+                        leftChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: guessing_iterator
+                           rightChild: 
+                              type: USER_VARIABLE
+                              value: temp
+                           type: OPERATOR
+                           value: SMALLER_THAN
+                        rightChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: button_pressed
+                           rightChild: 
+                              value: 1
+                           type: OPERATOR
+                           value: EQUAL
+                        type: OPERATOR
+                        value: LOGICAL_AND
+                     type: BRACKET
+                  rightChild: 
+                     rightChild: 
+                        leftChild: 
+                           leftChild: 
+                              leftChild: 
+                                 type: USER_VARIABLE
+                                 value: button_pressed
+                              rightChild: 
+                                 value: 1
+                              type: OPERATOR
+                              value: NOT_EQUAL
+                           rightChild: 
+                              leftChild: 
+                                 type: USER_VARIABLE
+                                 value: guessing_iterator
+                              rightChild: 
+                                 leftChild: 
+                                    rightChild: 
+                                       leftChild: 
+                                          type: USER_VARIABLE
+                                          value: button_pressed
+                                       rightChild: 
+                                          value: 1
+                                       type: OPERATOR
+                                       value: MINUS
+                                    type: BRACKET
+                                 rightChild: 
+                                    type: USER_VARIABLE
+                                    value: temp
+                                 type: OPERATOR
+                                 value: MULT
+                              type: OPERATOR
+                              value: GREATER_OR_EQUAL
+                           type: OPERATOR
+                           value: LOGICAL_AND
+                        rightChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: guessing_iterator
+                           rightChild: 
+                              leftChild: 
+                                 type: USER_VARIABLE
+                                 value: button_pressed
+                              rightChild: 
+                                 type: USER_VARIABLE
+                                 value: temp
+                              type: OPERATOR
+                              value: MULT
+                           type: OPERATOR
+                           value: SMALLER_THAN
+                        type: OPERATOR
+                        value: LOGICAL_AND
+                     type: BRACKET
+                  type: OPERATOR
+                  value: LOGICAL_OR
+            ifElseBrick: &188
+               ifBeginBrick: *187
+               ifEndBrick: &189
+                  ifBeginBrick: *187
+                  ifElseBrick: *188
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *189
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *183
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_iterator
+                  rightChild: 
+                     leftChild: 
+                        rightChild: 
+                           leftChild: 
+                              type: USER_VARIABLE
+                              value: button_pressed
+                           rightChild: 
+                              value: 1
+                           type: OPERATOR
+                           value: MINUS
+                        type: BRACKET
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: temp
+                     type: OPERATOR
+                     value: MULT
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *182
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - &190 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: guessing_i
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &191
+               ifBeginBrick: *190
+               ifEndBrick: &192
+                  ifBeginBrick: *190
+                  ifElseBrick: *191
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *192
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *116
+            variableFormula: 
+               formulaTree: 
+                  value: 0.0
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: count
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.PlaySoundBrick
+            sound: *135
+            sprite: *133
+         - &193 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: i
+                  rightChild: 
+                     leftChild: 
+                        leftChild: 
+                           type: USER_VARIABLE
+                           value: color_length
+                        rightChild: 
+                           type: USER_VARIABLE
+                           value: colors_array_length
+                        type: OPERATOR
+                        value: MULT
+                     rightChild: 
+                        value: 1
+                     type: OPERATOR
+                     value: PLUS
+                  type: OPERATOR
+                  value: EQUAL
+            ifElseBrick: &194
+               ifBeginBrick: *193
+               ifEndBrick: &195
+                  ifBeginBrick: *193
+                  ifElseBrick: *194
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *195
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: game_over
+            sprite: *133
+         - *194
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *133
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 5
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: start
+            sprite: *133
+         - *195
+         - *191
+         - *192
+         - *188
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *116
+            variableFormula: 
+               formulaTree: 
+                  value: 0
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: wrong
+            sprite: *133
+         - *189
+         object: *133
+         receivedMessage: pressed
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &196
+               name: pow_result
+            variableFormula: 
+               formulaTree: 
+                  value: 1
+         - &197 !org.catrobat.catroid.content.bricks.RepeatBrick
+            loopEndBrick: &198
+               loopBeginBrick: *197
+               sprite: *133
+            sprite: *133
+            timesToRepeat: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: pow_2
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *196
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: pow_result
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: pow_1
+                  type: OPERATOR
+                  value: MULT
+         - *198
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: end pow
+            sprite: *133
+         object: *133
+         receivedMessage: pow
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: call pow(10,color_length-i)
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &199
+               name: pow_1
+            variableFormula: 
+               formulaTree: 
+                  value: 10
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &200
+               name: pow_2
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: color_length
+                  rightChild: 
+                     type: USER_VARIABLE
+                     value: first_pos_offset_i
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.BroadcastWaitBrick
+            broadcastMessage: pow
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &201
+               name: temp
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: pow_result
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: end pow call
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.NoteBrick
+            note: end first_pos_offset
+            sprite: *133
+         object: *133
+         receivedMessage: first_pos_offset
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: &202
+               name: colors_array_pos
+            variableFormula: 
+               formulaTree: 
+                  leftChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: set_colors_array_i
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: DIVIDE
+                  type: FUNCTION
+                  value: ROUND
+         - &203 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     leftChild: 
+                        type: USER_VARIABLE
+                        value: i
+                     rightChild: 
+                        type: USER_VARIABLE
+                        value: color_length
+                     type: OPERATOR
+                     value: DIVIDE
+                  type: OPERATOR
+                  value: GREATER_THAN
+            ifElseBrick: &204
+               ifBeginBrick: *203
+               ifEndBrick: &205
+                  ifBeginBrick: *203
+                  ifElseBrick: *204
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *205
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.ChangeVariableBrick
+            sprite: *133
+            userVariable: *202
+            variableFormula: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: MINUS
+         - *204
+         - *205
+         - &206 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     value: 1
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &207
+               ifBeginBrick: *206
+               ifEndBrick: &208
+                  ifBeginBrick: *206
+                  ifElseBrick: *207
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *208
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_1
+         - *207
+         - &209 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     value: 2
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &210
+               ifBeginBrick: *209
+               ifEndBrick: &211
+                  ifBeginBrick: *209
+                  ifElseBrick: *210
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *211
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_2
+         - *210
+         - &212 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     value: 3
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &213
+               ifBeginBrick: *212
+               ifEndBrick: &214
+                  ifBeginBrick: *212
+                  ifElseBrick: *213
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *214
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_3
+         - *213
+         - &215 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     value: 4
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &216
+               ifBeginBrick: *215
+               ifEndBrick: &217
+                  ifBeginBrick: *215
+                  ifElseBrick: *216
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *217
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_4
+         - *216
+         - &218 !org.catrobat.catroid.content.bricks.IfLogicBeginBrick
+            ifCondition: 
+               formulaTree: 
+                  leftChild: 
+                     type: USER_VARIABLE
+                     value: colors_array_pos
+                  rightChild: 
+                     value: 5
+                  type: OPERATOR
+                  value: SMALLER_THAN
+            ifElseBrick: &219
+               ifBeginBrick: *218
+               ifEndBrick: &220
+                  ifBeginBrick: *218
+                  ifElseBrick: *219
+                  sprite: *133
+               sprite: *133
+            ifEndBrick: *220
+            sprite: *133
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *133
+            userVariable: *136
+            variableFormula: 
+               formulaTree: 
+                  type: USER_VARIABLE
+                  value: colors_5
+         - *219
+         - *220
+         - *217
+         - *214
+         - *211
+         - *208
+         object: *133
+         receivedMessage: set_colors_array
+      sounds: *134
+   hard: 
+      looks: &221
+      - &222
+         name: hard
+         fileName: 5B4EEB31AF6845336224D1140A10CD53_hard.png
+      scripts: &223
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.PlaceAtBrick
+            sprite: &224
+               name: hard
+               lookList: *221
+               scriptList: *223
+            xPosition: 
+               formulaTree: 
+                  value: 0
+            yPosition: 
+               formulaTree: 
+                  rightChild: 
+                     value: 400
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *222
+            sprite: *224
+         object: *224
+      - !org.catrobat.catroid.content.WhenScript
+         action: Tapped
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *224
+            userVariable: *20
+            variableFormula: 
+               formulaTree: 
+                  value: 0.3
+         - !org.catrobat.catroid.content.bricks.SetVariableBrick
+            sprite: *224
+            userVariable: *21
+            variableFormula: 
+               formulaTree: 
+                  value: 3
+         - !org.catrobat.catroid.content.bricks.BroadcastBrick
+            broadcastMessage: init
+            sprite: *224
+         object: *224
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *224
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *224
+         receivedMessage: init
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *224
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         object: *224
+         receivedMessage: menu
+   Resultscreen: 
+      looks: &225
+      -  name: well_done
+         fileName: 013A9F63D668719DBB956FE809526176_well_done.png
+      -  name: game_over
+         fileName: 38B2876047D985A4E67E938054AFADA5_game_over.png
+      - &226
+         name: game_over_2
+         fileName: 3252D048709C21D787E8F2B1C4994DCF_game_over_2.png
+      - &227
+         name: well_done_2
+         fileName: 97ACA7D18D247DDCBB42F660B8BA7FAE_well_done_2.png
+      scripts: &228
+      - !org.catrobat.catroid.content.StartScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: &229
+               name: Resultscreen
+               lookList: *225
+               scriptList: *228
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         - !org.catrobat.catroid.content.bricks.ChangeYByNBrick
+            sprite: *229
+            yMovement: 
+               formulaTree: 
+                  value: 200
+         object: *229
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *229
+            xMovement: 
+               formulaTree: 
+                  rightChild: 
+                     value: 1000
+                  type: OPERATOR
+                  value: MINUS
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *227
+            sprite: *229
+         - !org.catrobat.catroid.content.bricks.WaitBrick
+            sprite: *229
+            timeToWaitInSeconds: 
+               formulaTree: 
+                  value: 2
+         - !org.catrobat.catroid.content.bricks.SetLookBrick
+            look: *226
+            sprite: *229
+         object: *229
+         receivedMessage: game_over
+      - !org.catrobat.catroid.content.BroadcastScript
+         brickList: 
+         - !org.catrobat.catroid.content.bricks.ChangeXByNBrick
+            sprite: *229
+            xMovement: 
+               formulaTree: 
+                  value: 1000
+         object: *229
+         receivedMessage: menu
+variables: 
+   projectVariables: 
+   - *41
+   - *144
+   - *136
+   - *139
+   - *166
+   - *201
+   - *200
+   - *199
+   - *196
+   - *137
+   - *116
+   - *183
+   - *182
+   - *172
+   - *15
+   - *20
+   - *148
+   - *152
+   - *156
+   - *160
+   - *164
+   - *138
+   - *202
+   - *165
+   - *37
+   - *125
+   - *21
+   spriteVariables: 
+      *9: []
+      *19: []
+      *34: []
+      *46: []
+      *55: 
+      - *117
+      *68: []
+      *81: []
+      *86: []
+      *95: 
+      - *98
+      - *99
+      - *117
+      *124: []
+      *133: []
+      *224: []
+      *229: []

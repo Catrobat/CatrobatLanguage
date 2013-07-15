@@ -94,7 +94,10 @@ import org.catrobat.catroid.content.bricks.WhenBrick;
 import org.catrobat.catroid.content.bricks.WhenStartedBrick;
 import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
+import org.catrobat.catroid.yaml.YamlProject;
+import org.catrobat.catroid.yaml.YamlSprite;
 
+import com.esotericsoftware.yamlbeans.YamlConfig;
 import com.esotericsoftware.yamlbeans.YamlReader;
 import com.esotericsoftware.yamlbeans.YamlWriter;
 import com.thoughtworks.xstream.XStream;
@@ -107,8 +110,7 @@ public class Translator {
 	private XStream xstream;
 	private static final String XML_HEADER = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n";
 	private ReentrantLock saveLoadLock = new ReentrantLock();
-	private YamlReader yamlReader;
-	private YamlWriter yamlWriter;
+	private YamlConfig yamlConfig;
 
 	private Translator() throws IOException {
 
@@ -117,6 +119,9 @@ public class Translator {
 		xstream.processAnnotations(XmlHeader.class);
 		xstream.processAnnotations(UserVariablesContainer.class);
 		setXstreamAliases();
+		
+		yamlConfig = new YamlConfig();
+		setYamlConfig();
 	}
 	
 	public static String getXMLHeader() {
@@ -188,6 +193,14 @@ public class Translator {
 		xstream.alias("whenBrick", WhenBrick.class);
 		xstream.alias("whenStartedBrick", WhenStartedBrick.class);
 	}
+	
+	// TODO
+	private void setYamlConfig() {
+		yamlConfig.setClassTag("program", YamlProject.class);
+		yamlConfig.setPropertyElementType(YamlProject.class, "objects", YamlSprite.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds", SoundInfo.class);
+	}
 
 	public synchronized static Translator getInstance() {
 		if (instance == null) {
@@ -206,13 +219,13 @@ public class Translator {
 	
 				InputStream projectFileStream = new FileInputStream(xmlProject);
 				Project returned = (Project) xstream.fromXML(projectFileStream);
-				saveLoadLock.unlock();
 				return returned;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			saveLoadLock.unlock();
 			return null;
+		} finally {
+			saveLoadLock.unlock();
 		}
 	}
 
@@ -230,12 +243,12 @@ public class Translator {
 			writer.write(XML_HEADER.concat(projectFile));
 			writer.flush();
 			writer.close();
-			saveLoadLock.unlock();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			saveLoadLock.unlock();
 			return false;
+		} finally {
+			saveLoadLock.unlock();
 		}
 	}
 
@@ -243,7 +256,7 @@ public class Translator {
 		return xstream.toXML(project);
 	}
 	
-	public boolean saveProjectToYAML(Project project) {
+	public boolean saveProjectToYAML(YamlProject project) {
 		saveLoadLock.lock();
 		if (project == null) {
 			saveLoadLock.unlock();
@@ -252,34 +265,34 @@ public class Translator {
 		try {
 			File projectYAML = new File("code.yml");
 
-			yamlWriter =  new YamlWriter(new FileWriter(projectYAML));
+			YamlWriter yamlWriter =  new YamlWriter(new FileWriter(projectYAML), yamlConfig);
 			
 			yamlWriter.write(project);
 			yamlWriter.close();
 			
-			saveLoadLock.unlock();
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			saveLoadLock.unlock();
 			return false;
+		} finally {
+			saveLoadLock.unlock();
 		}
 	}
 	
-	public Project loadProjectFromYAML(File yamlProject) {
+	public YamlProject loadProjectFromYAML(File yamlProject) {
 		saveLoadLock.lock();
 		try {
-				yamlReader = new YamlReader(new FileReader(yamlProject));
+				YamlReader yamlReader = new YamlReader(new FileReader(yamlProject),yamlConfig);
 	
-				Project returned = (Project) yamlReader.read();
+				YamlProject returned = (YamlProject) yamlReader.read();
 				yamlReader.close();
-				saveLoadLock.unlock();
 				return returned;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			saveLoadLock.unlock();
 			return null;
+		} finally {
+			saveLoadLock.unlock();
 		}
 	}
 
