@@ -32,4 +32,8 @@ public class PlaySoundBrick extends BrickBaseType {
 	public boolean equals(PlaySoundBrick arg) {
 		return (sound.equals(arg.sound));
 	}
+	
+	public String toString() {
+		return ("start sound \"" + sound.name + "\"\r\n");
+	}
 }

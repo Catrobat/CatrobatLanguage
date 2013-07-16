@@ -30,4 +30,8 @@ public class ComeToFrontBrick extends BrickBaseType {
 	public boolean equals(ComeToFrontBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("come to frontr\n");
+	}
 }

@@ -33,4 +33,8 @@ public class TurnLeftBrick extends BrickBaseType {
 	public boolean equals(TurnLeftBrick arg) {
 		return (degrees.equals(arg.degrees));
 	}
+	
+	public String toString() {
+		return ("turn left (" + degrees.toString() + ") degrees\r\n");
+	}
 }

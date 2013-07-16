@@ -22,6 +22,8 @@
  */
 package org.catrobat.catroid.content;
 
+import org.catrobat.catroid.content.bricks.Brick;
+
 
 public class WhenScript extends Script {
 
@@ -32,5 +34,12 @@ public class WhenScript extends Script {
 	public boolean equals(WhenScript arg) {
 		return (action.equals(arg.action));
 	}
-	
+
+	public String toString() {
+		StringBuffer returned = new StringBuffer("when " + action +"\r\n");
+		for (Brick item: brickList) {
+			returned.append(item.toString());
+		}
+		return returned.toString();
+	}
 }

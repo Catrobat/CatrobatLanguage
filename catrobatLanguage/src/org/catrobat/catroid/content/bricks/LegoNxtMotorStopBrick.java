@@ -30,4 +30,8 @@ public class LegoNxtMotorStopBrick extends BrickBaseType {
 	public boolean equals(LegoNxtMotorStopBrick arg) {
 		return (motor.equals(arg.motor));
 	}
+	
+	public String toString() {
+		return ("NXT stop motor + \"" + motor + "\"\r\n");
+	}
 }

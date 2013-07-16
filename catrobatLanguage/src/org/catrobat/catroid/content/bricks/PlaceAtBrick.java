@@ -34,4 +34,8 @@ public class PlaceAtBrick extends BrickBaseType {
 		return (xPosition.equals(arg.xPosition) &&
 				yPosition.equals(arg.yPosition));
 	}
+	
+	public String toString() {
+		return ("place at X: (" + xPosition.toString() + "), Y: (" + yPosition.toString() + ")\r\n");
+	}
 }

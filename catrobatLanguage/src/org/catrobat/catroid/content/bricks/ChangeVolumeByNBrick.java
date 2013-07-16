@@ -33,4 +33,8 @@ public class ChangeVolumeByNBrick extends BrickBaseType{
 	public boolean equals(ChangeVolumeByNBrick arg) {
 		return (volume.equals(arg.volume));
 	}
+	
+	public String toString() {
+		return ("change volume by (" + volume.toString() + ")%\r\n");
+	}
 }

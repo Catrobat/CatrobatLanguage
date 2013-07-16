@@ -33,4 +33,8 @@ public class SetYBrick extends BrickBaseType {
 	public boolean equals(SetYBrick arg) {
 		return (yPosition.equals(arg.yPosition));
 	}
+	
+	public String toString() {
+		return ("set Y to (" + yPosition.toString() + ")\r\n");
+	}
 }

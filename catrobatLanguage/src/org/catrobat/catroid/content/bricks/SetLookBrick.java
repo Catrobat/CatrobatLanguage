@@ -32,4 +32,8 @@ public class SetLookBrick extends BrickBaseType {
 	public boolean equals(SetLookBrick arg) {
 		return (look.equals(arg.look));
 	}
+	
+	public String toString() {
+		return ("switch to look \"" + look.name + "\"\r\n");
+	}
 }

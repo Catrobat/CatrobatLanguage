@@ -32,4 +32,8 @@ public class BroadcastReceiverBrick extends ScriptBrick{
 	public boolean equals(BroadcastReceiverBrick arg) {
 		return (receiveScript.equals(arg.receiveScript));
 	}
+	
+	public String toString() {
+		return receiveScript.toString();
+	}
 }

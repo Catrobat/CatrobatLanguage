@@ -30,4 +30,8 @@ public class IfOnEdgeBounceBrick extends BrickBaseType {
 	public boolean equals(IfOnEdgeBounceBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("if on edge, bounce\r\n");
+	}
 }

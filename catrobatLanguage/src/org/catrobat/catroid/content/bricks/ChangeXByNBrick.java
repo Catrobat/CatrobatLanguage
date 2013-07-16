@@ -32,4 +32,8 @@ public class ChangeXByNBrick extends BrickBaseType{
 	public boolean equals(ChangeXByNBrick arg) {
 		return (xMovement.equals(arg.xMovement));
 	}
+	
+	public String toString() {
+		return ("change X by (" + xMovement.toString() + ")\r\n");
+	}
 }

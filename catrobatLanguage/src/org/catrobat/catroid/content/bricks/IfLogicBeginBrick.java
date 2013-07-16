@@ -34,5 +34,9 @@ public class IfLogicBeginBrick extends NestingBrick {
 	public boolean equals(IfLogicBeginBrick arg) {
 		return (ifCondition.equals(arg.ifCondition));
 	}
+	
+	public String toString() {
+		return ("if (" + ifCondition.toString() + ") is true then\r\n");
+	}
 
 }

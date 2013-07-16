@@ -33,5 +33,9 @@ public class WhenBrick extends ScriptBrick {
 	public boolean equals(WhenBrick arg) {
 		return (whenScript.equals(arg.whenScript));
 	}
+	
+	public String toString() {
+		return whenScript.toString();
+	}
 
 }

@@ -34,4 +34,8 @@ public class LegoNxtMotorTurnAngleBrick extends BrickBaseType{
 		return (motor.equals(arg.motor) &&
 				degrees.equals(arg.degrees));
 	}
+	
+	public String toString() {
+		return ("NXT turn motor \"" + motor + "\" to (" + degrees.toString() + ") degrees\r\n");
+	}
 }

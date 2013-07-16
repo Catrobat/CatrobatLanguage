@@ -28,4 +28,8 @@ public class ShowBrick extends BrickBaseType {
 	public boolean equals(ShowBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("show\r\n");
+	}
 }

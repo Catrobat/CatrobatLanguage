@@ -33,4 +33,8 @@ public class PointInDirectionBrick extends BrickBaseType {
 	public boolean equals(PointInDirectionBrick arg) {
 		return (degrees.equals(arg.degrees));
 	}
+	
+	public String toString() {
+		return ("point in direction (" + degrees.toString() + ") degrees\r\n");
+	}
 }

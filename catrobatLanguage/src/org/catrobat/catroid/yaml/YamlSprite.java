@@ -13,6 +13,7 @@ public class YamlSprite {
 	public List<Script> scripts;
 	public ArrayList<LookData> looks;
 	public ArrayList<SoundInfo> sounds;
+	protected String code;
 
 	YamlSprite(Sprite sprite) {
 		scripts = new ArrayList<Script>();
@@ -25,6 +26,8 @@ public class YamlSprite {
 			looks = sprite.lookList;
 		if (!sprite.soundList.isEmpty())
 			sounds = sprite.soundList;
+		
+		code = sprite.toString();
 	}
 	
 	public YamlSprite() {

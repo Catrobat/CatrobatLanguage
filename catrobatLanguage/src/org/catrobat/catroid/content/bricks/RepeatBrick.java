@@ -32,4 +32,8 @@ public class RepeatBrick extends LoopBeginBrick {
 	public boolean equals(RepeatBrick arg) {
 		return (timesToRepeat.equals(arg.timesToRepeat));
 	}
+	
+	public String toString() {
+		return ("repeat (" + timesToRepeat.toString() + ")\r\n");
+	}
 }

@@ -22,6 +22,8 @@
  */
 package org.catrobat.catroid.content;
 
+import org.catrobat.catroid.content.bricks.Brick;
+
 
 public class StartScript extends Script {
 
@@ -29,6 +31,14 @@ public class StartScript extends Script {
 	
 	public boolean equals(StartScript arg) {
 		return true;
+	}
+	
+	public String toString() {
+		StringBuffer returned = new StringBuffer("when program started\r\n");
+		for (Brick item: brickList) {
+			returned.append(item.toString());
+		}
+		return returned.toString();
 	}
 	
 }

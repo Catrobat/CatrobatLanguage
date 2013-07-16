@@ -33,4 +33,8 @@ public class ChangeYByNBrick extends BrickBaseType{
 	public boolean equals(ChangeYByNBrick arg) {
 		return (yMovement.equals(arg.yMovement));
 	}
+	
+	public String toString() {
+		return ("change Y by (" + yMovement.toString() + ")\r\n");
+	}
 }

@@ -147,4 +147,110 @@ public class BrickBaseType implements Brick {
 						&& ((WhenStartedBrick) this).equals((WhenStartedBrick) arg))
 				);
 	}
+	
+	public String toString() {
+			if (this instanceof BroadcastBrick) {
+				return ((BroadcastBrick) this).toString();
+			} else if (this instanceof BroadcastReceiverBrick) {				
+				return ((BroadcastReceiverBrick) this).toString(); 
+			} else if (this instanceof BroadcastWaitBrick) { 
+				return ((BroadcastWaitBrick) this).toString(); 
+			} else if (this instanceof ChangeBrightnessByNBrick) {
+				return ((ChangeBrightnessByNBrick) this).toString();
+			} else if (this instanceof ChangeGhostEffectByNBrick) {
+				return ((ChangeGhostEffectByNBrick) this).toString();
+			} else if (this instanceof ChangeSizeByNBrick) {
+				return ((ChangeSizeByNBrick) this).toString();
+			} else if (this instanceof ChangeVariableBrick) {
+				return ((ChangeVariableBrick) this).toString();
+			} else if (this instanceof ChangeVolumeByNBrick) {
+				return ((ChangeVolumeByNBrick) this).toString();
+			} else if (this instanceof ChangeXByNBrick) {
+				return ((ChangeXByNBrick) this).toString();
+			} else if (this instanceof ChangeYByNBrick) {
+				return ((ChangeYByNBrick) this).toString();
+			} else if (this instanceof ClearGraphicEffectBrick) {
+				return ((ClearGraphicEffectBrick) this).toString();
+			} else if (this instanceof ComeToFrontBrick) {
+				return ((ComeToFrontBrick) this).toString();
+			} else if (this instanceof ForeverBrick) {
+				return ((ForeverBrick) this).toString();
+			} else if (this instanceof GlideToBrick) {
+				return ((GlideToBrick) this).toString();
+			} else if (this instanceof GoNStepsBackBrick) {
+				return ((GoNStepsBackBrick) this).toString();
+			} else if (this instanceof HideBrick) {
+				return ((HideBrick) this).toString();
+			} else if (this instanceof IfLogicBeginBrick) {
+				return ((IfLogicBeginBrick) this).toString();
+			} else if (this instanceof IfLogicElseBrick) {
+				return ((IfLogicElseBrick) this).toString();
+			} else if (this instanceof IfLogicEndBrick) {
+				return ((IfLogicEndBrick) this).toString(); 
+			} else if (this instanceof IfOnEdgeBounceBrick) {
+				return ((IfOnEdgeBounceBrick) this).toString(); 
+			} else if (this instanceof LegoNxtMotorActionBrick) {
+				return ((LegoNxtMotorActionBrick) this).toString(); 
+			} else if (this instanceof LegoNxtMotorStopBrick) {
+				return ((LegoNxtMotorStopBrick) this).toString();
+			} else if (this instanceof LegoNxtMotorTurnAngleBrick) {
+				return ((LegoNxtMotorTurnAngleBrick) this).toString();
+			} else if (this instanceof LegoNxtPlayToneBrick) {
+				return ((LegoNxtPlayToneBrick) this).toString(); 
+			} else if (this instanceof LoopEndBrick) {
+				return ((LoopEndBrick) this).toString();
+			} else if (this instanceof LoopEndlessBrick) {
+				return ((LoopEndlessBrick) this).toString();
+			} else if (this instanceof MoveNStepsBrick) {
+				return ((MoveNStepsBrick) this).toString();
+			} else if (this instanceof NextLookBrick) {
+				return ((NextLookBrick) this).toString();
+			} else if (this instanceof NoteBrick) {
+				return ((NoteBrick) this).toString();
+			} else if (this instanceof PlaceAtBrick) {
+				return ((PlaceAtBrick) this).toString(); 
+			} else if (this instanceof PlaySoundBrick) {
+				return ((PlaySoundBrick) this).toString();
+			} else if (this instanceof PointInDirectionBrick) {
+				return ((PointInDirectionBrick) this).toString();
+			} else if (this instanceof PointToBrick) {
+				return ((PointToBrick) this).toString();
+			} else if (this instanceof RepeatBrick) {
+				return ((RepeatBrick) this).toString();
+			} else if (this instanceof SetBrightnessBrick) {
+				return ((SetBrightnessBrick) this).toString();
+			} else if (this instanceof SetGhostEffectBrick) {
+				return ((SetGhostEffectBrick) this).toString();
+			} else if (this instanceof SetLookBrick) {
+				return ((SetLookBrick) this).toString();
+			} else if (this instanceof SetSizeToBrick) {
+				return ((SetSizeToBrick) this).toString();
+			} else if (this instanceof SetVariableBrick) {
+				return ((SetVariableBrick) this).toString();
+			} else if (this instanceof SetVolumeToBrick) {
+				return ((SetVolumeToBrick) this).toString();
+			} else if (this instanceof SetXBrick) {
+				return ((SetXBrick) this).toString();
+			} else if (this instanceof SetYBrick) {
+				return ((SetYBrick) this).toString();
+			} else if (this instanceof ShowBrick) {
+				return ((ShowBrick) this).toString();
+			} else if (this instanceof SpeakBrick) {
+				return ((SpeakBrick) this).toString();
+			} else if (this instanceof StopAllSoundsBrick) {
+				return ((StopAllSoundsBrick) this).toString();
+			} else if (this instanceof TurnLeftBrick) {
+				return ((TurnLeftBrick) this).toString();
+			} else if (this instanceof TurnRightBrick) {
+				return ((TurnRightBrick) this).toString();
+			} else if (this instanceof WaitBrick) {
+				return ((WaitBrick) this).toString();
+			} else if (this instanceof WhenBrick) {
+				return ((WhenBrick) this).toString();
+			} else if (this instanceof WhenStartedBrick) {
+				return ((WhenStartedBrick) this).toString();
+			} else {
+				return new String();
+			}
+ 	}
 }

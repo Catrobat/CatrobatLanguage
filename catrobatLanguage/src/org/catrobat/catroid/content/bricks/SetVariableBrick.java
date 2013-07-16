@@ -35,5 +35,10 @@ public class SetVariableBrick extends BrickBaseType {
 		return (userVariable.equals(arg.userVariable) &&
 				variableFormula.equals(arg.variableFormula));
 	}
+	
+	public String toString() {
+		return ("set variable \"" + userVariable.name + "\" to ("
+				+ variableFormula.toString() + ")\r\n");
+	}
 
 }

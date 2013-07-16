@@ -25,15 +25,20 @@ package org.catrobat.catroid.content.bricks;
 import org.catrobat.catroid.formulaeditor.Formula;
 import org.catrobat.catroid.formulaeditor.UserVariable;
 
-public class ChangeVariableBrick extends BrickBaseType{
-	
+public class ChangeVariableBrick extends BrickBaseType {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public UserVariable userVariable = new UserVariable();
 	public Formula variableFormula = new Formula();
-	
+
 	public boolean equals(ChangeVariableBrick arg) {
-		return (userVariable.equals(arg.userVariable) &&
+		return (userVariable.equals(arg.userVariable) && 
 				variableFormula.equals(arg.variableFormula));
+	}
+
+	public String toString() {
+		return ("change variable \"" + userVariable.name + "\" by ("
+				+ variableFormula.toString() + ")\r\n");
 	}
 }

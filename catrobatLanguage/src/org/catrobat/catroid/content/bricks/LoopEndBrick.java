@@ -31,4 +31,8 @@ public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBri
 	public boolean equals(LoopEndBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("end of loop");
+	}
 }

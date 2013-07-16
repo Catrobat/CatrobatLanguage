@@ -31,4 +31,8 @@ public class BroadcastWaitBrick extends BrickBaseType{
 	public boolean equals(BroadcastWaitBrick arg) {
 		return (broadcastMessage.equals(arg.broadcastMessage));
 	}
+	
+	public String toString() {
+		return ("broadcast and wait \"" + broadcastMessage + "\"\r\n");
+	}
 }

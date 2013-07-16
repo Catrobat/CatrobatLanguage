@@ -32,4 +32,8 @@ public class SetXBrick extends BrickBaseType {
 	public boolean equals(SetXBrick arg) {
 		return (xPosition.equals(arg.xPosition));
 	}
+	
+	public String toString() {
+		return ("set X to (" + xPosition.toString() + ")\r\n");
+	}
 }

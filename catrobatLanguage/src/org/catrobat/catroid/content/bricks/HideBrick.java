@@ -29,5 +29,9 @@ public class HideBrick extends BrickBaseType {
 	public boolean equals(HideBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("hide\r\n");
+	}
 
 }

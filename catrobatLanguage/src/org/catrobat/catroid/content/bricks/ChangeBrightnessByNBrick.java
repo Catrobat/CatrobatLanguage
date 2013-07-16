@@ -33,4 +33,8 @@ public class ChangeBrightnessByNBrick extends BrickBaseType{
 	public boolean equals(ChangeBrightnessByNBrick arg) {
 		return (changeBrightness.equals(arg.changeBrightness));
 	}
+	
+	public String toString() {
+		return ("change brightness by (" + changeBrightness.toString() + ")%\r\n");
+	}
 }

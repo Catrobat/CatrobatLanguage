@@ -32,4 +32,8 @@ public class SetBrightnessBrick extends BrickBaseType {
 	public boolean equals(SetBrightnessBrick arg) {
 		return (brightness.equals(arg.brightness));
 	}
+	
+	public String toString() {
+		return ("set brightness to (" + brightness.toString() + ")%\r\n");
+	}
 }

@@ -34,4 +34,8 @@ public class LegoNxtMotorActionBrick extends BrickBaseType{
 		return (motor.equals(arg.motor) &&
 				speed.equals(arg.speed));
 	}
+	
+	public String toString() {
+		return ("NXT move motor \"" + motor + "\", speed (" + speed.toString() + "\r\n");
+	}
 }

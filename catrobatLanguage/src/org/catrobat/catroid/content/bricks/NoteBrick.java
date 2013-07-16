@@ -32,4 +32,8 @@ public class NoteBrick extends BrickBaseType {
 	public boolean equals(NoteBrick arg) {
 		return (note.equals(arg.note));
 	}
+	
+	public String toString() {
+		return ("note \"" + note + "\"\r\n");
+	}
 }

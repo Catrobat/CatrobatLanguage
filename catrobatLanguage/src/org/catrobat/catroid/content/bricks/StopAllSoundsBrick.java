@@ -28,4 +28,8 @@ public class StopAllSoundsBrick extends BrickBaseType {
 	public boolean equals(StopAllSoundsBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("stop all sounds\r\n");
+	}
 }

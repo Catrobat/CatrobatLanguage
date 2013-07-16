@@ -33,4 +33,8 @@ public class ChangeSizeByNBrick extends BrickBaseType {
 	public boolean equals(ChangeSizeByNBrick arg) {
 		return (size.equals(arg.size));
 	}
+	
+	public String toString() {
+		return ("change size by (" + size.toString() + ")%\r\n");
+	}
 }

@@ -32,4 +32,8 @@ public class WaitBrick extends BrickBaseType {
 	public boolean equals(WaitBrick arg) {
 		return (timeToWaitInSeconds.equals(arg.timeToWaitInSeconds));
 	}
+	
+	public String toString() {
+		return ("wait (" + timeToWaitInSeconds.toString() + ") seconds\r\n");
+	}
 }

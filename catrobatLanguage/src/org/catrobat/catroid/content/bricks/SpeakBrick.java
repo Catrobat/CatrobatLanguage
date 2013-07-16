@@ -30,5 +30,9 @@ public class SpeakBrick extends BrickBaseType {
 	public boolean equals(SpeakBrick arg) {
 		return (text.equals(arg.text));
 	}
+	
+	public String toString() {
+		return ("speack \"" + text + "\"\r\n");
+	}
 
 }

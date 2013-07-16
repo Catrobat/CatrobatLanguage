@@ -36,4 +36,9 @@ public class GlideToBrick extends BrickBaseType {
 				yDestination.equals(arg.yDestination) &&
 				durationInSeconds.equals(arg.durationInSeconds));
 	}
+	
+	public String toString() {
+		return ("glide (" + durationInSeconds.toString() + ") seconds to X: ("
+				+ xDestination.toString() + "), Y: (" + yDestination + ")\r\n");
+	}
 }

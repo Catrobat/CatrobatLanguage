@@ -32,4 +32,8 @@ public class SetGhostEffectBrick extends BrickBaseType {
 	public boolean equals(SetGhostEffectBrick arg) {
 		return (transparency.equals(arg.transparency));
 	}
+	
+	public String toString() {
+		return ("set ghost effect to (" + transparency.toString() + ")%\r\n");
+	}
 }

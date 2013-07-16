@@ -33,4 +33,8 @@ public class ChangeGhostEffectByNBrick extends BrickBaseType{
 	public boolean equals(ChangeGhostEffectByNBrick arg) {
 		return (changeGhostEffect.equals(arg.changeGhostEffect));
 	}
+	
+	public String toString() {
+		return ("change ghost effect by (" + changeGhostEffect.toString() + ")%\r\n");
+	}
 }

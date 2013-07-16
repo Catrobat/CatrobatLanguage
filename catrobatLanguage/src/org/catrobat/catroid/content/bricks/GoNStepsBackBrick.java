@@ -33,4 +33,8 @@ public class GoNStepsBackBrick extends BrickBaseType{
 	public boolean equals(GoNStepsBackBrick arg) {
 		return (steps.equals(arg.steps));
 	}
+	
+	public String toString() {
+		return ("go back (" + steps.toString() + ") layer\r\n");
+	}
 }

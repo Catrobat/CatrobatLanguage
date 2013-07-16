@@ -33,4 +33,8 @@ public class PointToBrick extends BrickBaseType {
 	public boolean equals(PointToBrick arg) {
 		return (pointedObject.equals(arg.pointedObject));
 	}
+	
+	public String toString() {
+		return ("point to \"" + pointedObject.name + "\"\r\n");
+	}
 }

@@ -22,13 +22,16 @@
  */
 package org.catrobat.catroid.content.bricks;
 
-
-public class BroadcastBrick extends BrickBaseType{
+public class BroadcastBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
 	public String broadcastMessage = "";
-	
+
 	public boolean equals(BroadcastBrick arg) {
 		return (broadcastMessage.equals(arg.broadcastMessage));
+	}
+
+	public String toString() {
+		return ("broadcast \"" + broadcastMessage + "\"\r\n");
 	}
 }

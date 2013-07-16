@@ -30,4 +30,8 @@ public class NextLookBrick extends BrickBaseType {
 	public boolean equals(NextLookBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("next look\r\n");
+	}
 }

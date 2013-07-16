@@ -33,4 +33,8 @@ public class MoveNStepsBrick extends BrickBaseType {
 	public boolean equals(MoveNStepsBrick arg) {
 		return (steps.equals(arg.steps));
 	}
+	
+	public String toString() {
+		return ("move (" + steps + ") steps\r\n");
+	}
 }

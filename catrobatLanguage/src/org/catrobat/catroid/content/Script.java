@@ -48,5 +48,20 @@ public abstract class Script implements Serializable {
 						&& ((BroadcastScript) this).equals((BroadcastScript) arg)) &&
 				brickList.equals(arg.brickList));
 	}
+	
+	public String toString() {
+		System.out.println("st");
+		StringBuffer returned = new StringBuffer();
+		if (this instanceof StartScript) {
+			returned.append(((StartScript)this).toString());
+		} else if (this instanceof WhenScript) {
+			returned.append(((WhenScript)this).toString());
+		} else if (this instanceof BroadcastScript) {
+			returned.append(((BroadcastScript)this).toString());
+		} else {
+			return new String();
+		}		
+		return returned.toString();
+	}
 
 }

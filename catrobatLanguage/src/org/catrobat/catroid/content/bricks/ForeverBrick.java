@@ -29,4 +29,8 @@ public class ForeverBrick extends LoopBeginBrick {
 	public boolean equals(ForeverBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("forever\r\n");
+	}
 }

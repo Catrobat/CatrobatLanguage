@@ -30,4 +30,8 @@ public class ClearGraphicEffectBrick extends BrickBaseType {
 	public boolean equals(ClearGraphicEffectBrick arg) {
 		return (true);
 	}
+	
+	public String toString() {
+		return ("clear graphic effects\r\n");
+	}
 }

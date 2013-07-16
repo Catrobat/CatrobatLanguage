@@ -33,4 +33,8 @@ public class WhenStartedBrick extends ScriptBrick {
 	public boolean equals(WhenStartedBrick arg) {
 		return (script.equals(arg.script));
 	}
+	
+	public String toString() {
+		return (script.toString());
+	}
 }

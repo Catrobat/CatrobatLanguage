@@ -76,5 +76,13 @@ public class Sprite implements Serializable {
 	public int hashCode() {
 		return name.hashCode();
 	}
+	
+	public String toString() {
+		StringBuffer returned = new StringBuffer();
+		for (Script item: scriptList) {
+			returned.append(item.toString()+"\r\n");
+		}
+		return returned.toString();
+	}
 
 }

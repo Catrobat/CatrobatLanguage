@@ -34,4 +34,7 @@ public class IfLogicElseBrick extends NestingBrick implements AllowedAfterDeadEn
 		return (true);
 	}
 
+	public String toString() {
+		return ("else\r\n");
+	}
 }

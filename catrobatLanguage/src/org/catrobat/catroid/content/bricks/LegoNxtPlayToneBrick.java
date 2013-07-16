@@ -34,4 +34,9 @@ public class LegoNxtPlayToneBrick extends BrickBaseType {
 		return (frequency.equals(arg.frequency) &&
 				durationInSeconds.equals(arg.durationInSeconds));
 	}
+	
+	public String toString() {
+		return ("NXT play tone, frequency: (" + frequency.toString()
+				+ "), duration: (" + durationInSeconds.toString() + ")\r\n");
+	}
 }
