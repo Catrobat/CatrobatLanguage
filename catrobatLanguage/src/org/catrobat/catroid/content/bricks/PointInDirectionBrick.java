@@ -30,8 +30,9 @@ public class PointInDirectionBrick extends BrickBaseType {
 
 	public Formula degrees = new Formula();
 	
-	public boolean equals(PointInDirectionBrick arg) {
-		return (degrees.equals(arg.degrees));
+	public boolean equals(Object arg) {
+		return ((arg instanceof PointInDirectionBrick)  &&
+				degrees.equals(((PointInDirectionBrick)arg).degrees));
 	}
 	
 	public String toString() {

@@ -30,8 +30,9 @@ public class WhenBrick extends ScriptBrick {
 	
 	public WhenScript whenScript = new WhenScript();
 	
-	public boolean equals(WhenBrick arg) {
-		return (whenScript.equals(arg.whenScript));
+	public boolean equals(Object arg) {
+		return ((arg instanceof WhenBrick) &&
+				whenScript.equals(((WhenBrick)arg).whenScript));
 	}
 	
 	public String toString() {

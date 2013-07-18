@@ -29,8 +29,9 @@ public class SetBrightnessBrick extends BrickBaseType {
 
 	public Formula brightness = new Formula();
 	
-	public boolean equals(SetBrightnessBrick arg) {
-		return (brightness.equals(arg.brightness));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetBrightnessBrick) &&
+				brightness.equals(((SetBrightnessBrick)arg).brightness));
 	}
 	
 	public String toString() {

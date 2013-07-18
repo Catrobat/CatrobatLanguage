@@ -30,8 +30,9 @@ public class GoNStepsBackBrick extends BrickBaseType{
 	
 	public Formula steps = new Formula();
 	
-	public boolean equals(GoNStepsBackBrick arg) {
-		return (steps.equals(arg.steps));
+	public boolean equals(Object arg) {
+		return ((arg instanceof GoNStepsBackBrick) &&
+				steps.equals(((GoNStepsBackBrick)arg).steps));
 	}
 	
 	public String toString() {

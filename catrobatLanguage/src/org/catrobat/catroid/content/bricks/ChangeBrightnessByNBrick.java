@@ -31,7 +31,8 @@ public class ChangeBrightnessByNBrick extends BrickBaseType{
 	public Formula changeBrightness = new Formula();
 	
 	public boolean equals(ChangeBrightnessByNBrick arg) {
-		return (changeBrightness.equals(arg.changeBrightness));
+		return ((arg instanceof ChangeBrightnessByNBrick) 
+				&& changeBrightness.equals(((ChangeBrightnessByNBrick)arg).changeBrightness));
 	}
 	
 	public String toString() {

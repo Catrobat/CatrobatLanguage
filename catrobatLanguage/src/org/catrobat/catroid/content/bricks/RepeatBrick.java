@@ -29,8 +29,9 @@ public class RepeatBrick extends LoopBeginBrick {
 
 	public Formula timesToRepeat = new Formula();
 	
-	public boolean equals(RepeatBrick arg) {
-		return (timesToRepeat.equals(arg.timesToRepeat));
+	public boolean equals(Object arg) {
+		return ((arg instanceof RepeatBrick) &&
+				timesToRepeat.equals(((RepeatBrick)arg).timesToRepeat));
 	}
 	
 	public String toString() {

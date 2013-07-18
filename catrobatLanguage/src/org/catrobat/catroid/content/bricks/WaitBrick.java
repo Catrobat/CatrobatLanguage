@@ -29,8 +29,9 @@ public class WaitBrick extends BrickBaseType {
 
 	public Formula timeToWaitInSeconds = new Formula();
 	
-	public boolean equals(WaitBrick arg) {
-		return (timeToWaitInSeconds.equals(arg.timeToWaitInSeconds));
+	public boolean equals(Object arg) {
+		return ((arg instanceof WaitBrick) &&
+				timeToWaitInSeconds.equals(((WaitBrick)arg).timeToWaitInSeconds));
 	}
 	
 	public String toString() {

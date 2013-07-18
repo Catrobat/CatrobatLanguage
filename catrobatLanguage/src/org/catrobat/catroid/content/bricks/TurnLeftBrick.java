@@ -30,8 +30,9 @@ public class TurnLeftBrick extends BrickBaseType {
 
 	public Formula degrees = new Formula();
 	
-	public boolean equals(TurnLeftBrick arg) {
-		return (degrees.equals(arg.degrees));
+	public boolean equals(Object arg) {
+		return ((arg instanceof TurnLeftBrick) &&
+				degrees.equals(((TurnLeftBrick)arg).degrees));
 	}
 	
 	public String toString() {

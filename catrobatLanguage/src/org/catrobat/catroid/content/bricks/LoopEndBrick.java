@@ -28,8 +28,8 @@ public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBri
 	
 	public LoopBeginBrick loopBeginBrick;
 	
-	public boolean equals(LoopEndBrick arg) {
-		return (true);
+	public boolean equals(Object arg) {
+		return (arg instanceof LoopEndBrick) ;
 	}
 	
 	public String toString() {

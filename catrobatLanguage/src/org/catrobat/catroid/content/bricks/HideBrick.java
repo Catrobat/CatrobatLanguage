@@ -26,8 +26,8 @@ package org.catrobat.catroid.content.bricks;
 public class HideBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 	
-	public boolean equals(HideBrick arg) {
-		return (true);
+	public boolean equals(Object arg) {
+		return (arg instanceof HideBrick) ;
 	}
 	
 	public String toString() {

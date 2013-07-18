@@ -29,8 +29,9 @@ public class SetXBrick extends BrickBaseType {
 
 	public Formula xPosition = new Formula();
 	
-	public boolean equals(SetXBrick arg) {
-		return (xPosition.equals(arg.xPosition));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetXBrick) &&
+				xPosition.equals(((SetXBrick)arg).xPosition));
 	}
 	
 	public String toString() {

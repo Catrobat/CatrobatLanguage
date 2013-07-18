@@ -29,8 +29,9 @@ public class ChangeXByNBrick extends BrickBaseType{
 	
 	public Formula xMovement = new Formula();
 	
-	public boolean equals(ChangeXByNBrick arg) {
-		return (xMovement.equals(arg.xMovement));
+	public boolean equals(Object arg) {
+		return ((arg instanceof ChangeXByNBrick) && 
+				xMovement.equals(((ChangeXByNBrick) arg).xMovement));
 	}
 	
 	public String toString() {

@@ -31,7 +31,8 @@ public class ChangeVolumeByNBrick extends BrickBaseType{
 	public Formula volume = new Formula();
 	
 	public boolean equals(ChangeVolumeByNBrick arg) {
-		return (volume.equals(arg.volume));
+		return ((arg instanceof ChangeVolumeByNBrick) &&
+				volume.equals(((ChangeVolumeByNBrick) arg).volume));
 	}
 	
 	public String toString() {

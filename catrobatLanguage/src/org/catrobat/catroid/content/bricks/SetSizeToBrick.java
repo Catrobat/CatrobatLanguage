@@ -29,8 +29,9 @@ public class SetSizeToBrick extends BrickBaseType {
 
 	public Formula size = new Formula();
 	
-	public boolean equals(SetSizeToBrick arg) {
-		return (size.equals(arg.size));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetSizeToBrick) &&
+				size.equals(((SetSizeToBrick)arg).size));
 	}
 	
 	public String toString() {

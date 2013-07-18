@@ -30,8 +30,9 @@ public class ChangeSizeByNBrick extends BrickBaseType {
 	
 	public Formula size = new Formula();
 	
-	public boolean equals(ChangeSizeByNBrick arg) {
-		return (size.equals(arg.size));
+	public boolean equals(Object arg) {
+		return ((arg instanceof ChangeSizeByNBrick) 
+				&& size.equals(((ChangeSizeByNBrick)arg).size));
 	}
 	
 	public String toString() {

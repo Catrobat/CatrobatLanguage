@@ -30,9 +30,10 @@ public class PlaceAtBrick extends BrickBaseType {
 	public Formula xPosition = new Formula();
 	public Formula yPosition = new Formula();
 	
-	public boolean equals(PlaceAtBrick arg) {
-		return (xPosition.equals(arg.xPosition) &&
-				yPosition.equals(arg.yPosition));
+	public boolean equals(Object arg) {
+		return ((arg instanceof PlaceAtBrick) &&
+				xPosition.equals(((PlaceAtBrick)arg).xPosition) &&
+				yPosition.equals(((PlaceAtBrick)arg).yPosition));
 	}
 	
 	public String toString() {

@@ -30,9 +30,10 @@ public class LegoNxtPlayToneBrick extends BrickBaseType {
 	public Formula frequency = new Formula();
 	public Formula durationInSeconds = new Formula();
 	
-	public boolean equals(LegoNxtPlayToneBrick arg) {
-		return (frequency.equals(arg.frequency) &&
-				durationInSeconds.equals(arg.durationInSeconds));
+	public boolean equals(Object arg) {
+		return ((arg instanceof LegoNxtPlayToneBrick) &&
+				frequency.equals(((LegoNxtPlayToneBrick)arg).frequency) &&
+				durationInSeconds.equals(((LegoNxtPlayToneBrick)arg).durationInSeconds));
 	}
 	
 	public String toString() {

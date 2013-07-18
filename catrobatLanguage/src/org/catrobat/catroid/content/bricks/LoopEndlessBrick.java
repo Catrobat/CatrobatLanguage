@@ -27,7 +27,7 @@ public class LoopEndlessBrick extends LoopEndBrick implements DeadEndBrick {
 
 	private static final long serialVersionUID = 1L;
 	
-	public boolean equals(LoopEndlessBrick arg) {
-		return (true);
+	public boolean equals(Object arg) {
+		return (arg instanceof LoopEndlessBrick) ;
 	}
 }

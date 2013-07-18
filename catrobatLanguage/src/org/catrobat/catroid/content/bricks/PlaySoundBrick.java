@@ -29,8 +29,9 @@ public class PlaySoundBrick extends BrickBaseType {
 
 	public SoundInfo sound = new SoundInfo();
 	
-	public boolean equals(PlaySoundBrick arg) {
-		return (sound.equals(arg.sound));
+	public boolean equals(Object arg) {
+		return ((arg instanceof PlaySoundBrick) &&
+				sound.equals(((PlaySoundBrick)arg).sound));
 	}
 	
 	public String toString() {

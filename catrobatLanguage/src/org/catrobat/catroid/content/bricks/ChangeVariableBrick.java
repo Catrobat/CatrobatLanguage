@@ -32,9 +32,10 @@ public class ChangeVariableBrick extends BrickBaseType {
 	public UserVariable userVariable = new UserVariable();
 	public Formula variableFormula = new Formula();
 
-	public boolean equals(ChangeVariableBrick arg) {
-		return (userVariable.equals(arg.userVariable) && 
-				variableFormula.equals(arg.variableFormula));
+	public boolean equals(Object arg) {
+		return ((arg instanceof ChangeVariableBrick) && 
+				userVariable.equals(((ChangeVariableBrick)arg).userVariable) && 
+				variableFormula.equals(((ChangeVariableBrick)arg).variableFormula));
 	}
 
 	public String toString() {

@@ -30,8 +30,9 @@ public class SetYBrick extends BrickBaseType {
 
 	public Formula yPosition = new Formula();
 	
-	public boolean equals(SetYBrick arg) {
-		return (yPosition.equals(arg.yPosition));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetYBrick) &&
+				yPosition.equals(((SetYBrick)arg).yPosition));
 	}
 	
 	public String toString() {

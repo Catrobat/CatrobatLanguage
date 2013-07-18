@@ -29,8 +29,9 @@ public class SetVolumeToBrick extends BrickBaseType {
 
 	public Formula volume = new Formula();
 	
-	public boolean equals(SetVolumeToBrick arg) {
-		return (volume.equals(arg.volume));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetVolumeToBrick) &&
+				volume.equals(((SetVolumeToBrick)arg).volume));
 	}
 	
 	public String toString() {

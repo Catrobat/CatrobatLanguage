@@ -27,8 +27,9 @@ public class SpeakBrick extends BrickBaseType {
 
 	public String text = "";
 	
-	public boolean equals(SpeakBrick arg) {
-		return (text.equals(arg.text));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SpeakBrick) &&
+				text.equals(((SpeakBrick)arg).text));
 	}
 	
 	public String toString() {

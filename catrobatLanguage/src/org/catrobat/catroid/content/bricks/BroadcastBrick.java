@@ -27,8 +27,9 @@ public class BroadcastBrick extends BrickBaseType {
 
 	public String broadcastMessage = "";
 
-	public boolean equals(BroadcastBrick arg) {
-		return (broadcastMessage.equals(arg.broadcastMessage));
+	public boolean equals(Object arg) {
+		return ((arg instanceof BroadcastBrick) 
+				&& broadcastMessage.equals(((BroadcastBrick) arg).broadcastMessage));
 	}
 
 	public String toString() {

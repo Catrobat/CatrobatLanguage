@@ -30,9 +30,10 @@ public class LegoNxtMotorActionBrick extends BrickBaseType{
 	public String motor = "";
 	public Formula speed = new Formula();
 	
-	public boolean equals(LegoNxtMotorActionBrick arg) {
-		return (motor.equals(arg.motor) &&
-				speed.equals(arg.speed));
+	public boolean equals(Object arg) {
+		return ((arg instanceof LegoNxtMotorActionBrick) &&
+				motor.equals(((LegoNxtMotorActionBrick)arg).motor) &&
+				speed.equals(((LegoNxtMotorActionBrick)arg).speed));
 	}
 	
 	public String toString() {

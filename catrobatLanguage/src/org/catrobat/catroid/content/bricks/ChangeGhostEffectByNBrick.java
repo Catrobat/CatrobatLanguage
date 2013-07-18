@@ -30,8 +30,9 @@ public class ChangeGhostEffectByNBrick extends BrickBaseType{
 	
 	public Formula changeGhostEffect = new Formula();
 	
-	public boolean equals(ChangeGhostEffectByNBrick arg) {
-		return (changeGhostEffect.equals(arg.changeGhostEffect));
+	public boolean equals(Object arg) {
+		return ((arg instanceof ChangeGhostEffectByNBrick) 
+				&& changeGhostEffect.equals(((ChangeGhostEffectByNBrick)arg).changeGhostEffect));
 	}
 	
 	public String toString() {

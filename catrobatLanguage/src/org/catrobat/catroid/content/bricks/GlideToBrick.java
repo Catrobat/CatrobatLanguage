@@ -31,10 +31,11 @@ public class GlideToBrick extends BrickBaseType {
 	public Formula yDestination = new Formula();
 	public Formula durationInSeconds = new Formula();
 	
-	public boolean equals(GlideToBrick arg) {
-		return (xDestination.equals(arg.xDestination) &&
-				yDestination.equals(arg.yDestination) &&
-				durationInSeconds.equals(arg.durationInSeconds));
+	public boolean equals(Object arg) {
+		return ((arg instanceof GlideToBrick) &&
+				xDestination.equals(((GlideToBrick)arg).xDestination) &&
+				yDestination.equals(((GlideToBrick)arg).yDestination) &&
+				durationInSeconds.equals(((GlideToBrick)arg).durationInSeconds));
 	}
 	
 	public String toString() {

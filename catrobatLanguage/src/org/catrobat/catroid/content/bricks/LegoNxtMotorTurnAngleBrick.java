@@ -30,9 +30,10 @@ public class LegoNxtMotorTurnAngleBrick extends BrickBaseType{
 	public String motor = "";
 	public Formula degrees = new Formula();
 	
-	public boolean equals(LegoNxtMotorTurnAngleBrick arg) {
-		return (motor.equals(arg.motor) &&
-				degrees.equals(arg.degrees));
+	public boolean equals(Object arg) {
+		return ((arg instanceof LegoNxtMotorTurnAngleBrick) &&
+				motor.equals(((LegoNxtMotorTurnAngleBrick)arg).motor) &&
+				degrees.equals(((LegoNxtMotorTurnAngleBrick)arg).degrees));
 	}
 	
 	public String toString() {

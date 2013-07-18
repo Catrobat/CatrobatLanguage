@@ -29,8 +29,9 @@ public class SetGhostEffectBrick extends BrickBaseType {
 
 	public Formula transparency = new Formula();
 	
-	public boolean equals(SetGhostEffectBrick arg) {
-		return (transparency.equals(arg.transparency));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetGhostEffectBrick) &&
+				transparency.equals(((SetGhostEffectBrick)arg).transparency));
 	}
 	
 	public String toString() {

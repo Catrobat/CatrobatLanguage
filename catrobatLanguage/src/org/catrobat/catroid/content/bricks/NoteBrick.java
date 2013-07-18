@@ -29,8 +29,9 @@ public class NoteBrick extends BrickBaseType {
 
 	public String note = "";
 	
-	public boolean equals(NoteBrick arg) {
-		return (note.equals(arg.note));
+	public boolean equals(Object arg) {
+		return ((arg instanceof NoteBrick) &&
+				note.equals(((NoteBrick) arg).note));
 	}
 	
 	public String toString() {

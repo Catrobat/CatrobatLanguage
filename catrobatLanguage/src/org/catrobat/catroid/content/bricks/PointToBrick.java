@@ -30,8 +30,9 @@ public class PointToBrick extends BrickBaseType {
 	
 	public Sprite pointedObject = new Sprite();
 	
-	public boolean equals(PointToBrick arg) {
-		return (pointedObject.equals(arg.pointedObject));
+	public boolean equals(Object arg) {
+		return ((arg instanceof PointToBrick) &&
+				pointedObject.equals(((PointToBrick)arg).pointedObject));
 	}
 	
 	public String toString() {

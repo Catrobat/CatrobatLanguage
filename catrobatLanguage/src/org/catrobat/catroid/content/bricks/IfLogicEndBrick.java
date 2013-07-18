@@ -30,8 +30,8 @@ public class IfLogicEndBrick extends NestingBrick implements AllowedAfterDeadEnd
 	public IfLogicElseBrick ifElseBrick;
 	public IfLogicBeginBrick ifBeginBrick;
 
-	public boolean equals(IfLogicEndBrick arg) {
-		return (true);
+	public boolean equals(Object arg) {
+		return (arg instanceof IfLogicEndBrick) ;
 	}
 	
 	public String toString() {

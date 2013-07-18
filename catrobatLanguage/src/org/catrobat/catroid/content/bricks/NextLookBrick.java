@@ -27,8 +27,8 @@ public class NextLookBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 	
-	public boolean equals(NextLookBrick arg) {
-		return (true);
+	public boolean equals(Object arg) {
+		return (arg instanceof NextLookBrick) ;
 	}
 	
 	public String toString() {

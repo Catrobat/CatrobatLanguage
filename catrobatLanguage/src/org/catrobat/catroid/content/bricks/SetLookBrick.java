@@ -29,8 +29,9 @@ public class SetLookBrick extends BrickBaseType {
 
 	public LookData look = new LookData();
 	
-	public boolean equals(SetLookBrick arg) {
-		return (look.equals(arg.look));
+	public boolean equals(Object arg) {
+		return ((arg instanceof SetLookBrick) &&
+				look.equals(((SetLookBrick)arg).look));
 	}
 	
 	public String toString() {

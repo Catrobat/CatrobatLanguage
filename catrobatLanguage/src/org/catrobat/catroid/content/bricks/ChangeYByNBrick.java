@@ -30,8 +30,9 @@ public class ChangeYByNBrick extends BrickBaseType{
 	
 	public Formula yMovement = new Formula();
 	
-	public boolean equals(ChangeYByNBrick arg) {
-		return (yMovement.equals(arg.yMovement));
+	public boolean equals(Object arg) {
+		return ((arg instanceof ChangeYByNBrick) &&
+				yMovement.equals(((ChangeYByNBrick)arg).yMovement));
 	}
 	
 	public String toString() {

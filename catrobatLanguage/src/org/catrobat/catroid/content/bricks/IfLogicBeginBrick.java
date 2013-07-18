@@ -31,8 +31,9 @@ public class IfLogicBeginBrick extends NestingBrick {
 	public IfLogicElseBrick ifElseBrick;
 	public IfLogicEndBrick ifEndBrick;
 	
-	public boolean equals(IfLogicBeginBrick arg) {
-		return (ifCondition.equals(arg.ifCondition));
+	public boolean equals(Object arg) {
+		return ((arg instanceof IfLogicBeginBrick) &&
+				ifCondition.equals(((IfLogicBeginBrick)arg).ifCondition));
 	}
 	
 	public String toString() {
