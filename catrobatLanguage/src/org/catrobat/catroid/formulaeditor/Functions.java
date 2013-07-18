@@ -20,19 +20,34 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid.content.bricks;
+package org.catrobat.catroid.formulaeditor;
 
-public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBrick {
-	
-	private static final long serialVersionUID = 1L;
-	
-	public LoopBeginBrick loopBeginBrick;
-	
-	public boolean equals(LoopEndBrick arg) {
-		return (true);
+public enum Functions {
+
+	SIN, COS, TAN, LN, LOG, SQRT, RAND, ROUND, ABS, PI, MOD, ARCSIN, ARCCOS, ARCTAN, EXP, MAX, MIN, TRUE, FALSE;
+
+	public static boolean isFunction(String value) {
+		if (getFunctionByValue(value) == null) {
+			return false;
+		}
+		return true;
+
+	}
+
+	public static Functions getFunctionByValue(String value) {
+		try {
+			return valueOf(value);
+		} catch (IllegalArgumentException exception) {
+
+		}
+		return null;
 	}
 	
 	public String toString() {
-		return ("end of loop\r\n");
+		if (this == TRUE || this == FALSE)
+			return name();
+		else
+			return name().toLowerCase();
 	}
+
 }

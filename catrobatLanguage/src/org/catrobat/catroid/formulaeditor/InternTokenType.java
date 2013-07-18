@@ -20,19 +20,9 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.catrobat.catroid.content.bricks;
+package org.catrobat.catroid.formulaeditor;
 
-public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBrick {
-	
-	private static final long serialVersionUID = 1L;
-	
-	public LoopBeginBrick loopBeginBrick;
-	
-	public boolean equals(LoopEndBrick arg) {
-		return (true);
-	}
-	
-	public String toString() {
-		return ("end of loop\r\n");
-	}
+public enum InternTokenType {
+	NUMBER, OPERATOR, FUNCTION_NAME, BRACKET_OPEN, BRACKET_CLOSE, SENSOR, FUNCTION_PARAMETERS_BRACKET_OPEN, FUNCTION_PARAMETERS_BRACKET_CLOSE, FUNCTION_PARAMETER_DELIMITER, PERIOD, USER_VARIABLE, PARSER_END_OF_FILE;
+
 }

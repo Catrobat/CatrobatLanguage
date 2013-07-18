@@ -23,6 +23,7 @@
 package org.catrobat.catroid.formulaeditor;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Formula implements Serializable {
 
@@ -32,6 +33,15 @@ public class Formula implements Serializable {
 	
 	public boolean equals(Formula arg) {
 		return (formulaTree.equals(arg.formulaTree));
+	}
+	
+	public String toString() {
+		StringBuffer returned = new StringBuffer();
+		List<InternToken> internalTokens = formulaTree.getInternTokenList();
+		for (InternToken item: internalTokens ) {
+			returned.append(item.toString());
+		}
+		return returned.toString();
 	}
 
 }
