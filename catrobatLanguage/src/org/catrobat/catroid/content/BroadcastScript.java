@@ -22,7 +22,6 @@
  */
 package org.catrobat.catroid.content;
 
-import org.catrobat.catroid.content.bricks.Brick;
 
 
 public class BroadcastScript extends Script{
@@ -36,11 +35,8 @@ public class BroadcastScript extends Script{
 	}
 	
 	public String toString() {
-		StringBuffer returned = 
-				new StringBuffer("when I receive \"" + receivedMessage +"\"\r\n");
-		for (Brick item: brickList) {
-			returned.append(item.toString());
-		}
+		StringBuffer returned = new StringBuffer("when I receive \"" + receivedMessage +"\"\r\n");
+		returned.append(super.toString());
 		return returned.toString();
 	}
 	

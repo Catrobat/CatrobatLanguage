@@ -26,6 +26,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.catrobat.catroid.content.bricks.Brick;
+import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
+import org.catrobat.catroid.content.bricks.IfLogicElseBrick;
+import org.catrobat.catroid.content.bricks.IfLogicEndBrick;
+import org.catrobat.catroid.content.bricks.LoopBeginBrick;
+import org.catrobat.catroid.content.bricks.LoopEndBrick;
 
 public abstract class Script implements Serializable {
 	
@@ -49,18 +54,34 @@ public abstract class Script implements Serializable {
 				brickList.equals(arg.brickList));
 	}
 	
+	private boolean hasLeftShift(Brick brick) {
+		if (brick instanceof IfLogicEndBrick ||
+			brick instanceof LoopEndBrick)
+			return true;
+		else
+			return false;
+	}
+	
+	private boolean nextHasRightShift(Brick brick) {
+		if (brick instanceof IfLogicBeginBrick ||
+			brick instanceof IfLogicElseBrick ||
+			brick instanceof LoopBeginBrick)
+			return true;
+		else
+			return false;
+	}
+	
 	public String toString() {
-		System.out.println("st");
 		StringBuffer returned = new StringBuffer();
-		if (this instanceof StartScript) {
-			returned.append(((StartScript)this).toString());
-		} else if (this instanceof WhenScript) {
-			returned.append(((WhenScript)this).toString());
-		} else if (this instanceof BroadcastScript) {
-			returned.append(((BroadcastScript)this).toString());
-		} else {
-			return new String();
-		}		
+		StringBuffer indentation = new StringBuffer("   ");
+		for (Brick item: brickList) {
+			if (hasLeftShift(item))
+				indentation.delete(0, 3);
+			returned.append(indentation);
+			returned.append(item.toString());
+			if (nextHasRightShift(item))
+				indentation.append("   ");
+		}
 		return returned.toString();
 	}
 
