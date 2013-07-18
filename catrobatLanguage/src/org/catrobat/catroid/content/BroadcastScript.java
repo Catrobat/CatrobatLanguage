@@ -30,8 +30,9 @@ public class BroadcastScript extends Script{
 	
 	public String receivedMessage = "";
 	
-	public boolean equals(BroadcastScript arg) {
-		return (receivedMessage.equals(arg.receivedMessage));
+	public boolean equals(Object arg) {
+		return ((arg instanceof BroadcastScript) && super.equals(arg) 
+				&& receivedMessage.equals(((BroadcastScript) arg).receivedMessage));
 	}
 	
 	public String toString() {

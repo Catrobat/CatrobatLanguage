@@ -22,20 +22,19 @@
  */
 package org.catrobat.catroid.content;
 
-
-
 public class StartScript extends Script {
 
 	private static final long serialVersionUID = 1L;
-	
-	public boolean equals(StartScript arg) {
-		return true;
+
+	public boolean equals(Object arg) {
+		return ((arg instanceof StartScript)
+				&& super.equals(arg));
 	}
-	
+
 	public String toString() {
 		StringBuffer returned = new StringBuffer("when program started\r\n");
 		returned.append(super.toString());
 		return returned.toString();
 	}
-	
+
 }

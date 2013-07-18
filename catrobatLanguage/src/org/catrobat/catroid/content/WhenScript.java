@@ -22,20 +22,19 @@
  */
 package org.catrobat.catroid.content;
 
-
-
 public class WhenScript extends Script {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	public String action = "";
-	
-	public boolean equals(WhenScript arg) {
-		return (action.equals(arg.action));
+
+	public boolean equals(Object arg) {
+		return ((arg instanceof WhenScript) && super.equals(arg) 
+				&& action.equals(((WhenScript) arg).action));
 	}
 
 	public String toString() {
-		StringBuffer returned = new StringBuffer("when " + action +"\r\n");
+		StringBuffer returned = new StringBuffer("when " + action + "\r\n");
 		returned.append(super.toString());
 		return returned.toString();
 	}

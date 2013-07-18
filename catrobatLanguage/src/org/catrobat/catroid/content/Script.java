@@ -24,6 +24,7 @@ package org.catrobat.catroid.content;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.catrobat.catroid.content.bricks.Brick;
 import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
@@ -33,54 +34,47 @@ import org.catrobat.catroid.content.bricks.LoopBeginBrick;
 import org.catrobat.catroid.content.bricks.LoopEndBrick;
 
 public abstract class Script implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+	private static final int INDENTATION = 3;
+
 	public ArrayList<Brick> brickList = new ArrayList<Brick>();
 	public Sprite object;
-	
-	public boolean equals(Object arg0) {
-		
-		if (!(arg0 instanceof Script))
-			return false;
-		Script arg = (Script) arg0;
-		
-		return (((arg instanceof StartScript) && (this instanceof StartScript) 
-						&& ((StartScript) this).equals((StartScript) arg)) ||
-				((arg instanceof WhenScript) && (this instanceof WhenScript) 
-						&& ((WhenScript) this).equals((WhenScript) arg)) ||
-				((arg instanceof BroadcastScript) && (this instanceof BroadcastScript)
-						&& ((BroadcastScript) this).equals((BroadcastScript) arg)) &&
-				brickList.equals(arg.brickList));
+
+	public boolean equals(Object arg) {
+		return ((arg instanceof Script) && brickList.equals(((Script)arg).brickList));
 	}
-	
+
 	private boolean hasLeftShift(Brick brick) {
-		if (brick instanceof IfLogicEndBrick ||
-			brick instanceof LoopEndBrick)
-			return true;
-		else
-			return false;
+		return (brick instanceof IfLogicEndBrick 
+				|| brick instanceof LoopEndBrick);
 	}
-	
+
 	private boolean nextHasRightShift(Brick brick) {
-		if (brick instanceof IfLogicBeginBrick ||
-			brick instanceof IfLogicElseBrick ||
-			brick instanceof LoopBeginBrick)
-			return true;
-		else
-			return false;
+		return (brick instanceof IfLogicBeginBrick
+				|| brick instanceof IfLogicElseBrick 
+				|| brick instanceof LoopBeginBrick);
 	}
-	
+
+	private String getIndentation(int layer) {
+		char[] bytes = new char[layer * INDENTATION];
+		Arrays.fill(bytes, ' ');
+		return new String(bytes);
+	}
+
+	private String getLine(Brick brick, int layer) {
+		return getIndentation(layer) + brick.toString();
+	}
+
 	public String toString() {
 		StringBuffer returned = new StringBuffer();
-		StringBuffer indentation = new StringBuffer("   ");
-		for (Brick item: brickList) {
+		int layer = 1;
+		for (Brick item : brickList) {
 			if (hasLeftShift(item))
-				indentation.delete(0, 3);
-			returned.append(indentation);
-			returned.append(item.toString());
+				layer--;
+			returned.append(getLine(item, layer));
 			if (nextHasRightShift(item))
-				indentation.append("   ");
+				layer++;
 		}
 		return returned.toString();
 	}
