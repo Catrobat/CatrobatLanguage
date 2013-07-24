@@ -10,23 +10,23 @@ import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
 
 public class YamlProject {
 
-	public XmlHeader header;
-	public Map<String, YamlSprite> objects;
-	public UserVariablesContainer variables;
+	private XmlHeader header;
+	private Map<String, YamlSprite> objects;
+	private UserVariablesContainer variables;
 
 	public YamlProject(Project project) {
 		header = new XmlHeader();
 		objects = new HashMap<String, YamlSprite>();
 		variables = new UserVariablesContainer();
 		
-		header = project.xmlHeader;
+		header = project.getXmlHeader();
 		objects = new HashMap<String, YamlSprite>();
-		if (!project.spriteList.isEmpty()) {
-			for (Sprite item : project.spriteList) {
-				objects.put(item.name, new YamlSprite(item));
+		if (!project.getSpriteList().isEmpty()) {
+			for (Sprite item : project.getSpriteList()) {
+				objects.put(item.getName(), new YamlSprite(item));
 			}
 		}
-		variables = project.userVariables;
+		variables = project.getUserVariables();
 	}
 	
 	public YamlProject() {
@@ -35,7 +35,31 @@ public class YamlProject {
 		variables = new UserVariablesContainer();
 	}
 	
-	public boolean equals(YamlProject arg) {
+	public XmlHeader getHeader() {
+		return header;
+	}
+
+	public void setHeader(XmlHeader header) {
+		this.header = header;
+	}
+
+	public Map<String, YamlSprite> getObjects() {
+		return objects;
+	}
+
+	public void setObjects(Map<String, YamlSprite> objects) {
+		this.objects = objects;
+	}
+
+	public UserVariablesContainer getVariables() {
+		return variables;
+	}
+
+	public void setVariables(UserVariablesContainer variables) {
+		this.variables = variables;
+	}
+	
+	public boolean equals(YamlProject arg) {		
 		return (header.equals(arg.header) && 
 				objects.equals(arg.objects) && 
 				variables.equals(arg.variables));

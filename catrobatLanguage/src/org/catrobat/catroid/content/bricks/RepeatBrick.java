@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class RepeatBrick extends LoopBeginBrick {
 	private static final long serialVersionUID = 1L;
 
-	public Formula timesToRepeat = new Formula();
+	private Formula timesToRepeat;
 	
+	public RepeatBrick() {
+		super();
+		timesToRepeat = new Formula();
+	}
+
+	public Formula getTimesToRepeat() {
+		return timesToRepeat;
+	}
+
+	public void setTimesToRepeat(Formula timesToRepeat) {
+		this.timesToRepeat = timesToRepeat;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof RepeatBrick) &&
 				timesToRepeat.equals(((RepeatBrick)arg).timesToRepeat));

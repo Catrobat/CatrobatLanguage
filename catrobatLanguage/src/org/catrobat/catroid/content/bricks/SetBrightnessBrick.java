@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class SetBrightnessBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula brightness = new Formula();
+	private Formula brightness;
 	
+	public SetBrightnessBrick() {
+		super();
+		brightness = new Formula();
+	}
+
+	public Formula getBrightness() {
+		return brightness;
+	}
+
+	public void setBrightness(Formula brightness) {
+		this.brightness = brightness;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetBrightnessBrick) &&
 				brightness.equals(((SetBrightnessBrick)arg).brightness));

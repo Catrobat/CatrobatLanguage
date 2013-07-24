@@ -25,8 +25,22 @@ package org.catrobat.catroid.content.bricks;
 public class BroadcastBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public String broadcastMessage = "";
+	private String broadcastMessage;
 
+	public BroadcastBrick() {
+		super();
+		broadcastMessage = "";
+	}
+
+	public String getBroadcastMessage() {
+		return broadcastMessage;
+	}
+
+	public void setBroadcastMessage(String broadcastMessage) {
+		this.broadcastMessage = broadcastMessage;
+	}
+
+	
 	public boolean equals(Object arg) {
 		return ((arg instanceof BroadcastBrick) 
 				&& broadcastMessage.equals(((BroadcastBrick) arg).broadcastMessage));

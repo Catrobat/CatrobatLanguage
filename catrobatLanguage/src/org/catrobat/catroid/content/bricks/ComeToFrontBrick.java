@@ -27,6 +27,10 @@ public class ComeToFrontBrick extends BrickBaseType {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public ComeToFrontBrick() {
+		super();
+	}
+	
 	public boolean equals(Object arg) {
 		return (arg instanceof ComeToFrontBrick) ;
 	}

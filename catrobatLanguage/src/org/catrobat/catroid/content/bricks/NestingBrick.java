@@ -27,4 +27,7 @@ public abstract class NestingBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 
+	public NestingBrick() {
+		super();
+	}
 }

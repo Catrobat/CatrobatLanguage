@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class SetGhostEffectBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula transparency = new Formula();
+	private Formula transparency;
 	
+	public SetGhostEffectBrick() {
+		super();
+		transparency = new Formula();
+	}
+
+	public Formula getTransparency() {
+		return transparency;
+	}
+
+	public void setTransparency(Formula transparency) {
+		this.transparency = transparency;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetGhostEffectBrick) &&
 				transparency.equals(((SetGhostEffectBrick)arg).transparency));

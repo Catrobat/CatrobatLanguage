@@ -28,8 +28,21 @@ public class MoveNStepsBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Formula steps = new Formula();
+	private Formula steps;
 	
+	public MoveNStepsBrick() {
+		super();
+		steps = new Formula();
+	}
+
+	public Formula getSteps() {
+		return steps;
+	}
+
+	public void setSteps(Formula steps) {
+		this.steps = steps;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof MoveNStepsBrick) &&
 				steps.equals(((MoveNStepsBrick)arg).steps));

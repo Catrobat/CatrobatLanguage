@@ -25,6 +25,10 @@ package org.catrobat.catroid.content.bricks;
 public class ShowBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
+	public ShowBrick() {
+		super();
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof ShowBrick) ;
 	}

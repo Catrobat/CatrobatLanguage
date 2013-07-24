@@ -34,11 +34,11 @@ public class Sprite implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public String name;
-	public List<Script> scriptList;
-	public ArrayList<LookData> lookList;
-	public ArrayList<SoundInfo> soundList;
-
+	private String name;
+	private List<Script> scriptList;
+	private ArrayList<LookData> lookList;
+	private ArrayList<SoundInfo> soundList;
+	
 	public Sprite(String name, YamlSprite sprite) {
 		name = "";
 		scriptList = new ArrayList<Script>();
@@ -47,12 +47,12 @@ public class Sprite implements Serializable {
 		
 		if (!(name == null))
 			this.name = name;
-		if (!(sprite.scripts == null))
-			scriptList = sprite.scripts;
-		if (!(sprite.looks == null))
-			lookList = sprite.looks;
-		if (!(sprite.sounds == null))
-			soundList = sprite.sounds;
+		if (!(sprite.getScripts() == null))
+			scriptList = sprite.getScripts();
+		if (!(sprite.getLooks() == null))
+			lookList = sprite.getLooks();
+		if (!(sprite.getSounds() == null))
+			soundList = sprite.getSounds();
 	}
 
 	public Sprite() {
@@ -60,6 +60,39 @@ public class Sprite implements Serializable {
 		scriptList = new ArrayList<Script>();
 		lookList = new ArrayList<LookData>();
 		soundList = new ArrayList<SoundInfo>();
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Script> getScriptList() {
+		return scriptList;
+	}
+
+	public void setScriptList(List<Script> scriptList) {
+		this.scriptList = scriptList;
+	}
+
+	public ArrayList<LookData> getLookList() {
+		return lookList;
+	}
+
+	public void setLookList(ArrayList<LookData> lookList) {
+		this.lookList = lookList;
+	}
+
+	public ArrayList<SoundInfo> getSoundList() {
+		return soundList;
+	}
+
+	public void setSoundList(ArrayList<SoundInfo> soundList) {
+		this.soundList = soundList;
 	}
 
 	public boolean equals(Object arg0) {

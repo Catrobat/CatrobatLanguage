@@ -27,8 +27,21 @@ public class NoteBrick extends BrickBaseType {
 	
 	private static final long serialVersionUID = 1L;
 
-	public String note = "";
+	private String note;
 	
+	public NoteBrick() {
+		super();
+		note = "";
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof NoteBrick) &&
 				note.equals(((NoteBrick) arg).note));

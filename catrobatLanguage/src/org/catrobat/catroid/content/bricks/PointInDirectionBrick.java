@@ -28,8 +28,21 @@ public class PointInDirectionBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 
-	public Formula degrees = new Formula();
+	private Formula degrees;
 	
+	public PointInDirectionBrick() {
+		super();
+		degrees = new Formula();
+	}
+
+	public Formula getDegrees() {
+		return degrees;
+	}
+
+	public void setDegrees(Formula degrees) {
+		this.degrees = degrees;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof PointInDirectionBrick)  &&
 				degrees.equals(((PointInDirectionBrick)arg).degrees));

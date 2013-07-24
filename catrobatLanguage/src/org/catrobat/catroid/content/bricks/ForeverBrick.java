@@ -26,6 +26,10 @@ public class ForeverBrick extends LoopBeginBrick {
 	
 	private static final long serialVersionUID = 1L;
 	
+	public ForeverBrick() {
+		super();
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof ForeverBrick) ;
 	}

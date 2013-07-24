@@ -27,9 +27,31 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class LegoNxtMotorTurnAngleBrick extends BrickBaseType{
 	private static final long serialVersionUID = 1L;
 
-	public String motor = "";
-	public Formula degrees = new Formula();
+	private String motor;
+	private Formula degrees;
 	
+	public LegoNxtMotorTurnAngleBrick() {
+		super();
+		motor = "";
+		degrees = new Formula();
+	}
+
+	public String getMotor() {
+		return motor;
+	}
+
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
+
+	public Formula getDegrees() {
+		return degrees;
+	}
+
+	public void setDegrees(Formula degrees) {
+		this.degrees = degrees;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof LegoNxtMotorTurnAngleBrick) &&
 				motor.equals(((LegoNxtMotorTurnAngleBrick)arg).motor) &&

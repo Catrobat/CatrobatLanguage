@@ -38,11 +38,33 @@ public abstract class Script implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final int INDENTATION = 3;
 
-	public ArrayList<Brick> brickList = new ArrayList<Brick>();
-	public Sprite object;
+	private ArrayList<Brick> brickList;
+	private Sprite object;
+
+	public Script() {
+		brickList = new ArrayList<Brick>();
+		object = null;
+	}
+
+	public ArrayList<Brick> getBrickList() {
+		return brickList;
+	}
+
+	public void setBrickList(ArrayList<Brick> brickList) {
+		this.brickList = brickList;
+	}
+
+	public Sprite getObject() {
+		return object;
+	}
+
+	public void setObject(Sprite object) {
+		this.object = object;
+	}
 
 	public boolean equals(Object arg) {
-		return ((arg instanceof Script) && brickList.equals(((Script)arg).brickList));
+		return ((arg instanceof Script) && 
+				brickList.equals(((Script)arg).brickList));
 	}
 
 	private boolean hasLeftShift(Brick brick) {
@@ -69,13 +91,14 @@ public abstract class Script implements Serializable {
 	public String toString() {
 		StringBuffer returned = new StringBuffer();
 		int layer = 1;
-		for (Brick item : brickList) {
-			if (hasLeftShift(item))
-				layer--;
-			returned.append(getLine(item, layer));
-			if (nextHasRightShift(item))
-				layer++;
-		}
+		if (brickList != null)
+			for (Brick item : brickList) {
+				if (hasLeftShift(item))
+					layer--;
+				returned.append(getLine(item, layer));
+				if (nextHasRightShift(item))
+					layer++;
+			}
 		return returned.toString();
 	}
 

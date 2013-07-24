@@ -28,8 +28,21 @@ public class ChangeGhostEffectByNBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Formula changeGhostEffect = new Formula();
+	private Formula changeGhostEffect;
 	
+	public ChangeGhostEffectByNBrick() {
+		super();
+		changeGhostEffect = new Formula();
+	}
+
+	public Formula getChangeGhostEffect() {
+		return changeGhostEffect;
+	}
+
+	public void setChangeGhostEffect(Formula changeGhostEffect) {
+		this.changeGhostEffect = changeGhostEffect;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof ChangeGhostEffectByNBrick) 
 				&& changeGhostEffect.equals(((ChangeGhostEffectByNBrick)arg).changeGhostEffect));

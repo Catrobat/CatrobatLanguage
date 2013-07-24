@@ -22,14 +22,26 @@
  */
 package org.catrobat.catroid.content.bricks;
 
-import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.StartScript;
 
 public class WhenStartedBrick extends ScriptBrick {
 	private static final long serialVersionUID = 1L;
 
-	public Script script = new StartScript();
+	private StartScript script;
 	
+	public WhenStartedBrick() {
+		super();
+		script = new StartScript();
+	}
+
+	public StartScript getScript() {
+		return script;
+	}
+
+	public void setScript(StartScript script) {
+		this.script = script;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof WhenStartedBrick) &&
 				script.equals(((WhenStartedBrick)arg).script));

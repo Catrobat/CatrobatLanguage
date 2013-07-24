@@ -28,9 +28,31 @@ import org.catrobat.catroid.formulaeditor.UserVariable;
 public class SetVariableBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public UserVariable userVariable = new UserVariable();
-	public Formula variableFormula = new Formula();
+	private UserVariable userVariable;
+	private Formula variableFormula;
 	
+	public SetVariableBrick() {
+		super();
+		userVariable = new UserVariable();
+		variableFormula = new Formula();
+	}
+
+	public UserVariable getUserVariable() {
+		return userVariable;
+	}
+
+	public void setUserVariable(UserVariable userVariable) {
+		this.userVariable = userVariable;
+	}
+
+	public Formula getVariableFormula() {
+		return variableFormula;
+	}
+
+	public void setVariableFormula(Formula variableFormula) {
+		this.variableFormula = variableFormula;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetVariableBrick) &&
 				userVariable.equals(((SetVariableBrick)arg).userVariable) &&
@@ -38,7 +60,7 @@ public class SetVariableBrick extends BrickBaseType {
 	}
 	
 	public String toString() {
-		return ("set variable \"" + userVariable.name + "\" to ("
+		return ("set variable \"" + userVariable.getName() + "\" to ("
 				+ variableFormula.toString() + ")\r\n");
 	}
 

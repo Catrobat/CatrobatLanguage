@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class SetXBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula xPosition = new Formula();
+	private Formula xPosition;
 	
+	public SetXBrick() {
+		super();
+		xPosition = new Formula();
+	}
+
+	public Formula getxPosition() {
+		return xPosition;
+	}
+
+	public void setxPosition(Formula xPosition) {
+		this.xPosition = xPosition;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetXBrick) &&
 				xPosition.equals(((SetXBrick)arg).xPosition));

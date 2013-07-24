@@ -28,8 +28,20 @@ public class UserVariable implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public String name = "";
+	private String name;
 	
+	public UserVariable() {
+		name = "";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public boolean equals(Object arg0) {
 		
 		if (!(arg0 instanceof UserVariable))

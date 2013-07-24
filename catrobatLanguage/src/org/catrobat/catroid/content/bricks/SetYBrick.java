@@ -28,8 +28,21 @@ public class SetYBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 
-	public Formula yPosition = new Formula();
+	private Formula yPosition;
 	
+	public SetYBrick() {
+		super();
+		yPosition = new Formula();
+	}
+
+	public Formula getyPosition() {
+		return yPosition;
+	}
+
+	public void setyPosition(Formula yPosition) {
+		this.yPosition = yPosition;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetYBrick) &&
 				yPosition.equals(((SetYBrick)arg).yPosition));

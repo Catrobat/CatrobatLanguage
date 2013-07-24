@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class WaitBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula timeToWaitInSeconds = new Formula();
+	private Formula timeToWaitInSeconds;
 	
+	public WaitBrick() {
+		super();
+		timeToWaitInSeconds = new Formula();
+	}
+
+	public Formula getTimeToWaitInSeconds() {
+		return timeToWaitInSeconds;
+	}
+
+	public void setTimeToWaitInSeconds(Formula timeToWaitInSeconds) {
+		this.timeToWaitInSeconds = timeToWaitInSeconds;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof WaitBrick) &&
 				timeToWaitInSeconds.equals(((WaitBrick)arg).timeToWaitInSeconds));

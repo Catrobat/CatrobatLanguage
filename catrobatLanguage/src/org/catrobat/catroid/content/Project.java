@@ -37,32 +37,57 @@ public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XStreamAlias("header")
-	public XmlHeader xmlHeader;
+	private XmlHeader xmlHeader;
 	@XStreamAlias("objectList")
-	public List<Sprite> spriteList;
+	private List<Sprite> spriteList;
 	@XStreamAlias("variables")
-	public UserVariablesContainer userVariables;
+	private UserVariablesContainer userVariables;
 
 	public Project(YamlProject project) {
 		xmlHeader = new XmlHeader();
 		spriteList = new ArrayList<Sprite>();
 		userVariables = new UserVariablesContainer();
 		
-		if (project.header != null)
-			xmlHeader = project.header;
-		else if (project.objects != null) {
-			for (String name : project.objects.keySet()) {
-				spriteList.add(new Sprite(name, project.objects.get(name)));
+		if (project.getHeader() != null)
+			xmlHeader = project.getHeader();
+		else if (project.getObjects() != null) {
+			for (String name : project.getObjects().keySet()) {
+				spriteList.add(new Sprite(name, project.getObjects().get(name)));
 			}
 		}
-		if (project.variables != null)
-			userVariables = project.variables;
+		if (project.getVariables() != null)
+			userVariables = project.getVariables();
 	}
 
 	public Project() {
 		xmlHeader = new XmlHeader();
 		spriteList = new ArrayList<Sprite>();
 		userVariables = new UserVariablesContainer();
+	}
+
+	
+	public XmlHeader getXmlHeader() {
+		return xmlHeader;
+	}
+
+	public void setXmlHeader(XmlHeader xmlHeader) {
+		this.xmlHeader = xmlHeader;
+	}
+
+	public List<Sprite> getSpriteList() {
+		return spriteList;
+	}
+
+	public void setSpriteList(List<Sprite> spriteList) {
+		this.spriteList = spriteList;
+	}
+
+	public UserVariablesContainer getUserVariables() {
+		return userVariables;
+	}
+
+	public void setUserVariables(UserVariablesContainer userVariables) {
+		this.userVariables = userVariables;
 	}
 
 	public boolean equals(Project arg) {

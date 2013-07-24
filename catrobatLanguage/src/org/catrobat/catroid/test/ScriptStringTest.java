@@ -22,7 +22,7 @@ public class ScriptStringTest {
 				inputXML);
 
 		Writer writer = new BufferedWriter(new FileWriter(outputTXT));
-		for (Sprite item: xmlProject.spriteList) {
+		for (Sprite item: xmlProject.getSpriteList()) {
 			writer.write(item.toString()+"\r\n");
 		}
 		writer.close();

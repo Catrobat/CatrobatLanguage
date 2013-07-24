@@ -26,8 +26,20 @@ public class LoopEndBrick extends NestingBrick implements AllowedAfterDeadEndBri
 	
 	private static final long serialVersionUID = 1L;
 	
-	public LoopBeginBrick loopBeginBrick;
+	private LoopBeginBrick loopBeginBrick;
 	
+	public LoopEndBrick() {
+		super();
+	}
+
+	public LoopBeginBrick getLoopBeginBrick() {
+		return loopBeginBrick;
+	}
+
+	public void setLoopBeginBrick(LoopBeginBrick loopBeginBrick) {
+		this.loopBeginBrick = loopBeginBrick;
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof LoopEndBrick) ;
 	}

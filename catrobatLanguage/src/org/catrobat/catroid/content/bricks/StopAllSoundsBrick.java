@@ -25,6 +25,10 @@ package org.catrobat.catroid.content.bricks;
 public class StopAllSoundsBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
+	public StopAllSoundsBrick() {
+		super();
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof StopAllSoundsBrick) ;
 	}

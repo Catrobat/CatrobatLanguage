@@ -28,8 +28,21 @@ public class BroadcastScript extends Script{
 
 	private static final long serialVersionUID = 1L;
 	
-	public String receivedMessage = "";
+	private String receivedMessage;
 	
+	public BroadcastScript() {
+		super();
+		this.receivedMessage = "";
+	}
+
+	public String getReceivedMessage() {
+		return receivedMessage;
+	}
+
+	public void setReceivedMessage(String receivedMessage) {
+		this.receivedMessage = receivedMessage;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof BroadcastScript) && super.equals(arg) 
 				&& receivedMessage.equals(((BroadcastScript) arg).receivedMessage));

@@ -25,8 +25,21 @@ package org.catrobat.catroid.content.bricks;
 public class SpeakBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public String text = "";
+	private String text;
 	
+	public SpeakBrick() {
+		super();
+		text = "";
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SpeakBrick) &&
 				text.equals(((SpeakBrick)arg).text));

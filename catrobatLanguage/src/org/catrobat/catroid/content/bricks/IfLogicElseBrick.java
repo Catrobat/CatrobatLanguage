@@ -27,9 +27,29 @@ public class IfLogicElseBrick extends NestingBrick implements AllowedAfterDeadEn
 
 	private static final long serialVersionUID = 1L;
 	
-	public IfLogicBeginBrick ifBeginBrick;
-	public IfLogicEndBrick ifEndBrick;
+	private IfLogicBeginBrick ifBeginBrick;
+	private IfLogicEndBrick ifEndBrick;
 	
+	public IfLogicElseBrick() {
+		super();
+	}
+
+	public IfLogicBeginBrick getIfBeginBrick() {
+		return ifBeginBrick;
+	}
+
+	public void setIfBeginBrick(IfLogicBeginBrick ifBeginBrick) {
+		this.ifBeginBrick = ifBeginBrick;
+	}
+
+	public IfLogicEndBrick getIfEndBrick() {
+		return ifEndBrick;
+	}
+
+	public void setIfEndBrick(IfLogicEndBrick ifEndBrick) {
+		this.ifEndBrick = ifEndBrick;
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof IfLogicElseBrick) ;
 	}

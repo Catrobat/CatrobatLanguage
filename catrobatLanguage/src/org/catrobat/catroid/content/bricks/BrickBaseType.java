@@ -27,5 +27,16 @@ import org.catrobat.catroid.content.Sprite;
 public class BrickBaseType implements Brick {
 	private static final long serialVersionUID = 1L;
 	
-	public Sprite sprite;	
+	private Sprite sprite;
+
+	public BrickBaseType() {
+	}
+
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}	
 }

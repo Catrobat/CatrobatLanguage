@@ -27,10 +27,41 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class GlideToBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula xDestination = new Formula();
-	public Formula yDestination = new Formula();
-	public Formula durationInSeconds = new Formula();
+	private Formula xDestination;
+	private Formula yDestination;
+	private Formula durationInSeconds;
 	
+	public GlideToBrick() {
+		super();
+		xDestination = new Formula();
+		yDestination = new Formula();
+		durationInSeconds = new Formula();
+	}
+
+	public Formula getxDestination() {
+		return xDestination;
+	}
+
+	public void setxDestination(Formula xDestination) {
+		this.xDestination = xDestination;
+	}
+
+	public Formula getyDestination() {
+		return yDestination;
+	}
+
+	public void setyDestination(Formula yDestination) {
+		this.yDestination = yDestination;
+	}
+
+	public Formula getDurationInSeconds() {
+		return durationInSeconds;
+	}
+
+	public void setDurationInSeconds(Formula durationInSeconds) {
+		this.durationInSeconds = durationInSeconds;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof GlideToBrick) &&
 				xDestination.equals(((GlideToBrick)arg).xDestination) &&

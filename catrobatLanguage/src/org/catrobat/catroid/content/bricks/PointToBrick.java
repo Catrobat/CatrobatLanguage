@@ -28,14 +28,27 @@ public class PointToBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 	
-	public Sprite pointedObject = new Sprite();
+	private Sprite pointedObject;
 	
+	public PointToBrick() {
+		super();
+		pointedObject = new Sprite();
+	}
+
+	public Sprite getPointedObject() {
+		return pointedObject;
+	}
+
+	public void setPointedObject(Sprite pointedObject) {
+		this.pointedObject = pointedObject;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof PointToBrick) &&
 				pointedObject.equals(((PointToBrick)arg).pointedObject));
 	}
 	
 	public String toString() {
-		return ("point to \"" + pointedObject.name + "\"\r\n");
+		return ("point to \"" + pointedObject.getName() + "\"\r\n");
 	}
 }

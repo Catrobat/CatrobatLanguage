@@ -27,4 +27,7 @@ public abstract class ScriptBrick extends BrickBaseType implements AllowedAfterD
 
 	private static final long serialVersionUID = 1L;
 
+	public ScriptBrick() {
+		super();
+	}
 }

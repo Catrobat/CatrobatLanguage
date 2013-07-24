@@ -23,9 +23,10 @@ public class YAMLSerializationTest {
 				inputXML);
 		
 		YamlProject controlProject = new YamlProject(xmlProject);
+		
 		Translator.getInstance().saveProjectToYAML(controlProject);	
 		YamlProject testProject = Translator.getInstance().loadProjectFromYAML(
-				outputYAML); 
+				outputYAML);
 		
 		assertTrue(controlProject.equals(testProject));
 	}
@@ -86,7 +87,7 @@ public class YAMLSerializationTest {
 		test(inputXML);
 	}
 
-	@Ignore
+	@Test
 	public void Whack_A_MoleTest() throws IOException, SAXException {
 		File inputXML = new File("projects/Whack_A_Mole/code.xml");
 		test(inputXML);

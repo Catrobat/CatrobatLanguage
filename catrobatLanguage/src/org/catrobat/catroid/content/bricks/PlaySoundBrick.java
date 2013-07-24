@@ -27,14 +27,27 @@ import org.catrobat.catroid.common.SoundInfo;
 public class PlaySoundBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public SoundInfo sound = new SoundInfo();
+	private SoundInfo sound;
 	
+	public PlaySoundBrick() {
+		super();
+		sound = new SoundInfo();
+	}
+
+	public SoundInfo getSound() {
+		return sound;
+	}
+
+	public void setSound(SoundInfo sound) {
+		this.sound = sound;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof PlaySoundBrick) &&
 				sound.equals(((PlaySoundBrick)arg).sound));
 	}
 	
 	public String toString() {
-		return ("start sound \"" + sound.name + "\"\r\n");
+		return ("start sound \"" + sound.getName() + "\"\r\n");
 	}
 }

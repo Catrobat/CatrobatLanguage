@@ -23,8 +23,21 @@
 package org.catrobat.catroid.content.bricks;
 
 public abstract class LoopBeginBrick extends NestingBrick {
+
 	private static final long serialVersionUID = 1L;
 
-	public LoopEndBrick loopEndBrick;
+	private LoopEndBrick loopEndBrick;
+	
+	public LoopBeginBrick() {
+		super();
+	}
+
+	public LoopEndBrick getLoopEndBrick() {
+		return loopEndBrick;
+	}
+
+	public void setLoopEndBrick(LoopEndBrick loopEndBrick) {
+		this.loopEndBrick = loopEndBrick;
+	}
 
 }

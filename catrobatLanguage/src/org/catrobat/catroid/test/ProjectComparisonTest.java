@@ -33,24 +33,16 @@ public class ProjectComparisonTest {
 		Project b = new Project();
 		Project c = new Project();
 
-		a.xmlHeader.applicationBuildName = "test";
-		b.xmlHeader.applicationBuildName = "test";
-
-		assertTrue(a.equals(b));
-		assertFalse(a.equals(c));
-		assertFalse(b.equals(c));
-
-		c.xmlHeader.applicationBuildName = "test";
-		b.spriteList.add(new Sprite());
-		c.spriteList.add(new Sprite());
+		b.getSpriteList().add(new Sprite());
+		c.getSpriteList().add(new Sprite());
 
 		assertTrue(b.equals(c));
 		assertFalse(a.equals(b));
 		assertFalse(a.equals(c));
 
-		a.spriteList.add(new Sprite());
-		a.userVariables.projectVariables.add(new UserVariable());
-		c.userVariables.projectVariables.add(new UserVariable());
+		a.getSpriteList().add(new Sprite());
+		a.getUserVariables().getProjectVariables().add(new UserVariable());
+		c.getUserVariables().getProjectVariables().add(new UserVariable());
 
 		assertTrue(a.equals(c));
 		assertFalse(a.equals(b));
@@ -63,9 +55,9 @@ public class ProjectComparisonTest {
 		XmlHeader b = new XmlHeader();
 		XmlHeader c = new XmlHeader();
 
-		a.applicationBuildName = "test";
-		b.applicationBuildName = "test";
-		c.applicationBuildNumber = 10;
+		a.setApplicationBuildName("test");
+		b.setApplicationBuildName("test");
+		c.setApplicationBuildNumber(10);
 
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
@@ -78,33 +70,33 @@ public class ProjectComparisonTest {
 		Sprite b = new Sprite();
 		Sprite c = new Sprite();
 
-		a.name = "test";
-		b.name = "test";
+		a.setName("test");
+		b.setName("test");
 
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
 		assertFalse(b.equals(c));
 
-		c.name = "test";
-		b.lookList.add(new LookData());
-		c.lookList.add(new LookData());
+		c.setName("test");
+		b.getLookList().add(new LookData());
+		c.getLookList().add(new LookData());
 				
 		assertTrue(b.equals(c));
 		assertFalse(a.equals(b));
 		assertFalse(a.equals(c));
 
-		a.lookList.add(new LookData());
-		a.soundList.add(new SoundInfo());
-		c.soundList.add(new SoundInfo());
+		a.getLookList().add(new LookData());
+		a.getSoundList().add(new SoundInfo());
+		c.getSoundList().add(new SoundInfo());
 
 		assertTrue(a.equals(c));
 		assertFalse(a.equals(b));
 		assertFalse(b.equals(c));
 
-		b.soundList.add(new SoundInfo());
-		a.scriptList.add(new StartScript());
-		b.scriptList.add(new StartScript());
-		c.scriptList.add(new WhenScript());
+		b.getSoundList().add(new SoundInfo());
+		a.getScriptList().add(new StartScript());
+		b.getScriptList().add(new StartScript());
+		c.getScriptList().add(new WhenScript());
 
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
@@ -119,8 +111,8 @@ public class ProjectComparisonTest {
 
 		assertTrue(a.equals(b));
 		
-		a.name = "test";
-		b.name = "test";
+		a.setName("test");
+		b.setName("test");
 
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
@@ -133,8 +125,8 @@ public class ProjectComparisonTest {
 		SoundInfo b = new SoundInfo();
 		SoundInfo c = new SoundInfo();
 
-		a.name = "test";
-		b.name = "test";
+		a.setName("test");
+		b.setName("test");
 
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
@@ -152,10 +144,10 @@ public class ProjectComparisonTest {
 		assertFalse(b.equals(c));
 		
 		BroadcastScript aa = new BroadcastScript();
-		aa.receivedMessage = "test";
+		aa.setReceivedMessage("test");
 		
 		BroadcastScript bb = new BroadcastScript();
-		bb.receivedMessage = "test";
+		bb.setReceivedMessage("test");
 		
 		a = aa;
 		b = bb;
@@ -176,10 +168,10 @@ public class ProjectComparisonTest {
 		assertFalse(b.equals(c));
 		
 		BroadcastBrick aa = new BroadcastBrick();
-		aa.broadcastMessage = "test";
+		aa.setBroadcastMessage("test");
 		
 		BroadcastBrick bb = new BroadcastBrick();
-		bb.broadcastMessage = "test";
+		bb.setBroadcastMessage("test");
 		
 		a = aa;
 		b = bb;
@@ -203,20 +195,20 @@ public class ProjectComparisonTest {
 		UserVariablesContainer b = new UserVariablesContainer();
 		UserVariablesContainer c = new UserVariablesContainer();
 		
-		a.projectVariables.add(new UserVariable());
-		b.projectVariables.add(new UserVariable());
+		a.getProjectVariables().add(new UserVariable());
+		b.getProjectVariables().add(new UserVariable());
 		
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
 		assertFalse(b.equals(c));
 		
-		c.projectVariables.add(new UserVariable());
-		a.spriteVariables.put(new Sprite(), new ArrayList<UserVariable>());
-		c.spriteVariables.put(new Sprite(), new ArrayList<UserVariable>());
+		c.getProjectVariables().add(new UserVariable());
+		a.getSpriteVariables().put(new Sprite(), new ArrayList<UserVariable>());
+		c.getSpriteVariables().put(new Sprite(), new ArrayList<UserVariable>());
 		Sprite test = new Sprite();
-		test.name = "test";
-		b.spriteVariables.put(new Sprite(), new ArrayList<UserVariable>());
-		b.spriteVariables.put(test, new ArrayList<UserVariable>());
+		test.setName("test");
+		b.getSpriteVariables().put(new Sprite(), new ArrayList<UserVariable>());
+		b.getSpriteVariables().put(test, new ArrayList<UserVariable>());
 		
 		assertTrue(a.equals(c));
 		assertFalse(a.equals(b));
@@ -229,9 +221,9 @@ public class ProjectComparisonTest {
 		UserVariable b = new UserVariable();
 		UserVariable c = new UserVariable();
 		
-		a.name = "test";
-		b.name = "test";
-		c.name = "test2";
+		a.setName("test");
+		b.setName("test");
+		c.setName("test2");
 		
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
@@ -244,17 +236,17 @@ public class ProjectComparisonTest {
 		Formula b = new Formula();
 		Formula c = new Formula();
 		
-		a.formulaTree.type = ElementType.NUMBER;
-		b.formulaTree.type = ElementType.NUMBER;
-		c.formulaTree.type = ElementType.OPERATOR;
+		a.getFormulaTree().setType(ElementType.NUMBER);
+		b.getFormulaTree().setType(ElementType.NUMBER);
+		c.getFormulaTree().setType(ElementType.OPERATOR);
 		
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
 		assertFalse(b.equals(c));	
 		
-		a.formulaTree.leftChild = new FormulaElement();
-		b.formulaTree.leftChild = new FormulaElement();
-		c.formulaTree.rightChild = new FormulaElement();
+		a.getFormulaTree().setLeftChild(new FormulaElement());
+		b.getFormulaTree().setLeftChild(new FormulaElement());
+		c.getFormulaTree().setRightChild(new FormulaElement());
 	
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));

@@ -29,8 +29,20 @@ public class Formula implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	public FormulaElement formulaTree = new FormulaElement();
+	private FormulaElement formulaTree;
 	
+	public Formula() {
+		formulaTree = new FormulaElement();
+	}
+
+	public FormulaElement getFormulaTree() {
+		return formulaTree;
+	}
+
+	public void setFormulaTree(FormulaElement formulaTree) {
+		this.formulaTree = formulaTree;
+	}
+
 	public boolean equals(Formula arg) {
 		return (formulaTree.equals(arg.formulaTree));
 	}

@@ -196,6 +196,7 @@ public class Translator {
 	
 	// TODO
 	private void setYamlConfig() {
+		yamlConfig.writeConfig.setEscapeUnicode(false);
 		yamlConfig.setClassTag("program", YamlProject.class);
 		yamlConfig.setPropertyElementType(YamlProject.class, "objects", YamlSprite.class);
 		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);

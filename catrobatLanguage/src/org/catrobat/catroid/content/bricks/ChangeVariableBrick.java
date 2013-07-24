@@ -29,8 +29,30 @@ public class ChangeVariableBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 
-	public UserVariable userVariable = new UserVariable();
-	public Formula variableFormula = new Formula();
+	private UserVariable userVariable;
+	private Formula variableFormula;
+
+	public ChangeVariableBrick() {
+		super();
+		userVariable = new UserVariable();
+		variableFormula = new Formula();
+	}
+
+	public UserVariable getUserVariable() {
+		return userVariable;
+	}
+
+	public void setUserVariable(UserVariable userVariable) {
+		this.userVariable = userVariable;
+	}
+
+	public Formula getVariableFormula() {
+		return variableFormula;
+	}
+
+	public void setVariableFormula(Formula variableFormula) {
+		this.variableFormula = variableFormula;
+	}
 
 	public boolean equals(Object arg) {
 		return ((arg instanceof ChangeVariableBrick) && 
@@ -39,7 +61,7 @@ public class ChangeVariableBrick extends BrickBaseType {
 	}
 
 	public String toString() {
-		return ("change variable \"" + userVariable.name + "\" by ("
+		return ("change variable \"" + userVariable.getName() + "\" by ("
 				+ variableFormula.toString() + ")\r\n");
 	}
 }

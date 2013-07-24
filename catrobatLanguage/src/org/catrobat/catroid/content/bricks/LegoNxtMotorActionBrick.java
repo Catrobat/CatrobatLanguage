@@ -27,9 +27,31 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class LegoNxtMotorActionBrick extends BrickBaseType{
 	private static final long serialVersionUID = 1L;
 
-	public String motor = "";
-	public Formula speed = new Formula();
+	private String motor;
+	private Formula speed;
 	
+	public LegoNxtMotorActionBrick() {
+		super();
+		motor = "";
+		speed = new Formula();
+	}
+
+	public String getMotor() {
+		return motor;
+	}
+
+	public void setMotor(String motor) {
+		this.motor = motor;
+	}
+
+	public Formula getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(Formula speed) {
+		this.speed = speed;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof LegoNxtMotorActionBrick) &&
 				motor.equals(((LegoNxtMotorActionBrick)arg).motor) &&

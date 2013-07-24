@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class SetVolumeToBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public Formula volume = new Formula();
+	private Formula volume;
 	
+	public SetVolumeToBrick() {
+		super();
+		volume = new Formula();
+	}
+
+	public Formula getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Formula volume) {
+		this.volume = volume;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetVolumeToBrick) &&
 				volume.equals(((SetVolumeToBrick)arg).volume));

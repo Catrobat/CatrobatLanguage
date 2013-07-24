@@ -37,9 +37,30 @@ public class UserVariablesContainer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@XStreamAlias("programVariableList")
-	public List<UserVariable> projectVariables = new ArrayList<UserVariable>();
+	private List<UserVariable> projectVariables;
 	@XStreamAlias("objectVariableList")
-	public Map<Sprite, List<UserVariable>> spriteVariables = new HashMap<Sprite, List<UserVariable>>();
+	private Map<Sprite, List<UserVariable>> spriteVariables;
+
+	public UserVariablesContainer() {
+		projectVariables = new ArrayList<UserVariable>();
+		spriteVariables = new HashMap<Sprite, List<UserVariable>>();
+	}
+
+	public List<UserVariable> getProjectVariables() {
+		return projectVariables;
+	}
+
+	public void setProjectVariables(List<UserVariable> projectVariables) {
+		this.projectVariables = projectVariables;
+	}
+
+	public Map<Sprite, List<UserVariable>> getSpriteVariables() {
+		return spriteVariables;
+	}
+
+	public void setSpriteVariables(Map<Sprite, List<UserVariable>> spriteVariables) {
+		this.spriteVariables = spriteVariables;
+	}
 
 	public boolean equals(Object arg0) {
 		if (!(arg0 instanceof UserVariablesContainer))

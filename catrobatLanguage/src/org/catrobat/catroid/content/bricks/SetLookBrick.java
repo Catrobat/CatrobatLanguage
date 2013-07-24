@@ -27,14 +27,27 @@ import org.catrobat.catroid.common.LookData;
 public class SetLookBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 
-	public LookData look = new LookData();
+	private LookData look;
 	
+	public SetLookBrick() {
+		super();
+		look = new LookData();
+	}
+
+	public LookData getLook() {
+		return look;
+	}
+
+	public void setLook(LookData look) {
+		this.look = look;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof SetLookBrick) &&
 				look.equals(((SetLookBrick)arg).look));
 	}
 	
 	public String toString() {
-		return ("switch to look \"" + look.name + "\"\r\n");
+		return ("switch to look \"" + look.getName() + "\"\r\n");
 	}
 }

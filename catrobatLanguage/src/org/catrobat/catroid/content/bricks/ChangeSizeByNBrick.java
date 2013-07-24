@@ -28,8 +28,21 @@ public class ChangeSizeByNBrick extends BrickBaseType {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Formula size = new Formula();
+	private Formula size;
 	
+	public ChangeSizeByNBrick() {
+		super();
+		size = new Formula();
+	}
+
+	public Formula getSize() {
+		return size;
+	}
+
+	public void setSize(Formula size) {
+		this.size = size;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof ChangeSizeByNBrick) 
 				&& size.equals(((ChangeSizeByNBrick)arg).size));

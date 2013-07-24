@@ -28,8 +28,21 @@ public class ChangeVolumeByNBrick extends BrickBaseType{
 	
 	private static final long serialVersionUID = 1L;
 
-	public Formula volume = new Formula();
+	private Formula volume;
 	
+	public ChangeVolumeByNBrick() {
+		super();
+		volume = new Formula();
+	}
+
+	public Formula getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Formula volume) {
+		this.volume = volume;
+	}
+
 	public boolean equals(ChangeVolumeByNBrick arg) {
 		return ((arg instanceof ChangeVolumeByNBrick) &&
 				volume.equals(((ChangeVolumeByNBrick) arg).volume));

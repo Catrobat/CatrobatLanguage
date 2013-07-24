@@ -27,8 +27,21 @@ import org.catrobat.catroid.formulaeditor.Formula;
 public class TurnRightBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
-	public Formula degrees = new Formula();
+	private Formula degrees;
 	
+	public TurnRightBrick() {
+		super();
+		degrees = new Formula();
+	}
+
+	public Formula getDegrees() {
+		return degrees;
+	}
+
+	public void setDegrees(Formula degrees) {
+		this.degrees = degrees;
+	}
+
 	public boolean equals(Object arg) {
 		return ((arg instanceof TurnRightBrick) &&
 				degrees.equals(((TurnRightBrick)arg).degrees));

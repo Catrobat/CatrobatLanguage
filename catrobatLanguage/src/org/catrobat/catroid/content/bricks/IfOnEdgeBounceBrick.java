@@ -27,6 +27,10 @@ public class IfOnEdgeBounceBrick extends BrickBaseType {
 
 	private static final long serialVersionUID = 1L;
 	
+	public IfOnEdgeBounceBrick() {
+		super();
+	}
+
 	public boolean equals(Object arg) {
 		return (arg instanceof IfOnEdgeBounceBrick) ;
 	}

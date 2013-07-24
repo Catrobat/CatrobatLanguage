@@ -10,24 +10,21 @@ import org.catrobat.catroid.content.Sprite;
 
 public class YamlSprite {
 
-	public List<Script> scripts;
-	public ArrayList<LookData> looks;
-	public ArrayList<SoundInfo> sounds;
-	protected String code;
+	private List<Script> scripts;
+	private ArrayList<LookData> looks;
+	private ArrayList<SoundInfo> sounds;
 
 	YamlSprite(Sprite sprite) {
 		scripts = new ArrayList<Script>();
 		looks = new ArrayList<LookData>();
 		sounds = new ArrayList<SoundInfo>();
 		
-		if (!sprite.scriptList.isEmpty())
-			scripts = sprite.scriptList;
-		if (!sprite.lookList.isEmpty())
-			looks = sprite.lookList;
-		if (!sprite.soundList.isEmpty())
-			sounds = sprite.soundList;
-		
-		code = sprite.toString();
+		if (!sprite.getScriptList().isEmpty())
+			scripts = sprite.getScriptList();
+		if (!sprite.getLookList().isEmpty())
+			looks = sprite.getLookList();
+		if (!sprite.getSoundList().isEmpty())
+			sounds = sprite.getSoundList();
 	}
 	
 	public YamlSprite() {
@@ -36,6 +33,30 @@ public class YamlSprite {
 		sounds = new ArrayList<SoundInfo>();
 	}
 	
+	public List<Script> getScripts() {
+		return scripts;
+	}
+
+	public void setScripts(List<Script> scripts) {
+		this.scripts = scripts;
+	}
+
+	public ArrayList<LookData> getLooks() {
+		return looks;
+	}
+
+	public void setLooks(ArrayList<LookData> looks) {
+		this.looks = looks;
+	}
+
+	public ArrayList<SoundInfo> getSounds() {
+		return sounds;
+	}
+
+	public void setSounds(ArrayList<SoundInfo> sounds) {
+		this.sounds = sounds;
+	}
+
 	public boolean equals(Object arg0) {
 
 		if (!(arg0 instanceof YamlSprite))
