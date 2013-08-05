@@ -68,7 +68,8 @@ public abstract class Script implements Serializable {
 	}
 
 	private boolean hasLeftShift(Brick brick) {
-		return (brick instanceof IfLogicEndBrick 
+		return (brick instanceof IfLogicElseBrick
+				|| brick instanceof IfLogicEndBrick
 				|| brick instanceof LoopEndBrick);
 	}
 
