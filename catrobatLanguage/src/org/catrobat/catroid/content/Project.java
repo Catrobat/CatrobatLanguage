@@ -25,7 +25,9 @@ package org.catrobat.catroid.content;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
 import org.catrobat.catroid.yaml.YamlProject;
 
@@ -42,8 +44,16 @@ public class Project implements Serializable {
 	private List<Sprite> spriteList;
 	@XStreamAlias("variables")
 	private UserVariablesContainer userVariables;
+	
+	private Sprite getSpriteByName(String name) throws Exception {
+		for (Sprite item: spriteList) {
+			if (item.getName().equals(name))
+				return item;
+		}
+		throw new Exception("Sprite named " + name + "not found.");
+	}
 
-	public Project(YamlProject project) {
+	public Project(YamlProject project) throws Exception {
 		xmlHeader = new XmlHeader();
 		spriteList = new ArrayList<Sprite>();
 		userVariables = new UserVariablesContainer();
@@ -55,8 +65,16 @@ public class Project implements Serializable {
 				spriteList.add(new Sprite(name, project.getObjects().get(name)));
 			}
 		}
-		if (project.getVariables() != null)
-			userVariables = project.getVariables();
+		if (project.getProjectVariables() != null) {
+			userVariables.setProjectVariables(project.getProjectVariables());
+		}
+		
+		if (project.getSpriteVariables()!=null) {
+			Map<String, List<UserVariable>> buffer =project.getSpriteVariables();
+			for (String item: buffer.keySet()) {
+				userVariables.getSpriteVariables().put(getSpriteByName(item), buffer.get(item));
+			}
+		}
 	}
 
 	public Project() {

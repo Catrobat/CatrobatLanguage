@@ -1,23 +1,30 @@
 package org.catrobat.catroid.yaml;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.content.XmlHeader;
+import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
+
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 public class YamlProject {
 
 	private XmlHeader header;
 	private Map<String, YamlSprite> objects;
-	private UserVariablesContainer variables;
+	private List<UserVariable> projectVariables;
+	private Map<String, List<UserVariable>> spriteVariables;
 
 	public YamlProject(Project project) {
 		header = new XmlHeader();
 		objects = new HashMap<String, YamlSprite>();
-		variables = new UserVariablesContainer();
+		projectVariables = new ArrayList<UserVariable>();
+		spriteVariables = new HashMap<String, List<UserVariable>>();
 		
 		header = project.getXmlHeader();
 		objects = new HashMap<String, YamlSprite>();
@@ -26,13 +33,16 @@ public class YamlProject {
 				objects.put(item.getName(), new YamlSprite(item));
 			}
 		}
-		variables = project.getUserVariables();
+		projectVariables = project.getUserVariables().getProjectVariables();
+		Map<Sprite, List<UserVariable>> buffer =project.getUserVariables().getSpriteVariables();
+		for (Sprite item: buffer.keySet()) {
+			spriteVariables.put(item.getName(), buffer.get(item));
+		}
 	}
 	
 	public YamlProject() {
 		header = new XmlHeader();
 		objects = new HashMap<String, YamlSprite>();
-		variables = new UserVariablesContainer();
 	}
 	
 	public XmlHeader getHeader() {
@@ -50,19 +60,28 @@ public class YamlProject {
 	public void setObjects(Map<String, YamlSprite> objects) {
 		this.objects = objects;
 	}
-
-	public UserVariablesContainer getVariables() {
-		return variables;
-	}
-
-	public void setVariables(UserVariablesContainer variables) {
-		this.variables = variables;
-	}
 	
+	public List<UserVariable> getProjectVariables() {
+		return projectVariables;
+	}
+
+	public void setProjectVariables(List<UserVariable> projectVariables) {
+		this.projectVariables = projectVariables;
+	}
+
+	public Map<String, List<UserVariable>> getSpriteVariables() {
+		return spriteVariables;
+	}
+
+	public void setSpriteVariables(Map<String, List<UserVariable>> spriteVariables) {
+		this.spriteVariables = spriteVariables;
+	}
+
 	public boolean equals(YamlProject arg) {		
 		return (header.equals(arg.header) && 
-				objects.equals(arg.objects) && 
-				variables.equals(arg.variables));
+				objects.equals(arg.objects) &&
+				spriteVariables.equals(arg.spriteVariables) &&
+				projectVariables.equals(arg.projectVariables));
 	}
 
 }

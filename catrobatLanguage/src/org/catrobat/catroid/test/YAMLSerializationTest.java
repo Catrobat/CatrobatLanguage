@@ -14,23 +14,25 @@ import org.junit.Test;
 import org.xml.sax.SAXException;
 
 public class YAMLSerializationTest {
-	
-	private void test(File inputXML) {
+
+	private void test(File inputXML) throws IOException {
 		File outputYAML = new File("code.yml");
 		assertNotNull("File was not found!", inputXML);
 
 		Project xmlProject = Translator.getInstance().loadProjectFromXML(
 				inputXML);
-		
+
 		YamlProject controlProject = new YamlProject(xmlProject);
-		
-		Translator.getInstance().saveProjectToYAML(controlProject);	
+
+		Translator.getInstance().saveProjectToYAML(controlProject);
+
+		Translator.getInstance().saveProjectToYAML(controlProject);
 		YamlProject testProject = Translator.getInstance().loadProjectFromYAML(
 				outputYAML);
-		
+
 		assertTrue(controlProject.equals(testProject));
 	}
-	
+
 	@Test
 	public void EmptyProjectTest() throws IOException, SAXException {
 		File inputXML = new File("projects/EmptyProject/code.xml");
@@ -57,7 +59,7 @@ public class YAMLSerializationTest {
 
 	@Test
 	public void DefaultProjectTest() throws IOException, SAXException {
-		
+
 		File inputXML = new File("projects/DefaultProject/code.xml");
 		test(inputXML);
 
