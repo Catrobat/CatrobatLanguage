@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <!-- schema for catrobatlanguage version 0.8 -->
-<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xs:element name="program" type="program"/>
 
@@ -804,24 +804,18 @@
 
   <xs:complexType name="formula">
     <xs:sequence>
-      <xs:element name="formulaTree" type="formulaTree" minOccurs="0"/>
+      <xs:element name="formulaTree" type="formulaElement" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="formulaTree">
+  <xs:complexType name="formulaElement">
     <xs:sequence>
-      <xs:element name="leftChild" type="formulaTree" minOccurs="0"/>
-      <xs:element name="rightChild" type="formulaTree" minOccurs="0"/>
-      <xs:group ref="formulaElement" minOccurs="1" maxOccurs="1"></xs:group>
-    </xs:sequence>
-  </xs:complexType>
-  
-  <xs:group name="formulaElement">
-    <xs:sequence>
+      <xs:element name="leftChild" type="formulaElement" minOccurs="0"/>
+      <xs:element name="rightChild" type="formulaElement" minOccurs="0"/>
       <xs:element name="type" type="elementType" minOccurs="1" maxOccurs="1"/>
       <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
-  </xs:group>
+  </xs:complexType>
   
   <xs:simpleType name="elementType">
     <xs:restriction base="xs:string">
