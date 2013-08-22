@@ -36,7 +36,7 @@ import org.catrobat.catroid.content.bricks.LoopEndBrick;
 public abstract class Script implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private static final int INDENTATION = 3;
+	private static final int INDENTATION = 2;
 
 	private ArrayList<Brick> brickList;
 	private Sprite object;

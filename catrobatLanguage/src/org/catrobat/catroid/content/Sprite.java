@@ -28,7 +28,6 @@ import java.util.List;
 
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
-import org.catrobat.catroid.yaml.YamlSprite;
 
 public class Sprite implements Serializable {
 
@@ -38,8 +37,9 @@ public class Sprite implements Serializable {
 	private List<Script> scriptList;
 	private ArrayList<LookData> lookList;
 	private ArrayList<SoundInfo> soundList;
-	
-	public Sprite(String name, YamlSprite sprite) {
+
+	//TODO: complete
+	/*public Sprite(String name, YamlSprite sprite) {
 		name = "";
 		scriptList = new ArrayList<Script>();
 		lookList = new ArrayList<LookData>();
@@ -54,7 +54,7 @@ public class Sprite implements Serializable {
 		if (!(sprite.getSounds() == null))
 			soundList = sprite.getSounds();
 	}
-
+*/
 	public Sprite() {
 		name = "";
 		scriptList = new ArrayList<Script>();

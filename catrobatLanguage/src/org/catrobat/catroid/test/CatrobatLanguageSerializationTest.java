@@ -13,7 +13,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-public class YAMLSerializationTest {
+public class CatrobatLanguageSerializationTest {
 
 	private void test(File inputXML) throws IOException {
 		File outputYAML = new File("code.yml");
@@ -24,10 +24,10 @@ public class YAMLSerializationTest {
 
 		YamlProject controlProject = new YamlProject(xmlProject);
 
-		Translator.getInstance().saveProjectToYAML(controlProject);
+		Translator.getInstance().saveProjectToCatrobatLanguage(controlProject);
 
-		Translator.getInstance().saveProjectToYAML(controlProject);
-		YamlProject testProject = Translator.getInstance().loadProjectFromYAML(
+		Translator.getInstance().saveProjectToCatrobatLanguage(controlProject);
+		YamlProject testProject = Translator.getInstance().loadProjectFromCatrobatLanguage(
 				outputYAML);
 
 		assertTrue(controlProject.equals(testProject));

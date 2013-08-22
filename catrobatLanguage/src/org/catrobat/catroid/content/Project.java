@@ -25,11 +25,8 @@ package org.catrobat.catroid.content;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
-import org.catrobat.catroid.yaml.YamlProject;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -53,7 +50,8 @@ public class Project implements Serializable {
 		throw new Exception("Sprite named " + name + "not found.");
 	}
 
-	public Project(YamlProject project) throws Exception {
+	// TODO: complete
+	/*public Project(YamlProject project) throws Exception {
 		xmlHeader = new XmlHeader();
 		spriteList = new ArrayList<Sprite>();
 		userVariables = new UserVariablesContainer();
@@ -75,7 +73,7 @@ public class Project implements Serializable {
 				userVariables.getSpriteVariables().put(getSpriteByName(item), buffer.get(item));
 			}
 		}
-	}
+	}*/
 
 	public Project() {
 		xmlHeader = new XmlHeader();

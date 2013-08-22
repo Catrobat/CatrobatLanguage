@@ -197,6 +197,7 @@ public class Translator {
 	// TODO
 	private void setYamlConfig() {
 		yamlConfig.writeConfig.setEscapeUnicode(false);
+		yamlConfig.writeConfig.setIndentSize(2);
 		yamlConfig.setClassTag("program", YamlProject.class);
 		yamlConfig.setPropertyElementType(YamlProject.class, "objects", YamlSprite.class);
 		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
@@ -257,7 +258,7 @@ public class Translator {
 		return xstream.toXML(project);
 	}
 	
-	public boolean saveProjectToYAML(YamlProject project) {
+	public boolean saveProjectToCatrobatLanguage(YamlProject project) {
 		saveLoadLock.lock();
 		if (project == null) {
 			saveLoadLock.unlock();
@@ -280,7 +281,7 @@ public class Translator {
 		}
 	}
 	
-	public YamlProject loadProjectFromYAML(File yamlProject) {
+	public YamlProject loadProjectFromCatrobatLanguage(File yamlProject) {
 		saveLoadLock.lock();
 		try {
 				YamlReader yamlReader = new YamlReader(new FileReader(yamlProject),yamlConfig);

@@ -7,37 +7,49 @@ import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
 import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.formulaeditor.UserVariable;
 
 public class YamlSprite {
 
-	private List<Script> scripts;
+	private String scripts;
 	private ArrayList<LookData> looks;
 	private ArrayList<SoundInfo> sounds;
+	private List<String> variables;
 
-	YamlSprite(Sprite sprite) {
-		scripts = new ArrayList<Script>();
+	YamlSprite(Sprite sprite, List<UserVariable> spriteVariables) {
 		looks = new ArrayList<LookData>();
 		sounds = new ArrayList<SoundInfo>();
-		
+		StringBuffer buffer = new StringBuffer();
+		variables = new ArrayList<String>();
+
 		if (!sprite.getScriptList().isEmpty())
-			scripts = sprite.getScriptList();
+			for (Script item : sprite.getScriptList()) {
+				buffer.append(item.toString() + "\r\n");
+			}
+		scripts = buffer.toString();
 		if (!sprite.getLookList().isEmpty())
 			looks = sprite.getLookList();
 		if (!sprite.getSoundList().isEmpty())
 			sounds = sprite.getSoundList();
+		if (spriteVariables != null) {
+			for (UserVariable item : spriteVariables) {
+				variables.add(item.getName());
+			}
+		}
 	}
-	
+
 	public YamlSprite() {
-		scripts = new ArrayList<Script>();
 		looks = new ArrayList<LookData>();
 		sounds = new ArrayList<SoundInfo>();
+		scripts = new String();
+		variables = new ArrayList<String>();
 	}
-	
-	public List<Script> getScripts() {
+
+	public String getScripts() {
 		return scripts;
 	}
 
-	public void setScripts(List<Script> scripts) {
+	public void setScripts(String scripts) {
 		this.scripts = scripts;
 	}
 
@@ -57,14 +69,20 @@ public class YamlSprite {
 		this.sounds = sounds;
 	}
 
-	public boolean equals(Object arg0) {
+	public List<String> getVariables() {
+		return variables;
+	}
 
+	public void setVariables(List<String> variables) {
+		this.variables = variables;
+	}
+
+	public boolean equals(Object arg0) {
 		if (!(arg0 instanceof YamlSprite))
 			return false;
 		YamlSprite arg = (YamlSprite) arg0;
 
-		return (scripts.equals(arg.scripts)
-				&& looks.equals(arg.looks) && 
-				sounds.equals(arg.sounds));
+		return (scripts.equals((String)arg.scripts) && looks.equals(arg.looks) && sounds
+				.equals(arg.sounds));
 	}
 }
