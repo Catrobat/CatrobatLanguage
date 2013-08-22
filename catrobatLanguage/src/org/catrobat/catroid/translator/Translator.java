@@ -114,16 +114,17 @@ public class Translator {
 
 	private Translator() throws IOException {
 
-		xstream = new XStream(new PureJavaReflectionProvider(new FieldDictionary(new CatroidFieldKeySorter())));
+		xstream = new XStream(new PureJavaReflectionProvider(
+				new FieldDictionary(new CatroidFieldKeySorter())));
 		xstream.processAnnotations(Project.class);
 		xstream.processAnnotations(XmlHeader.class);
 		xstream.processAnnotations(UserVariablesContainer.class);
 		setXstreamAliases();
-		
+
 		yamlConfig = new YamlConfig();
 		setYamlConfig();
 	}
-	
+
 	public static String getXMLHeader() {
 		return XML_HEADER;
 	}
@@ -144,8 +145,10 @@ public class Translator {
 		xstream.alias("broadcastBrick", BroadcastBrick.class);
 		xstream.alias("broadcastReceiverBrick", BroadcastReceiverBrick.class);
 		xstream.alias("broadcastWaitBrick", BroadcastWaitBrick.class);
-		xstream.alias("changeBrightnessByNBrick", ChangeBrightnessByNBrick.class);
-		xstream.alias("changeGhostEffectByNBrick", ChangeGhostEffectByNBrick.class);
+		xstream.alias("changeBrightnessByNBrick",
+				ChangeBrightnessByNBrick.class);
+		xstream.alias("changeGhostEffectByNBrick",
+				ChangeGhostEffectByNBrick.class);
 		xstream.alias("changeSizeByNBrick", ChangeSizeByNBrick.class);
 		xstream.alias("changeVariableBrick", ChangeVariableBrick.class);
 		xstream.alias("changeVolumeByNBrick", ChangeVolumeByNBrick.class);
@@ -163,7 +166,8 @@ public class Translator {
 		xstream.alias("ifOnEdgeBounceBrick", IfOnEdgeBounceBrick.class);
 		xstream.alias("legoNxtMotorActionBrick", LegoNxtMotorActionBrick.class);
 		xstream.alias("legoNxtMotorStopBrick", LegoNxtMotorStopBrick.class);
-		xstream.alias("legoNxtMotorTurnAngleBrick", LegoNxtMotorTurnAngleBrick.class);
+		xstream.alias("legoNxtMotorTurnAngleBrick",
+				LegoNxtMotorTurnAngleBrick.class);
 		xstream.alias("legoNxtPlayToneBrick", LegoNxtPlayToneBrick.class);
 		xstream.alias("loopBeginBrick", LoopBeginBrick.class);
 		xstream.alias("loopEndBrick", LoopEndBrick.class);
@@ -193,15 +197,18 @@ public class Translator {
 		xstream.alias("whenBrick", WhenBrick.class);
 		xstream.alias("whenStartedBrick", WhenStartedBrick.class);
 	}
-	
+
 	// TODO
 	private void setYamlConfig() {
 		yamlConfig.writeConfig.setEscapeUnicode(false);
 		yamlConfig.writeConfig.setIndentSize(2);
 		yamlConfig.setClassTag("program", YamlProject.class);
-		yamlConfig.setPropertyElementType(YamlProject.class, "objects", YamlSprite.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds", SoundInfo.class);
+		yamlConfig.setPropertyElementType(YamlProject.class, "objects",
+				YamlSprite.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "looks",
+				LookData.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds",
+				SoundInfo.class);
 	}
 
 	public synchronized static Translator getInstance() {
@@ -218,11 +225,11 @@ public class Translator {
 	public Project loadProjectFromXML(File xmlProject) {
 		saveLoadLock.lock();
 		try {
-	
-				InputStream projectFileStream = new FileInputStream(xmlProject);
-				Project returned = (Project) xstream.fromXML(projectFileStream);
-				return returned;
-			
+
+			InputStream projectFileStream = new FileInputStream(xmlProject);
+			Project returned = (Project) xstream.fromXML(projectFileStream);
+			return returned;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -241,7 +248,8 @@ public class Translator {
 			String projectFile = xstream.toXML(project);
 			File projectXML = new File("code.xml");
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter(projectXML));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					projectXML));
 			writer.write(XML_HEADER.concat(projectFile));
 			writer.flush();
 			writer.close();
@@ -257,7 +265,7 @@ public class Translator {
 	public String getXMLStringOfAProject(Project project) {
 		return xstream.toXML(project);
 	}
-	
+
 	public boolean saveProjectToCatrobatLanguage(YamlProject project) {
 		saveLoadLock.lock();
 		if (project == null) {
@@ -267,11 +275,12 @@ public class Translator {
 		try {
 			File projectYAML = new File("code.yml");
 
-			YamlWriter yamlWriter =  new YamlWriter(new FileWriter(projectYAML), yamlConfig);
-			
+			YamlWriter yamlWriter = new YamlWriter(new FileWriter(projectYAML),
+					yamlConfig);
+
 			yamlWriter.write(project);
 			yamlWriter.close();
-			
+
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -280,16 +289,17 @@ public class Translator {
 			saveLoadLock.unlock();
 		}
 	}
-	
+
 	public YamlProject loadProjectFromCatrobatLanguage(File yamlProject) {
 		saveLoadLock.lock();
 		try {
-				YamlReader yamlReader = new YamlReader(new FileReader(yamlProject),yamlConfig);
-	
-				YamlProject returned = (YamlProject) yamlReader.read();
-				yamlReader.close();
-				return returned;
-			
+			YamlReader yamlReader = new YamlReader(new FileReader(yamlProject),
+					yamlConfig);
+
+			YamlProject returned = (YamlProject) yamlReader.read();
+			yamlReader.close();
+			return returned;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -297,10 +307,15 @@ public class Translator {
 			saveLoadLock.unlock();
 		}
 	}
-	
+
 	public void convertFromXMLToCatrobatLanguage(File xmlProject) {
-		Project project = loadProjectFromXML(xmlProject);
-		saveProjectToCatrobatLanguage(new YamlProject(project));
+		saveLoadLock.lock();
+		try {
+			Project project = loadProjectFromXML(xmlProject);
+			saveProjectToCatrobatLanguage(new YamlProject(project));
+		} finally {
+			saveLoadLock.unlock();
+		}
 	}
 
 }
