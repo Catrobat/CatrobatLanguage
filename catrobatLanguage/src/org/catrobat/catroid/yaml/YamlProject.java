@@ -1,9 +1,9 @@
 package org.catrobat.catroid.yaml;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.content.Sprite;
@@ -18,11 +18,10 @@ public class YamlProject {
 
 	public YamlProject(Project project) {
 		header = new XmlHeader();
-		objects = new HashMap<String, YamlSprite>();
 		projectVariables = new ArrayList<String>();
 		
 		header = project.getXmlHeader();
-		objects = new HashMap<String, YamlSprite>();
+		objects = new TreeMap<String, YamlSprite>();
 		if (project.getSpriteList()!=null) {
 			for (Sprite item : project.getSpriteList()) {
 				objects.put(item.getName(), new YamlSprite(item, project.getUserVariables().getSpriteVariables().get(item)));
@@ -38,7 +37,7 @@ public class YamlProject {
 	
 	public YamlProject() {
 		header = new XmlHeader();
-		objects = new HashMap<String, YamlSprite>();
+		objects = new TreeMap<String, YamlSprite>();
 		projectVariables = new ArrayList<String>();
 	}
 	
