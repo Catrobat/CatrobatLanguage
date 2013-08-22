@@ -297,5 +297,10 @@ public class Translator {
 			saveLoadLock.unlock();
 		}
 	}
+	
+	public void convertFromXMLToCatrobatLanguage(File xmlProject) {
+		Project project = loadProjectFromXML(xmlProject);
+		saveProjectToCatrobatLanguage(new YamlProject(project));
+	}
 
 }
