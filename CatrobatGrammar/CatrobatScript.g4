@@ -14,18 +14,31 @@ script: startScript | whenScript | broadcastScript;
 
 startScript: ('when program started') brick*;
 whenScript: ('when' ACTION) brick*;
-broadcastScript: ('when I receive "' MSG '"') brick* ;
+broadcastScript: ('when I receive' MSG) brick* ;
 
-brick: ;
+brick: broadcastBrick | broadcastWaitBrick | changeBrightnessByNBrick |
+     changeGhostEffectByNBrick | changeSizeByNBrick | changeVariableBrick | 
+     changeVolumeByNBrick | changeXByNBrick | changeYByNBrick;
+
+broadcastBrick: 'broadcast ' MSG ;
+broadcastWaitBrick: 'broadcast and wait' MSG;
+changeBrightnessByNBrick: 'change brightness by' formula;
+changeGhostEffectByNBrick: 'change ghost effect by' formula;
+changeSizeByNBrick: 'change size by' formula;
+changeVariableBrick: 'change variable' USER_VARIABLE 'by' formula 
+                     {variables.add($USER_VARIABLE.text);};
+changeVolumeByNBrick: 'change volume by' formula;
+changeXByNBrick: 'change X by' formula;
+changeYByNBrick: 'change Y by' formula;
 
 
 
 
 
-formula: (token+);
+formula: BRACKET_OPEN (token+) BRACKET_CLOSE;
 
 token: NUMBER | OPERATOR | SENSOR | FUNCTION_NAME |
-       USER_VARIABLE {variables.add($USER_VARIABLE.text);} |
+       USER_VARIABLE|
        BRACKET_OPEN | BRACKET_CLOSE | FUNCTION_PARAMETER_DELIMITER;
            
 
@@ -44,17 +57,18 @@ SENSOR: ('x_acceleration' | 'y_acceleration' | 'z_acceleration' |
          'object_ghosteffect' | 'object_brightness' | 'object_size' |
          'object_rotation' | 'object_layer');
 
-USER_VARIABLE: ('"' (DIGIT | LETTER | SYMBOL)+ '"');
+USER_VARIABLE: ('"' (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL)+ '"');
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 FUNCTION_PARAMETER_DELIMITER: ',';
 
-MSG: (LETTER | DIGIT | SYMBOL)+;
-ACTION: (LETTER | DIGIT | SYMBOL)+;
+MSG: '"' ((LETTER | DIGIT | SYMBOL | OPERATOR_SYMBOL)+) '"';
+ACTION: MSG;
 
-fragment SYMBOL: ('!' | '@' | '#' | '$' | '%' | '^' | '*' | '(' | ')' | '/' |
-                 '_' | '"' | '\'' | '-' | '+' | ';' | '~' | '=' | '\\' | '^' |
-                 '[' | ']' | '{' | '}' | '<' | '>' | ':' | '.' | ',');
+fragment OPERATOR_SYMBOL: '=' | '<' | '>' |'+' | '-' | '*' | '/' | '%' | '^';
+fragment ADDITIONAL_SYMBOL: '"';
+fragment SYMBOL: ('!' | '@' | '#' | '$' | '_' | '\'' | ';' | '~' |
+                  '[' | ']' | '{' | '}' | ':' | ',' | '(' | ')' | '\'');
 fragment DIGIT: ('0'..'9');
 fragment LETTER: ('a'..'z') | ('A'..'Z');
 fragment WS : ('\t' | '\r'? '\n' | ' ') {skip();} ;
