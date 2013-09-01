@@ -13,15 +13,16 @@ program: (script)*;
 script: startScript | whenScript | broadcastScript;
 
 startScript: ('when program started') brick*;
-whenScript: ('when' ACTION) brick*;
-broadcastScript: ('when I receive' MSG) brick* ;
+whenScript: ('when' USER_VARIABLE) brick*;
+broadcastScript: ('when I receive' USER_VARIABLE) brick* ;
 
 brick: broadcastBrick | broadcastWaitBrick | changeBrightnessByNBrick |
      changeGhostEffectByNBrick | changeSizeByNBrick | changeVariableBrick | 
      changeVolumeByNBrick | changeXByNBrick | changeYByNBrick;
 
-broadcastBrick: 'broadcast ' MSG ;
-broadcastWaitBrick: 'broadcast and wait' MSG;
+broadcastBrick: 'broadcast ' USER_VARIABLE ;
+broadcastWaitBrick: 'broadcast and wait' USER_VARIABLE;
+
 changeBrightnessByNBrick: 'change brightness by' formula;
 changeGhostEffectByNBrick: 'change ghost effect by' formula;
 changeSizeByNBrick: 'change size by' formula;
@@ -33,38 +34,29 @@ changeYByNBrick: 'change Y by' formula;
 
 
 
-
-
 formula: BRACKET_OPEN (token+) BRACKET_CLOSE;
 
 token: NUMBER | OPERATOR | SENSOR | FUNCTION_NAME |
        USER_VARIABLE|
-       BRACKET_OPEN | BRACKET_CLOSE | FUNCTION_PARAMETER_DELIMITER;
-           
+       BRACKET_OPEN | BRACKET_CLOSE | FUNCTION_PARAMETER_DELIMITER;           
 
+USER_VARIABLE: '"' STRING '"' ;
 NUMBER: (DIGIT)+('.' DIGIT+)?;
-
-FUNCTION_NAME: ('SIN' | 'COS' | 'TAN' | 'LN' | 'LOG' | 'SQRT' | 'RAND' | 'ROUND' | 
-           'ABS' | 'PI' | 'MOD' | 'ARCSIN' | 'ARCCOS' | 'ARCTAN' | 'EXP' | 
-           'MAX' | 'MIN' | 'TRUE' | 'FALSE');    
-
+FUNCTION_NAME: ('sin' | 'cos' | 'tan' | 'ln' | 'log' | 'sqrt' | 'rand' | 'round' | 
+           'abs' | 'pi' | 'mod' | 'arcsin' | 'arccos' | 'arctan' | 'exp' | 
+           'max' | 'min' | 'true' | 'false');   
 OPERATOR: ('AND' | 'OR' | '=' | '!=' | '<=' | '>=' | '<' | '>' | 
           '+' | '-' | '*' | '/' | '%' | '^' | 'NOT');
-
 SENSOR: ('x_acceleration' | 'y_acceleration' | 'z_acceleration' |
          'compass_direction' | 'x_inclination' | 'y_inclination' |
          'object_x' | 'object_y' | 
          'object_ghosteffect' | 'object_brightness' | 'object_size' |
          'object_rotation' | 'object_layer');
-
-USER_VARIABLE: ('"' (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL)+ '"');
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 FUNCTION_PARAMETER_DELIMITER: ',';
 
-MSG: '"' ((LETTER | DIGIT | SYMBOL | OPERATOR_SYMBOL)+) '"';
-ACTION: MSG;
-
+fragment STRING: (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL | WS)+;
 fragment OPERATOR_SYMBOL: '=' | '<' | '>' |'+' | '-' | '*' | '/' | '%' | '^';
 fragment ADDITIONAL_SYMBOL: '"';
 fragment SYMBOL: ('!' | '@' | '#' | '$' | '_' | '\'' | ';' | '~' |
