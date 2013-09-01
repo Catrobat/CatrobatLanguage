@@ -8,6 +8,18 @@ options {language = Java;}
 @members {         
          HashSet<String> variables = new HashSet<String>();
          }
+program: (script)*;
+
+script: startScript | whenScript | broadcastScript;
+
+startScript: ('when program started') brick*;
+whenScript: ('when' ACTION) brick*;
+broadcastScript: ('when I receive "' MSG '"') brick* ;
+
+brick: ;
+
+
+
 
 
 formula: (token+);
@@ -32,11 +44,17 @@ SENSOR: ('x_acceleration' | 'y_acceleration' | 'z_acceleration' |
          'object_ghosteffect' | 'object_brightness' | 'object_size' |
          'object_rotation' | 'object_layer');
 
-USER_VARIABLE: ('"' (DIGIT | LETTER)+ '"');
+USER_VARIABLE: ('"' (DIGIT | LETTER | SYMBOL)+ '"');
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 FUNCTION_PARAMETER_DELIMITER: ',';
 
+MSG: (LETTER | DIGIT | SYMBOL)+;
+ACTION: (LETTER | DIGIT | SYMBOL)+;
+
+fragment SYMBOL: ('!' | '@' | '#' | '$' | '%' | '^' | '*' | '(' | ')' | '/' |
+                 '_' | '"' | '\'' | '-' | '+' | ';' | '~' | '=' | '\\' | '^' |
+                 '[' | ']' | '{' | '}' | '<' | '>' | ':' | '.' | ',');
 fragment DIGIT: ('0'..'9');
 fragment LETTER: ('a'..'z') | ('A'..'Z');
 fragment WS : ('\t' | '\r'? '\n' | ' ') {skip();} ;
