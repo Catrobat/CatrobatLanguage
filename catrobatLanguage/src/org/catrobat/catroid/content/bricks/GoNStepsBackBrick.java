@@ -49,6 +49,6 @@ public class GoNStepsBackBrick extends BrickBaseType{
 	}
 	
 	public String toString() {
-		return ("go back (" + steps.toString() + ") layer\r\n");
+		return ("go back (" + steps.toString() + ") layers\r\n");
 	}
 }

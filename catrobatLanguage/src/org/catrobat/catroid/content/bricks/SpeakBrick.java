@@ -46,7 +46,7 @@ public class SpeakBrick extends BrickBaseType {
 	}
 	
 	public String toString() {
-		return ("speack \"" + text + "\"\r\n");
+		return ("speak \"" + text + "\"\r\n");
 	}
 
 }

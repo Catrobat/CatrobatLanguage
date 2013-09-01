@@ -8,39 +8,108 @@ options {language = Java;}
 @members {         
          HashSet<String> variables = new HashSet<String>();
          }
-program: (script)*;
 
-script: startScript | whenScript | broadcastScript;
 
-startScript: ('when program started') brick*;
-whenScript: ('when' USER_VARIABLE) brick*;
-broadcastScript: ('when I receive' USER_VARIABLE) brick* ;
+program: (startScript | whenScript | broadcastScript)*;
+
+startScript: ('when program started') brickList;
+whenScript: ('when' action) brickList;
+broadcastScript: ('when I receive' message) brickList;
+
+brickList: brick*;
 
 brick: broadcastBrick | broadcastWaitBrick | changeBrightnessByNBrick |
      changeGhostEffectByNBrick | changeSizeByNBrick | changeVariableBrick | 
-     changeVolumeByNBrick | changeXByNBrick | changeYByNBrick;
+     changeVolumeByNBrick | changeXByNBrick | changeYByNBrick |
+     clearGraficEffectBrick | comeToFrontBrick | foreverBrick | glideToBrick | 
+     hideBrick | ifLogicBeginBrick | ifLogicElseBrick | ifLogicEndBrick | 
+     ifOnEdgeBounceBrick | legoNXTMotorActionBrick | legoNxtMotorStopBrick | 
+     legoNxtMotorTurnAngleBrick | legoNxtPlayToneBrick | loopEndBrick | 
+     nextLookBrik | noteBrick | placeAtBrick | playSoundBrick | 
+     pointInDirectionBrick | pointToBrick | repeatBrick | setBrightnessBrick |
+     setGhostEffectBrick | setLookBrick | setSizeToBrick | setVariableBrick | 
+     setVolumeToBrick | setXBrick | setYBrick | showBrick | speackBrick | 
+     stopAllSoundsBrick | turnLeftBrick | turnRightBrick | waitBrick;
 
-broadcastBrick: 'broadcast ' USER_VARIABLE ;
-broadcastWaitBrick: 'broadcast and wait' USER_VARIABLE;
 
-changeBrightnessByNBrick: 'change brightness by' formula;
-changeGhostEffectByNBrick: 'change ghost effect by' formula;
-changeSizeByNBrick: 'change size by' formula;
-changeVariableBrick: 'change variable' USER_VARIABLE 'by' formula 
-                     {variables.add($USER_VARIABLE.text);};
-changeVolumeByNBrick: 'change volume by' formula;
+broadcastBrick: 'broadcast ' message ;
+broadcastWaitBrick: 'broadcast and wait' message;
+
+changeBrightnessByNBrick: 'change brightness by' formula '%';
+changeGhostEffectByNBrick: 'change ghost effect by' formula '%';
+changeSizeByNBrick: 'change size by' formula '%';
+changeVariableBrick: 'change variable' userVariable 'by' formula 
+                     {variables.add($userVariable.text);};
+changeVolumeByNBrick: 'change volume by' formula '%';
 changeXByNBrick: 'change X by' formula;
 changeYByNBrick: 'change Y by' formula;
 
+clearGraficEffectBrick: 'clear graphic effects';
+comeToFrontBrick: 'come to front';
 
+foreverBrick: 'forever';
 
+glideToBrick: 'glide' formula 'seconds to X:' formula 'Y: ' formula;
+goNStepsBackBrick: 'go back' formula  'layers';
+
+hideBrick: 'hide';
+
+ifLogicBeginBrick: 'if' formula 'is true then';
+ifLogicElseBrick: 'else';
+ifLogicEndBrick: 'end if';
+ifOnEdgeBounceBrick: 'if on edge, bounce';
+
+legoNXTMotorActionBrick: 'NXT move motor' motor + ', speed' formula;
+legoNxtMotorStopBrick: 'NXT stop motor' motor;
+legoNxtMotorTurnAngleBrick: 'NXT turn motor' motor 'to' formula 'degrees';
+legoNxtPlayToneBrick: 'NXT play tone, frequency:' formula ', duration:' formula 'seconds';
+
+loopEndBrick: 'end of loop';
+
+moveNStepsBrick: 'move' formula 'steps';
+
+nextLookBrik: 'next look';
+noteBrick: 'note' text;
+
+placeAtBrick: 'place at X:' formula ', Y:' formula;
+playSoundBrick: 'start sound' sound;
+pointInDirectionBrick: 'point in direction' formula 'degrees';
+pointToBrick: 'point to' objectName;
+
+repeatBrick: 'repeat' formula;
+
+setBrightnessBrick: 'set brightness to' formula '%';
+setGhostEffectBrick: 'set ghost effect to' formula '%';
+setLookBrick: 'switch to look' look;
+setSizeToBrick: 'set size to' formula '%';
+setVariableBrick: 'set variable' userVariable 'to' formula 
+                     {variables.add($userVariable.text);};
+setVolumeToBrick: 'set volume to' formula '%';
+setXBrick: 'set X to' formula;
+setYBrick: 'set Y to' formula;
+
+showBrick: 'show';
+speackBrick:'speak' text;
+stopAllSoundsBrick: 'stop all sounds'; 
+turnLeftBrick: 'turn left' formula 'degrees';
+turnRightBrick: 'turn right' formula 'degrees';
+waitBrick: 'wait' formula 'seconds';
+
+action: ACTION;
 formula: BRACKET_OPEN (token+) BRACKET_CLOSE;
+look: USER_VARIABLE;
+message: USER_VARIABLE;
+motor: USER_VARIABLE; 
+objectName: USER_VARIABLE;
+sound: USER_VARIABLE;
+text: USER_VARIABLE;
+userVariable: USER_VARIABLE;
 
 token: NUMBER | OPERATOR | SENSOR | FUNCTION_NAME |
        USER_VARIABLE|
        BRACKET_OPEN | BRACKET_CLOSE | FUNCTION_PARAMETER_DELIMITER;           
 
-USER_VARIABLE: '"' STRING '"' ;
+USER_VARIABLE: '"' STRING '"';
 NUMBER: (DIGIT)+('.' DIGIT+)?;
 FUNCTION_NAME: ('sin' | 'cos' | 'tan' | 'ln' | 'log' | 'sqrt' | 'rand' | 'round' | 
            'abs' | 'pi' | 'mod' | 'arcsin' | 'arccos' | 'arctan' | 'exp' | 
@@ -55,6 +124,8 @@ SENSOR: ('x_acceleration' | 'y_acceleration' | 'z_acceleration' |
 BRACKET_OPEN: '(';
 BRACKET_CLOSE: ')';
 FUNCTION_PARAMETER_DELIMITER: ',';
+
+ACTION: 'Tapped';
 
 fragment STRING: (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL | WS)+;
 fragment OPERATOR_SYMBOL: '=' | '<' | '>' |'+' | '-' | '*' | '/' | '%' | '^';

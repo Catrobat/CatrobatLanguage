@@ -36,6 +36,6 @@ public class ComeToFrontBrick extends BrickBaseType {
 	}
 	
 	public String toString() {
-		return ("come to frontr\n");
+		return ("come to front\r\n");
 	}
 }
