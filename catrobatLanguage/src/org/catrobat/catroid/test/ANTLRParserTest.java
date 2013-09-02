@@ -90,6 +90,13 @@ public class ANTLRParserTest {
 		File inputScript = new File("projects/Whack_A_Mole/scripts.txt");
 		test(inputScript);
 	}
+	
+	@Test
+	public void WrongInput() throws IOException, SAXException {
+		File inputScript = new File("projects/Wrong_Input/scripts.txt");
+		test(inputScript);
+	}
+	
 
 
 }

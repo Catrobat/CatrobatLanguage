@@ -1,7 +1,6 @@
 // Generated from D:\Users\TDiva\Desktop\GSoC-2013\CatrobatLanguage\CatrobatGrammar\CatrobatScript.g4 by ANTLR 4.0
 package org.catrobat.parser;
-
-         import java.util.HashSet;
+import java.util.HashSet;
          
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.Token;
@@ -79,6 +78,9 @@ public interface CatrobatScriptListener extends ParseTreeListener {
 	void enterSetSizeToBrick(CatrobatScriptParser.SetSizeToBrickContext ctx);
 	void exitSetSizeToBrick(CatrobatScriptParser.SetSizeToBrickContext ctx);
 
+	void enterSpeakBrick(CatrobatScriptParser.SpeakBrickContext ctx);
+	void exitSpeakBrick(CatrobatScriptParser.SpeakBrickContext ctx);
+
 	void enterChangeVariableBrick(CatrobatScriptParser.ChangeVariableBrickContext ctx);
 	void exitChangeVariableBrick(CatrobatScriptParser.ChangeVariableBrickContext ctx);
 
@@ -105,9 +107,6 @@ public interface CatrobatScriptListener extends ParseTreeListener {
 
 	void enterRepeatBrick(CatrobatScriptParser.RepeatBrickContext ctx);
 	void exitRepeatBrick(CatrobatScriptParser.RepeatBrickContext ctx);
-
-	void enterSpeackBrick(CatrobatScriptParser.SpeackBrickContext ctx);
-	void exitSpeackBrick(CatrobatScriptParser.SpeackBrickContext ctx);
 
 	void enterSetXBrick(CatrobatScriptParser.SetXBrickContext ctx);
 	void exitSetXBrick(CatrobatScriptParser.SetXBrickContext ctx);

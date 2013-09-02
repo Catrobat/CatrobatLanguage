@@ -2,12 +2,14 @@ grammar CatrobatScript;
 
 options {language = Java;}
 
-@header {
-         import java.util.HashSet;
+@header {import java.util.HashSet;
          }
-@members {         
-         HashSet<String> variables = new HashSet<String>();
-         }
+@members { 
+HashSet<String> variables = new HashSet<String>();
+
+public HashSet<String> getVariables() {
+   return variables;}
+ }
 
 
 program: (startScript | whenScript | broadcastScript)* ;

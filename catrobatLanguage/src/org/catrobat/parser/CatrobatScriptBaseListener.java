@@ -1,7 +1,6 @@
 // Generated from D:\Users\TDiva\Desktop\GSoC-2013\CatrobatLanguage\CatrobatGrammar\CatrobatScript.g4 by ANTLR 4.0
 package org.catrobat.parser;
-
-         import java.util.HashSet;
+import java.util.HashSet;
          
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -82,6 +81,9 @@ public class CatrobatScriptBaseListener implements CatrobatScriptListener {
 	@Override public void enterSetSizeToBrick(CatrobatScriptParser.SetSizeToBrickContext ctx) { }
 	@Override public void exitSetSizeToBrick(CatrobatScriptParser.SetSizeToBrickContext ctx) { }
 
+	@Override public void enterSpeakBrick(CatrobatScriptParser.SpeakBrickContext ctx) { }
+	@Override public void exitSpeakBrick(CatrobatScriptParser.SpeakBrickContext ctx) { }
+
 	@Override public void enterChangeVariableBrick(CatrobatScriptParser.ChangeVariableBrickContext ctx) { }
 	@Override public void exitChangeVariableBrick(CatrobatScriptParser.ChangeVariableBrickContext ctx) { }
 
@@ -108,9 +110,6 @@ public class CatrobatScriptBaseListener implements CatrobatScriptListener {
 
 	@Override public void enterRepeatBrick(CatrobatScriptParser.RepeatBrickContext ctx) { }
 	@Override public void exitRepeatBrick(CatrobatScriptParser.RepeatBrickContext ctx) { }
-
-	@Override public void enterSpeackBrick(CatrobatScriptParser.SpeackBrickContext ctx) { }
-	@Override public void exitSpeackBrick(CatrobatScriptParser.SpeackBrickContext ctx) { }
 
 	@Override public void enterSetXBrick(CatrobatScriptParser.SetXBrickContext ctx) { }
 	@Override public void exitSetXBrick(CatrobatScriptParser.SetXBrickContext ctx) { }
