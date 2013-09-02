@@ -10,7 +10,9 @@ options {language = Java;}
          }
 
 
-program: (startScript | whenScript | broadcastScript)*;
+program: (startScript | whenScript | broadcastScript)* ;
+catch[RecognitionException e] { System.out.println("Recognition exception: "); 
+                               e.printStackTrace();}
 
 startScript: ('when program started') brickList;
 whenScript: ('when' action) brickList;
@@ -18,18 +20,31 @@ broadcastScript: ('when I receive' message) brickList;
 
 brickList: brick*;
 
-brick: broadcastBrick | broadcastWaitBrick | changeBrightnessByNBrick |
-     changeGhostEffectByNBrick | changeSizeByNBrick | changeVariableBrick | 
-     changeVolumeByNBrick | changeXByNBrick | changeYByNBrick |
-     clearGraficEffectBrick | comeToFrontBrick | foreverBrick | glideToBrick | 
-     hideBrick | ifLogicBeginBrick | ifLogicElseBrick | ifLogicEndBrick | 
-     ifOnEdgeBounceBrick | legoNXTMotorActionBrick | legoNxtMotorStopBrick | 
-     legoNxtMotorTurnAngleBrick | legoNxtPlayToneBrick | loopEndBrick | 
-     nextLookBrik | noteBrick | placeAtBrick | playSoundBrick | 
-     pointInDirectionBrick | pointToBrick | repeatBrick | setBrightnessBrick |
-     setGhostEffectBrick | setLookBrick | setSizeToBrick | setVariableBrick | 
-     setVolumeToBrick | setXBrick | setYBrick | showBrick | speackBrick | 
-     stopAllSoundsBrick | turnLeftBrick | turnRightBrick | waitBrick;
+brick: broadcastBrick | broadcastWaitBrick | 
+       changeBrightnessByNBrick | changeGhostEffectByNBrick | 
+       changeSizeByNBrick | changeVariableBrick | changeVolumeByNBrick | 
+       changeXByNBrick | changeYByNBrick | 
+       clearGraficEffectBrick | comeToFrontBrick | 
+       foreverBrick | 
+       glideToBrick | goNStepsBackBrick | 
+       hideBrick | 
+       ifLogicBeginBrick | ifLogicElseBrick | ifLogicEndBrick | 
+       ifOnEdgeBounceBrick | 
+       legoNXTMotorActionBrick | legoNxtMotorStopBrick | 
+       legoNxtMotorTurnAngleBrick | legoNxtPlayToneBrick | 
+       loopEndBrick | 
+       moveNStepsBrick |
+       nextLookBrik | noteBrick | 
+       placeAtBrick | playSoundBrick | 
+       pointInDirectionBrick | pointToBrick | 
+       repeatBrick | 
+       setBrightnessBrick | setGhostEffectBrick | setLookBrick | 
+       setSizeToBrick | setVariableBrick | setVolumeToBrick | 
+       setXBrick | setYBrick | 
+       showBrick | speakBrick | 
+       stopAllSoundsBrick | 
+       turnLeftBrick | turnRightBrick | 
+       waitBrick;
 
 
 broadcastBrick: 'broadcast ' message ;
@@ -49,7 +64,7 @@ comeToFrontBrick: 'come to front';
 
 foreverBrick: 'forever';
 
-glideToBrick: 'glide' formula 'seconds to X:' formula 'Y: ' formula;
+glideToBrick: 'glide' formula 'seconds to X:' formula ', Y:' formula;
 goNStepsBackBrick: 'go back' formula  'layers';
 
 hideBrick: 'hide';
@@ -89,7 +104,7 @@ setXBrick: 'set X to' formula;
 setYBrick: 'set Y to' formula;
 
 showBrick: 'show';
-speackBrick:'speak' text;
+speakBrick:'speak' text;
 stopAllSoundsBrick: 'stop all sounds'; 
 turnLeftBrick: 'turn left' formula 'degrees';
 turnRightBrick: 'turn right' formula 'degrees';
@@ -97,6 +112,7 @@ waitBrick: 'wait' formula 'seconds';
 
 action: ACTION;
 formula: BRACKET_OPEN (token+) BRACKET_CLOSE;
+
 look: USER_VARIABLE;
 message: USER_VARIABLE;
 motor: USER_VARIABLE; 
@@ -113,7 +129,7 @@ USER_VARIABLE: '"' STRING '"';
 NUMBER: (DIGIT)+('.' DIGIT+)?;
 FUNCTION_NAME: ('sin' | 'cos' | 'tan' | 'ln' | 'log' | 'sqrt' | 'rand' | 'round' | 
            'abs' | 'pi' | 'mod' | 'arcsin' | 'arccos' | 'arctan' | 'exp' | 
-           'max' | 'min' | 'true' | 'false');   
+           'max' | 'min' | 'TRUE' | 'FALSE');   
 OPERATOR: ('AND' | 'OR' | '=' | '!=' | '<=' | '>=' | '<' | '>' | 
           '+' | '-' | '*' | '/' | '%' | '^' | 'NOT');
 SENSOR: ('x_acceleration' | 'y_acceleration' | 'z_acceleration' |
