@@ -38,6 +38,8 @@ public class Sprite implements Serializable {
 	private ArrayList<LookData> lookList;
 	private ArrayList<SoundInfo> soundList;
 
+	
+	// Set sprite to scripts!
 	//TODO: complete
 	/*public Sprite(String name, YamlSprite sprite) {
 		name = "";
@@ -65,6 +67,8 @@ public class Sprite implements Serializable {
 
 	public String getName() {
 		return name;
+		
+		
 	}
 
 	public void setName(String name) {
