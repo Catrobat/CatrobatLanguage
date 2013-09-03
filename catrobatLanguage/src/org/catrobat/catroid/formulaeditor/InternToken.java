@@ -40,6 +40,7 @@ public class InternToken {
 
 	public void setTokenStringValue(String tokenString) {
 		this.tokenStringValue = tokenString;
+		// TODO: parse type from string
 	}
 
 	public String getTokenStringValue() {
