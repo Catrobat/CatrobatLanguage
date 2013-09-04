@@ -1,6 +1,70 @@
 // Generated from D:\Users\TDiva\Desktop\GSoC-2013\CatrobatLanguage\CatrobatGrammar\CatrobatScript.g4 by ANTLR 4.0
 package org.catrobat.parser;
-import java.util.HashSet;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+
+import org.catrobat.catroid.common.LookData;
+import org.catrobat.catroid.common.SoundInfo;
+import org.catrobat.catroid.content.BroadcastScript;
+import org.catrobat.catroid.content.Script;
+import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.content.StartScript;
+import org.catrobat.catroid.content.WhenScript;
+import org.catrobat.catroid.content.bricks.Brick;
+import org.catrobat.catroid.content.bricks.BrickBaseType;
+import org.catrobat.catroid.content.bricks.BroadcastBrick;
+import org.catrobat.catroid.content.bricks.BroadcastWaitBrick;
+import org.catrobat.catroid.content.bricks.ChangeBrightnessByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeGhostEffectByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeSizeByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeVariableBrick;
+import org.catrobat.catroid.content.bricks.ChangeVolumeByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeXByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeYByNBrick;
+import org.catrobat.catroid.content.bricks.ClearGraphicEffectBrick;
+import org.catrobat.catroid.content.bricks.ComeToFrontBrick;
+import org.catrobat.catroid.content.bricks.ForeverBrick;
+import org.catrobat.catroid.content.bricks.GlideToBrick;
+import org.catrobat.catroid.content.bricks.GoNStepsBackBrick;
+import org.catrobat.catroid.content.bricks.HideBrick;
+import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
+import org.catrobat.catroid.content.bricks.IfLogicElseBrick;
+import org.catrobat.catroid.content.bricks.IfLogicEndBrick;
+import org.catrobat.catroid.content.bricks.IfOnEdgeBounceBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorActionBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorStopBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorTurnAngleBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtPlayToneBrick;
+import org.catrobat.catroid.content.bricks.LoopEndBrick;
+import org.catrobat.catroid.content.bricks.MoveNStepsBrick;
+import org.catrobat.catroid.content.bricks.NextLookBrick;
+import org.catrobat.catroid.content.bricks.NoteBrick;
+import org.catrobat.catroid.content.bricks.PlaceAtBrick;
+import org.catrobat.catroid.content.bricks.PlaySoundBrick;
+import org.catrobat.catroid.content.bricks.PointInDirectionBrick;
+import org.catrobat.catroid.content.bricks.PointToBrick;
+import org.catrobat.catroid.content.bricks.RepeatBrick;
+import org.catrobat.catroid.content.bricks.SetBrightnessBrick;
+import org.catrobat.catroid.content.bricks.SetGhostEffectBrick;
+import org.catrobat.catroid.content.bricks.SetLookBrick;
+import org.catrobat.catroid.content.bricks.SetSizeToBrick;
+import org.catrobat.catroid.content.bricks.SetVariableBrick;
+import org.catrobat.catroid.content.bricks.SetVolumeToBrick;
+import org.catrobat.catroid.content.bricks.SetXBrick;
+import org.catrobat.catroid.content.bricks.SetYBrick;
+import org.catrobat.catroid.content.bricks.ShowBrick;
+import org.catrobat.catroid.content.bricks.SpeakBrick;
+import org.catrobat.catroid.content.bricks.StopAllSoundsBrick;
+import org.catrobat.catroid.content.bricks.TurnLeftBrick;
+import org.catrobat.catroid.content.bricks.TurnRightBrick;
+import org.catrobat.catroid.content.bricks.WaitBrick;
+import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.InternFormulaParser;
+import org.catrobat.catroid.formulaeditor.InternToken;
+import org.catrobat.catroid.formulaeditor.UserVariable;
          
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -23,9 +87,6 @@ public class CatrobatScriptBaseListener implements CatrobatScriptListener {
 
 	@Override public void enterPointInDirectionBrick(CatrobatScriptParser.PointInDirectionBrickContext ctx) { }
 	@Override public void exitPointInDirectionBrick(CatrobatScriptParser.PointInDirectionBrickContext ctx) { }
-
-	@Override public void enterNextLookBrik(CatrobatScriptParser.NextLookBrikContext ctx) { }
-	@Override public void exitNextLookBrik(CatrobatScriptParser.NextLookBrikContext ctx) { }
 
 	@Override public void enterComeToFrontBrick(CatrobatScriptParser.ComeToFrontBrickContext ctx) { }
 	@Override public void exitComeToFrontBrick(CatrobatScriptParser.ComeToFrontBrickContext ctx) { }
@@ -63,17 +124,20 @@ public class CatrobatScriptBaseListener implements CatrobatScriptListener {
 	@Override public void enterStopAllSoundsBrick(CatrobatScriptParser.StopAllSoundsBrickContext ctx) { }
 	@Override public void exitStopAllSoundsBrick(CatrobatScriptParser.StopAllSoundsBrickContext ctx) { }
 
-	@Override public void enterText(CatrobatScriptParser.TextContext ctx) { }
-	@Override public void exitText(CatrobatScriptParser.TextContext ctx) { }
-
 	@Override public void enterSetYBrick(CatrobatScriptParser.SetYBrickContext ctx) { }
 	@Override public void exitSetYBrick(CatrobatScriptParser.SetYBrickContext ctx) { }
+
+	@Override public void enterNextLookBrick(CatrobatScriptParser.NextLookBrickContext ctx) { }
+	@Override public void exitNextLookBrick(CatrobatScriptParser.NextLookBrickContext ctx) { }
 
 	@Override public void enterPlaceAtBrick(CatrobatScriptParser.PlaceAtBrickContext ctx) { }
 	@Override public void exitPlaceAtBrick(CatrobatScriptParser.PlaceAtBrickContext ctx) { }
 
 	@Override public void enterBroadcastScript(CatrobatScriptParser.BroadcastScriptContext ctx) { }
 	@Override public void exitBroadcastScript(CatrobatScriptParser.BroadcastScriptContext ctx) { }
+
+	@Override public void enterTextField(CatrobatScriptParser.TextFieldContext ctx) { }
+	@Override public void exitTextField(CatrobatScriptParser.TextFieldContext ctx) { }
 
 	@Override public void enterBroadcastWaitBrick(CatrobatScriptParser.BroadcastWaitBrickContext ctx) { }
 	@Override public void exitBroadcastWaitBrick(CatrobatScriptParser.BroadcastWaitBrickContext ctx) { }

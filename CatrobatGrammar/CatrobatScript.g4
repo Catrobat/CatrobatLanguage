@@ -3,13 +3,70 @@ grammar CatrobatScript;
 options {language = Java;}
 
 @header {
-          import java.util.Set;
-          import java.util.HashSet;
-          import java.util.List;
-          import java.util.ArrayList;
-          
-          import org.catrobat.catroid.formulaeditor.*;
-          import org.catrobat.catroid.content.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+
+import org.catrobat.catroid.common.LookData;
+import org.catrobat.catroid.common.SoundInfo;
+import org.catrobat.catroid.content.BroadcastScript;
+import org.catrobat.catroid.content.Script;
+import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.content.StartScript;
+import org.catrobat.catroid.content.WhenScript;
+import org.catrobat.catroid.content.bricks.Brick;
+import org.catrobat.catroid.content.bricks.BrickBaseType;
+import org.catrobat.catroid.content.bricks.BroadcastBrick;
+import org.catrobat.catroid.content.bricks.BroadcastWaitBrick;
+import org.catrobat.catroid.content.bricks.ChangeBrightnessByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeGhostEffectByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeSizeByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeVariableBrick;
+import org.catrobat.catroid.content.bricks.ChangeVolumeByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeXByNBrick;
+import org.catrobat.catroid.content.bricks.ChangeYByNBrick;
+import org.catrobat.catroid.content.bricks.ClearGraphicEffectBrick;
+import org.catrobat.catroid.content.bricks.ComeToFrontBrick;
+import org.catrobat.catroid.content.bricks.ForeverBrick;
+import org.catrobat.catroid.content.bricks.GlideToBrick;
+import org.catrobat.catroid.content.bricks.GoNStepsBackBrick;
+import org.catrobat.catroid.content.bricks.HideBrick;
+import org.catrobat.catroid.content.bricks.IfLogicBeginBrick;
+import org.catrobat.catroid.content.bricks.IfLogicElseBrick;
+import org.catrobat.catroid.content.bricks.IfLogicEndBrick;
+import org.catrobat.catroid.content.bricks.IfOnEdgeBounceBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorActionBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorStopBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtMotorTurnAngleBrick;
+import org.catrobat.catroid.content.bricks.LegoNxtPlayToneBrick;
+import org.catrobat.catroid.content.bricks.LoopEndBrick;
+import org.catrobat.catroid.content.bricks.MoveNStepsBrick;
+import org.catrobat.catroid.content.bricks.NextLookBrick;
+import org.catrobat.catroid.content.bricks.NoteBrick;
+import org.catrobat.catroid.content.bricks.PlaceAtBrick;
+import org.catrobat.catroid.content.bricks.PlaySoundBrick;
+import org.catrobat.catroid.content.bricks.PointInDirectionBrick;
+import org.catrobat.catroid.content.bricks.PointToBrick;
+import org.catrobat.catroid.content.bricks.RepeatBrick;
+import org.catrobat.catroid.content.bricks.SetBrightnessBrick;
+import org.catrobat.catroid.content.bricks.SetGhostEffectBrick;
+import org.catrobat.catroid.content.bricks.SetLookBrick;
+import org.catrobat.catroid.content.bricks.SetSizeToBrick;
+import org.catrobat.catroid.content.bricks.SetVariableBrick;
+import org.catrobat.catroid.content.bricks.SetVolumeToBrick;
+import org.catrobat.catroid.content.bricks.SetXBrick;
+import org.catrobat.catroid.content.bricks.SetYBrick;
+import org.catrobat.catroid.content.bricks.ShowBrick;
+import org.catrobat.catroid.content.bricks.SpeakBrick;
+import org.catrobat.catroid.content.bricks.StopAllSoundsBrick;
+import org.catrobat.catroid.content.bricks.TurnLeftBrick;
+import org.catrobat.catroid.content.bricks.TurnRightBrick;
+import org.catrobat.catroid.content.bricks.WaitBrick;
+import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.InternFormulaParser;
+import org.catrobat.catroid.formulaeditor.InternToken;
+import org.catrobat.catroid.formulaeditor.UserVariable;
          }
 
 @members { 
@@ -17,6 +74,12 @@ private Map<String,UserVariable> variables = new HashMap<String,UserVariable>();
 
 public Map<String,UserVariable> getVariables() {
    return variables;
+}
+
+private List<Script> scriptList;
+
+public List<Script> getScriptList() {
+   return scriptList;
 }
 
 private Sprite currentSprite;
@@ -36,31 +99,30 @@ public void setSpriteList(List<Sprite> spriteList) {
 InternFormulaParser formulaParser;
          }
 
-program returns [List<Script> value]
-@init {List<Script> scriptList = new ArrayList<Script>();}
-@after {$value = scriptList;}
+program 
+@init {scriptList = new ArrayList<Script>();}
     : (startScript {scriptList.add($startScript.value);} | 
        whenScript {scriptList.add($whenScript.value);} |  
        broadcastScript {scriptList.add($broadcastScript.value);})* ;
 
 startScript returns [Script value]
-@init {Script script = new StartScript();}
+@init {StartScript script = new StartScript();}
 @after {$value = script;}
     : ('when' 'program' 'started') brickList
       {script.setBrickList($brickList.value);
        script.setObject(currentSprite);};
 
 whenScript returns [Script value]
-@init {Script script = new WhenScript();}
+@init {WhenScript script = new WhenScript();}
 @after {$value = script;}
     : ('when' action) brickList
-      {script.setAction(action.value);
+      {script.setAction($action.value);
        script.setBrickList($brickList.value);
        script.setObject(currentSprite);};
 
 
 broadcastScript returns [Script value]
-@init {Script script = new BroadcastScript();}
+@init {BroadcastScript script = new BroadcastScript();}
 @after {$value = script;}
     : ('when' 'I' 'receive' message) brickList
       {script.setReceivedMessage($message.value);
@@ -68,12 +130,12 @@ broadcastScript returns [Script value]
        script.setObject(currentSprite);};
 
 
-brickList returns [List<Brick> value]
-@init { List<Brick> brickList = new ArrayList<Brick>();}
+brickList returns [ArrayList<Brick> value]
+@init { ArrayList<Brick> brickList = new ArrayList<Brick>();}
 @after {$value = brickList;}
     : (brick {brickList.add($brick.value);})*;
 
-brick returns [Brick value]
+brick returns [BrickBaseType value]
 @after { $value.setSprite(currentSprite);}
      : broadcastBrick {$value = $broadcastBrick.value;} | 
        broadcastWaitBrick {$value = $broadcastWaitBrick.value;} | 
@@ -100,7 +162,7 @@ brick returns [Brick value]
        legoNxtPlayToneBrick {$value = $legoNxtPlayToneBrick.value;} |  
        loopEndBrick {$value = $loopEndBrick.value;} |  
        moveNStepsBrick {$value = $moveNStepsBrick.value;} | 
-       nextLookBrik {$value = $nextLookBrik.value;} | 
+       nextLookBrick {$value = $nextLookBrick.value;} | 
        noteBrick {$value = $noteBrick.value;} |  
        placeAtBrick {$value = $placeAtBrick.value;} |  
        playSoundBrick {$value = $playSoundBrick.value;} |  
@@ -123,80 +185,80 @@ brick returns [Brick value]
        waitBrick {$value = $waitBrick.value;};
 
 
-broadcastBrick returns [Brick value]
-@init { Brick brick = new BroadcastBrick();}
+broadcastBrick returns [BrickBaseType value]
+@init { BroadcastBrick brick = new BroadcastBrick();}
 @after { $value = brick; }
     : 'broadcast' message 
        {brick.setBroadcastMessage($message.value);} ;
 
-broadcastWaitBrick returns [Brick value]
-@init {Brick brick = new BroadcastWaitBrick();}
+broadcastWaitBrick returns [BrickBaseType value]
+@init {BroadcastWaitBrick brick = new BroadcastWaitBrick();}
 @after {$value = brick;}
     : 'broadcast' 'and' 'wait' message
       {brick.setBroadcastMessage($message.value);};
 
-changeBrightnessByNBrick returns [Brick value]
-@init {Brick brick = new ChangeBrightnessByNBrick();}
+changeBrightnessByNBrick returns [BrickBaseType value]
+@init {ChangeBrightnessByNBrick brick = new ChangeBrightnessByNBrick();}
 @after {$value = brick;}
     : 'change' 'brightness' 'by' formula '%'
       {brick.setChangeBrightness($formula.value);};
 
-changeGhostEffectByNBrick returns [Brick value]
-@init {Brick brick = new ChangeGhostEffectByNBrick();}
+changeGhostEffectByNBrick returns [BrickBaseType value]
+@init {ChangeGhostEffectByNBrick brick = new ChangeGhostEffectByNBrick();}
 @after {$value = brick;}
     : 'change' 'ghost' 'effect' 'by' formula '%'
       {brick.setChangeGhostEffect($formula.value);};
 
-changeSizeByNBrick returns [Brick value]
-@init {Brick brick = new ChangeSizeByNBrick();}
+changeSizeByNBrick returns [BrickBaseType value]
+@init {ChangeSizeByNBrick brick = new ChangeSizeByNBrick();}
 @after {$value = brick;}
     : 'change' 'size' 'by' formula '%'
       {brick.setSize($formula.value);};
 
-changeVariableBrick returns [Brick value]
-@init {Brick brick = new ChangeVariableBrick();}
+changeVariableBrick returns [BrickBaseType value]
+@init {ChangeVariableBrick brick = new ChangeVariableBrick();}
 @after {$value = brick;}
     : 'change' 'variable' userVariable
-      {brick.setVariableFormula($userVariable.value);}
+      {brick.setUserVariable($userVariable.value);}
       'by' formula 
-      {brick.setUserVariable($formula.value);};
+      {brick.setVariableFormula($formula.value);};
                      
 
-changeVolumeByNBrick returns [Brick value]
-@init {Brick brick = new ChangeVolumeByNBrick();}
+changeVolumeByNBrick returns [BrickBaseType value]
+@init {ChangeVolumeByNBrick brick = new ChangeVolumeByNBrick();}
 @after {$value = brick;}
     : 'change' 'volume' 'by' formula '%'
       {brick.setVolume($formula.value);};
 
-changeXByNBrick returns [Brick value]
-@init {Brick brick = new ChangeXByNBrick();}
+changeXByNBrick returns [BrickBaseType value]
+@init {ChangeXByNBrick brick = new ChangeXByNBrick();}
 @after {$value = brick;}
     : 'change' 'X' 'by' formula
       {brick.setxMovement($formula.value);};
 
-changeYByNBrick returns [Brick value]
-@init {Brick brick = new ChangeYByNBrick();}
+changeYByNBrick returns [BrickBaseType value]
+@init {ChangeYByNBrick brick = new ChangeYByNBrick();}
 @after {$value = brick;}
     : 'change' 'Y' 'by' formula
       {brick.setyMovement($formula.value);};
 
-clearGraficEffectBrick returns [Brick value]
-@init {Brick brick = new ClearGraficEffectBrick();}
+clearGraficEffectBrick returns [BrickBaseType value]
+@init {ClearGraphicEffectBrick brick = new ClearGraphicEffectBrick();}
 @after {$value = brick;}
     : 'clear' 'graphic' 'effects';
 
-comeToFrontBrick returns [Brick value]
-@init {Brick brick = new ComeToFrontBrick();}
+comeToFrontBrick returns [BrickBaseType value]
+@init {ComeToFrontBrick brick = new ComeToFrontBrick();}
 @after {$value = brick;}
     : 'come' 'to' 'front';
 
-foreverBrick returns [Brick value]
-@init {Brick brick = new ForeverBrick();}
+foreverBrick returns [BrickBaseType value]
+@init {ForeverBrick brick = new ForeverBrick();}
 @after {$value = brick;}
 : 'forever';
 
-glideToBrick returns [Brick value]
-@init {Brick brick = new GlideToBrick();}
+glideToBrick returns [BrickBaseType value]
+@init {GlideToBrick brick = new GlideToBrick();}
 @after {$value = brick;}
     : 'glide' s=formula 
       {brick.setDurationInSeconds($s.value);}
@@ -205,54 +267,54 @@ glideToBrick returns [Brick value]
       ','? 'Y:' y=formula
       {brick.setyDestination($y.value);};
 
-goNStepsBackBrick returns [Brick value]
-@init {Brick brick = new GoNStepsBackBrick();}
+goNStepsBackBrick returns [BrickBaseType value]
+@init {GoNStepsBackBrick brick = new GoNStepsBackBrick();}
 @after {$value = brick;}
     : 'go' 'back' formula  'layers'
       {brick.setSteps($formula.value);};
 
-hideBrick returns [Brick value]
-@init {Brick brick = new HideBrick();}
+hideBrick returns [BrickBaseType value]
+@init {HideBrick brick = new HideBrick();}
 @after {$value = brick;}
     : 'hide';
 
-ifLogicBeginBrick returns [Brick value]
-@init {Brick brick = new IfLogicBeginBrick();}
+ifLogicBeginBrick returns [BrickBaseType value]
+@init {IfLogicBeginBrick brick = new IfLogicBeginBrick();}
 @after {$value = brick;}
     : 'if' formula 'is' 'true' 'then'
       {brick.setIfCondition($formula.value);};
 
-ifLogicElseBrick returns [Brick value]
-@init {Brick brick = new IfLogicElseBrick();}
+ifLogicElseBrick returns [BrickBaseType value]
+@init {IfLogicElseBrick brick = new IfLogicElseBrick();}
 @after {$value = brick;}
     : 'else';
 
-ifLogicEndBrick returns [Brick value]
-@init {Brick brick = new IfLogicEndBrick();}
+ifLogicEndBrick returns [BrickBaseType value]
+@init {IfLogicEndBrick brick = new IfLogicEndBrick();}
 @after {$value = brick;}
     : 'end' 'if';
 
-ifOnEdgeBounceBrick returns [Brick value]
-@init {Brick brick = new IfOnEdgeBounceBrick();}
+ifOnEdgeBounceBrick returns [BrickBaseType value]
+@init {IfOnEdgeBounceBrick brick = new IfOnEdgeBounceBrick();}
 @after {$value = brick;}
     : 'if' 'on' 'edge' ','? 'bounce';
 
-legoNXTMotorActionBrick returns [Brick value]
-@init {Brick brick = new LegoNXTMotorActionBrick();}
+legoNXTMotorActionBrick returns [BrickBaseType value]
+@init {LegoNxtMotorActionBrick brick = new LegoNxtMotorActionBrick();}
 @after {$value = brick;}
     : 'NXT' 'move' 'motor' motor
       {brick.setMotor($motor.value);}
       ','? 'speed' formula
       {brick.setSpeed($formula.value);};
 
-legoNxtMotorStopBrick returns [Brick value]
-@init {Brick brick = new LegoNxtMotorStopBrick();}
+legoNxtMotorStopBrick returns [BrickBaseType value]
+@init {LegoNxtMotorStopBrick brick = new LegoNxtMotorStopBrick();}
 @after {$value = brick;}
     : 'NXT' 'stop' 'motor' motor
       {brick.setMotor($motor.value);};
 
-legoNxtMotorTurnAngleBrick returns [Brick value]
-@init {Brick brick = new LegoNxtMotorTurnAngleBrick();}
+legoNxtMotorTurnAngleBrick returns [BrickBaseType value]
+@init {LegoNxtMotorTurnAngleBrick brick = new LegoNxtMotorTurnAngleBrick();}
 @after {$value = brick;}
     : 'NXT' 'turn' 'motor' motor 
       {brick.setMotor($motor.value);}
@@ -260,8 +322,8 @@ legoNxtMotorTurnAngleBrick returns [Brick value]
       {brick.setDegrees($formula.value);}
       'degrees';
 
-legoNxtPlayToneBrick returns [Brick value]
-@init {Brick brick = new LegoNxtPlayToneBrick();}
+legoNxtPlayToneBrick returns [BrickBaseType value]
+@init {LegoNxtPlayToneBrick brick = new LegoNxtPlayToneBrick();}
 @after {$value = brick;}
     : 'NXT' 'play' 'tone' ','? 'frequency:' f=formula 
       {brick.setFrequency($f.value);}
@@ -269,141 +331,141 @@ legoNxtPlayToneBrick returns [Brick value]
       {brick.setDurationInSeconds($d.value);}
       'seconds';
 
-loopEndBrick returns [Brick value]
-@init {Brick brick = new LoopEndBrick();}
+loopEndBrick returns [BrickBaseType value]
+@init {LoopEndBrick brick = new LoopEndBrick();}
 @after {$value = brick;}
     : 'end' 'of' 'loop';
 
-moveNStepsBrick returns [Brick value]
-@init {Brick brick = new MoveNStepsBrick();}
+moveNStepsBrick returns [BrickBaseType value]
+@init {MoveNStepsBrick brick = new MoveNStepsBrick();}
 @after {$value = brick;}
     : 'move' formula 'steps'
       {brick.setSteps($formula.value);};
 
-nextLookBrik returns [Brick value]
-@init {Brick brick = new NextLookBrik();}
+nextLookBrick returns [BrickBaseType value]
+@init {NextLookBrick brick = new NextLookBrick();}
 @after {$value = brick;}
     : 'next' 'look';
 
 
-noteBrick returns [Brick value]
-@init {Brick brick = new NoteBrick();}
+noteBrick returns [BrickBaseType value]
+@init {NoteBrick brick = new NoteBrick();}
 @after {$value = brick;}
-    : 'note' text
-      {brick.setNote($text.value);};
+    : 'note' textField
+      {brick.setNote($textField.value);};
 
-placeAtBrick returns [Brick value]
-@init {Brick brick = new PlaceAtBrick();}
+placeAtBrick returns [BrickBaseType value]
+@init {PlaceAtBrick brick = new PlaceAtBrick();}
 @after {$value = brick;}
     : 'place' 'at' 'X:' x=formula
-      {brick.setxPosition(x.value);}
+      {brick.setxPosition($x.value);}
       ','? 'Y:' y=formula
-      {brick.setyPosition(y.value);};
+      {brick.setyPosition($y.value);};
 
-playSoundBrick returns [Brick value]
-@init {Brick brick = new PlaySoundBrick();}
+playSoundBrick returns [BrickBaseType value]
+@init {PlaySoundBrick brick = new PlaySoundBrick();}
 @after {$value = brick;}
     : 'start' 'sound' sound
       {brick.setSound($sound.value);};
 
-pointInDirectionBrick returns [Brick value]
-@init {Brick brick = new PointInDirectionBrick();}
+pointInDirectionBrick returns [BrickBaseType value]
+@init {PointInDirectionBrick brick = new PointInDirectionBrick();}
 @after {$value = brick;}
     : 'point' 'in' 'direction' formula 'degrees'
       {brick.setDegrees($formula.value);};
 
-pointToBrick returns [Brick value]
-@init {Brick brick = new PointToBrick();}
+pointToBrick returns [BrickBaseType value]
+@init {PointToBrick brick = new PointToBrick();}
 @after {$value = brick;}
     : 'point' 'to' objectName
       {brick.setPointedObject($objectName.value);};
 
-repeatBrick returns [Brick value]
-@init {Brick brick = new RepeatBrick();}
+repeatBrick returns [BrickBaseType value]
+@init {RepeatBrick brick = new RepeatBrick();}
 @after {$value = brick;}
     : 'repeat' formula
       {brick.setTimesToRepeat($formula.value);};
 
-setBrightnessBrick returns [Brick value]
-@init {Brick brick = new SetBrightnessBrick();}
+setBrightnessBrick returns [BrickBaseType value]
+@init {SetBrightnessBrick brick = new SetBrightnessBrick();}
 @after {$value = brick;}
     : 'set' 'brightness' 'to' formula '%'
       {brick.setBrightness($formula.value);};
 
-setGhostEffectBrick returns [Brick value]
-@init {Brick brick = new SetGhostEffectBrick();}
+setGhostEffectBrick returns [BrickBaseType value]
+@init {SetGhostEffectBrick brick = new SetGhostEffectBrick();}
 @after {$value = brick;}
     : 'set' 'ghost' 'effect' 'to' formula '%'
       {brick.setTransparency($formula.value);};
 
-setLookBrick returns [Brick value]
-@init {Brick brick = new SetLookBrick();}
+setLookBrick returns [BrickBaseType value]
+@init {SetLookBrick brick = new SetLookBrick();}
 @after {$value = brick;}
     : 'switch' 'to' 'look' look
       {brick.setLook($look.value);};
 
-setSizeToBrick returns [Brick value]
-@init {Brick brick = new SetSizeToBrick();}
+setSizeToBrick returns [BrickBaseType value]
+@init {SetSizeToBrick brick = new SetSizeToBrick();}
 @after {$value = brick;}
     : 'set' 'size' 'to' formula '%'
       {brick.setSize($formula.value);};
 
-setVariableBrick returns [Brick value]
-@init {Brick brick = new SetVariableBrick();}
-@after {$value = brick}
+setVariableBrick returns [BrickBaseType value]
+@init {SetVariableBrick brick = new SetVariableBrick();}
+@after {$value = brick;}
     : 'set' 'variable' userVariable 'to' formula 
       { brick.setUserVariable($userVariable.value);
         brick.setVariableFormula($formula.value);};
 
-setVolumeToBrick returns [Brick value]
-@init {Brick brick = new SetVolumeToBrick();}
+setVolumeToBrick returns [BrickBaseType value]
+@init {SetVolumeToBrick brick = new SetVolumeToBrick();}
 @after {$value = brick;}
     : 'set' 'volume' 'to' formula '%'
       {brick.setVolume($formula.value);};
 
-setXBrick returns [Brick value]
-@init {Brick brick = new SetXBrick();}
+setXBrick returns [BrickBaseType value]
+@init {SetXBrick brick = new SetXBrick();}
 @after {$value = brick;}
     : 'set' 'X' 'to' formula 
       {brick.setxPosition($formula.value);};
 
-setYBrick returns [Brick value]
-@init {Brick brick = new SetYBrick();}
+setYBrick returns [BrickBaseType value]
+@init {SetYBrick brick = new SetYBrick();}
 @after {$value = brick;}
     : 'set' 'Y' 'to' formula 
       {brick.setyPosition($formula.value);};
 
 
-showBrick returns [Brick value]
-@init {Brick brick = new ShowBrick();}
+showBrick returns [BrickBaseType value]
+@init {ShowBrick brick = new ShowBrick();}
 @after {$value = brick;}
     : 'show';
 
-speakBrick returns [Brick value]
-@init { Brick brick = new SpeakBrick();}
+speakBrick returns [BrickBaseType value]
+@init { SpeakBrick brick = new SpeakBrick();}
 @after {$value = brick;} 
-    : 'speak' text
-      {brick.setText($text.value);};
+    : 'speak' textField
+      {brick.setText($textField.value);};
 
-stopAllSoundsBrick returns [Brick value]
-@init { Brick brick = new StopAllSoundsBrick();}
+stopAllSoundsBrick returns [BrickBaseType value]
+@init { StopAllSoundsBrick brick = new StopAllSoundsBrick();}
 @after { $value = brick;}
     : 'stop' 'all' 'sounds'; 
 
-turnLeftBrick returns [Brick value]
-@init { Brick brick = new TurnLeftBrick();}
+turnLeftBrick returns [BrickBaseType value]
+@init { TurnLeftBrick brick = new TurnLeftBrick();}
 @after { $value = brick;}
     : 'turn' 'left' formula 'degrees'
       {brick.setDegrees($formula.value);};
 
-turnRightBrick returns [Brick value]
-@init { Brick brick = new TurnRightBrick();}
+turnRightBrick returns [BrickBaseType value]
+@init { TurnRightBrick brick = new TurnRightBrick();}
 @after { $value = brick;}
     : 'turn' 'right' formula 'degrees'
       {brick.setDegrees($formula.value);};
 
-waitBrick returns [Brick value]
-@init { Brick brick = new WaitBrick();}
+waitBrick returns [BrickBaseType value]
+@init { WaitBrick brick = new WaitBrick();}
 @after { $value = brick;}
     : 'wait' formula 'seconds'
       {brick.setTimeToWaitInSeconds($formula.value);};
@@ -419,17 +481,17 @@ formula returns [Formula value]
 @after{ 
          formulaParser = new InternFormulaParser(tokenList);
          Formula formulaTree = new Formula();
-         formulaTree.setFormulaTree(internParser.parseFormula());
+         formulaTree.setFormulaTree(formulaParser.parseFormula());
          $value = formulaTree;
       }
     : '(' (token {tokenList.add($token.value);} )+ ')';
 
 look returns [LookData value]: USER_VARIABLE 
   {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
-   name = buf.substring(1,buf.length()-1);
+   String name = buf.substring(1,buf.length()-1).toString();
    $value = null;
    // TODO: exception LookData not found
-   for (LookData item: sprite.getLookList()) {
+   for (LookData item: currentSprite.getLookList()) {
      if (item.getName().equals(name))
        $value = item;
    }
@@ -437,10 +499,10 @@ look returns [LookData value]: USER_VARIABLE
 
 sound returns [SoundInfo value]: USER_VARIABLE 
   {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
-   name = buf.substring(1,buf.length()-1);
+   String name = buf.substring(1,buf.length()-1).toString();
    $value = null;
    // TODO: exception SoundInfo not found
-   for (SoundInfo item: sprite.getSoundList()) {
+   for (SoundInfo item: currentSprite.getSoundList()) {
      if (item.getName().equals(name))
        $value = item;
    }
@@ -448,7 +510,7 @@ sound returns [SoundInfo value]: USER_VARIABLE
 
 objectName returns [Sprite value]: USER_VARIABLE
   {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
-   name = buf.substring(1,buf.length()-1);
+   String name = buf.substring(1,buf.length()-1).toString();
    $value = null;
    // TODO: exception SoundInfo not found
    for (Sprite item: spriteList) {
@@ -459,15 +521,15 @@ objectName returns [Sprite value]: USER_VARIABLE
 
 message returns[String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;};
 motor returns [String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;}; 
-text returns[String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;};
+textField returns[String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;};
 
 userVariable returns [UserVariable value]
 @init { UserVariable var = new UserVariable(); }
 @after {$value = var;}
     :USER_VARIABLE {
-        if (variables.containsKey($USER_VARIABLE.text) {
+        if (variables.containsKey($USER_VARIABLE.text)) 
            var = variables.get($USER_VARIABLE.text);
-        } else {
+        else {
            var.setName($USER_VARIABLE.text);
            variables.put($USER_VARIABLE.text, var);
         }    

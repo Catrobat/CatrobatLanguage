@@ -50,8 +50,8 @@ public abstract class Script implements Serializable {
 		return brickList;
 	}
 
-	public void setBrickList(ArrayList<Brick> brickList) {
-		this.brickList = brickList;
+	public void setBrickList(ArrayList<Brick> value) {
+		this.brickList = value;
 	}
 
 	public Sprite getObject() {

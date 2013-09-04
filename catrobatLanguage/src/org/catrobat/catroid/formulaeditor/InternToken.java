@@ -32,6 +32,10 @@ public class InternToken {
 	public InternToken(InternTokenType internTokenType) {
 		this.internTokenType = internTokenType;
 	}
+	
+	public InternToken(String value) {
+		// TODO: complete constructor from string
+	}
 
 	public InternToken(InternTokenType internTokenType, String tokenStringValue) {
 		this.tokenStringValue = tokenStringValue;
@@ -40,7 +44,6 @@ public class InternToken {
 
 	public void setTokenStringValue(String tokenString) {
 		this.tokenStringValue = tokenString;
-		// TODO: parse type from string
 	}
 
 	public String getTokenStringValue() {

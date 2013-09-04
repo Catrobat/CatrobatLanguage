@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.Writer;
 
 import org.catrobat.catroid.content.Project;
-import org.catrobat.catroid.content.Sprite;
 import org.catrobat.catroid.translator.Translator;
 import org.junit.Test;
 import org.xml.sax.SAXException;
@@ -22,9 +21,9 @@ public class ScriptStringTest {
 				inputXML);
 
 		Writer writer = new BufferedWriter(new FileWriter(outputTXT));
-		for (Sprite item: xmlProject.getSpriteList()) {
-			writer.write(item.toString()+"\r\n");
-		}
+	
+		if (!xmlProject.getSpriteList().isEmpty())
+			writer.write(xmlProject.getSpriteList().get(0).toString()+"\r\n");
 		writer.close();
 	}
 
