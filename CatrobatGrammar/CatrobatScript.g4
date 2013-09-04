@@ -64,8 +64,12 @@ import org.catrobat.catroid.content.bricks.TurnLeftBrick;
 import org.catrobat.catroid.content.bricks.TurnRightBrick;
 import org.catrobat.catroid.content.bricks.WaitBrick;
 import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.Functions;
 import org.catrobat.catroid.formulaeditor.InternFormulaParser;
 import org.catrobat.catroid.formulaeditor.InternToken;
+import org.catrobat.catroid.formulaeditor.InternTokenType;
+import org.catrobat.catroid.formulaeditor.Operators;
+import org.catrobat.catroid.formulaeditor.Sensors;
 import org.catrobat.catroid.formulaeditor.UserVariable;
          }
 
@@ -527,19 +531,42 @@ userVariable returns [UserVariable value]
 @init { UserVariable var = new UserVariable(); }
 @after {$value = var;}
     :USER_VARIABLE {
-        if (variables.containsKey($USER_VARIABLE.text)) 
-           var = variables.get($USER_VARIABLE.text);
+        StringBuffer buf = new StringBuffer($text);
+        String name = buf.substring(1, buf.length()-1).toString();
+        if (variables.containsKey(name)) 
+           var = variables.get(name);
         else {
-           var.setName($USER_VARIABLE.text);
-           variables.put($USER_VARIABLE.text, var);
+           var.setName(name);
+           variables.put(name, var);
         }    
        };
 
 token returns [InternToken value]
-@after{ $value = new InternToken($text);}
-    : NUMBER | OPERATOR | SENSOR | FUNCTION_NAME |
-       USER_VARIABLE|
-       BRACKET_OPEN | BRACKET_CLOSE | FUNCTION_PARAMETER_DELIMITER;           
+    : NUMBER 
+      { $value = new InternToken(InternTokenType.NUMBER,$text);}|
+      OPERATOR 
+      { $value = new InternToken(InternTokenType.OPERATOR,Operators.getInnerName($text));}|
+      SENSOR 
+      { $value = new InternToken(InternTokenType.SENSOR,Sensors.getInnerName($text));}|
+      FUNCTION_NAME 
+      { $value = new InternToken(InternTokenType.FUNCTION_NAME,Functions.getInnerName($text));}|
+      USER_VARIABLE 
+      {UserVariable var = new UserVariable();
+       StringBuffer buf = new StringBuffer($text);
+       String name = buf.substring(1,buf.length()-1).toString(); 
+       if (variables.containsKey(name)) 
+           var = variables.get(name);
+        else {
+           var.setName(name);
+           variables.put(name, var);
+        }    
+       $value = new InternToken(InternTokenType.USER_VARIABLE,name);}|
+      BRACKET_OPEN 
+      { $value = new InternToken(InternTokenType.BRACKET_OPEN,$text);}|
+      BRACKET_CLOSE 
+      { $value = new InternToken(InternTokenType.BRACKET_CLOSE,$text);}| 
+      FUNCTION_PARAMETER_DELIMITER 
+      { $value = new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_OPEN,$text);};           
 
 USER_VARIABLE: '"' STRING '"';
 NUMBER: (DIGIT)+('.' DIGIT+)?;

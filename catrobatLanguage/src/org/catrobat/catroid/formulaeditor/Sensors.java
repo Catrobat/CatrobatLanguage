@@ -23,9 +23,9 @@
 package org.catrobat.catroid.formulaeditor;
 
 public enum Sensors {
-	X_ACCELERATION, Y_ACCELERATION, Z_ACCELERATION, COMPASS_DIRECTION, X_INCLINATION, Y_INCLINATION, OBJECT_X(true), OBJECT_Y(
-			true), OBJECT_GHOSTEFFECT(true), OBJECT_BRIGHTNESS(true), OBJECT_SIZE(true), OBJECT_ROTATION(true), OBJECT_LAYER(
-			true);
+	X_ACCELERATION, Y_ACCELERATION, Z_ACCELERATION, COMPASS_DIRECTION, X_INCLINATION, Y_INCLINATION, OBJECT_X(
+			true), OBJECT_Y(true), OBJECT_GHOSTEFFECT(true), OBJECT_BRIGHTNESS(
+			true), OBJECT_SIZE(true), OBJECT_ROTATION(true), OBJECT_LAYER(true);
 	public final boolean isObjectSensor;
 
 	Sensors(boolean isObjectSensor) {
@@ -37,10 +37,18 @@ public enum Sensors {
 	}
 
 	public static boolean isSensor(String value) {
-		if (getSensorByValue(value) == null) {
+		if (getSensorByValue(value) == null
+				&& getSensorByValue(value.toUpperCase()) == null) {
 			return false;
 		}
 		return true;
+	}
+	
+
+	public static String getInnerName(String value) {
+		if (isSensor(value))
+			return value.toUpperCase();
+		return null;
 	}
 
 	public static Sensors getSensorByValue(String value) {
@@ -51,7 +59,7 @@ public enum Sensors {
 		}
 		return null;
 	}
-	
+
 	public String toString() {
 		return name().toLowerCase();
 	}

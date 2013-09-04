@@ -62,8 +62,12 @@ import org.catrobat.catroid.content.bricks.TurnLeftBrick;
 import org.catrobat.catroid.content.bricks.TurnRightBrick;
 import org.catrobat.catroid.content.bricks.WaitBrick;
 import org.catrobat.catroid.formulaeditor.Formula;
+import org.catrobat.catroid.formulaeditor.Functions;
 import org.catrobat.catroid.formulaeditor.InternFormulaParser;
 import org.catrobat.catroid.formulaeditor.InternToken;
+import org.catrobat.catroid.formulaeditor.InternTokenType;
+import org.catrobat.catroid.formulaeditor.Operators;
+import org.catrobat.catroid.formulaeditor.Sensors;
 import org.catrobat.catroid.formulaeditor.UserVariable;
          
 import org.antlr.v4.runtime.Lexer;

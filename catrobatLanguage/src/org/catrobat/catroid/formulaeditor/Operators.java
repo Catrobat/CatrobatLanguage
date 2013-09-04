@@ -22,14 +22,19 @@
  */
 package org.catrobat.catroid.formulaeditor;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public enum Operators {
-	LOGICAL_AND(2, true), LOGICAL_OR(1, true), EQUAL(3, true), NOT_EQUAL(4, true), SMALLER_OR_EQUAL(4, true), GREATER_OR_EQUAL(
-			4, true), SMALLER_THAN(4, true), GREATER_THAN(4, true), PLUS(5), MINUS(5), MULT(6), DIVIDE(6), MOD(6), POW(
-			7), LOGICAL_NOT(4, true);
+	LOGICAL_AND(2, true), LOGICAL_OR(1, true), EQUAL(3, true), NOT_EQUAL(4,
+			true), SMALLER_OR_EQUAL(4, true), GREATER_OR_EQUAL(4, true), SMALLER_THAN(
+			4, true), GREATER_THAN(4, true), PLUS(5), MINUS(5), MULT(6), DIVIDE(
+			6), MOD(6), POW(7), LOGICAL_NOT(4, true);
 
 	private final Integer priority;
 	public final boolean isLogicalOperator;
+
+	private static Map<Operators, String> values;
 
 	Operators(Integer priority) {
 		this.priority = priority;
@@ -53,43 +58,53 @@ public enum Operators {
 
 		return returnValue;
 	}
+	
+	public static String getInnerName(String value) {
+		for (Operators item: values.keySet()) {
+			if (values.get(item).equals(value))
+				return item.name();
+		}
+		return null;		
+	}
 
 	public static Operators getOperatorByValue(String value) {
 		try {
 			return valueOf(value);
 		} catch (IllegalArgumentException exception) {
-
+		
 		}
 		return null;
 	}
 
 	public static boolean isOperator(String value) {
-		if (getOperatorByValue(value) == null) {
+		if (getOperatorByValue(value) == null && !values.containsValue(value)) {
 			return false;
 		}
 
 		return true;
 	}
-	
+
 	public String toString() {
-		switch (this) {
-		case DIVIDE: return "/";
-		case EQUAL: return "=";
-		case GREATER_OR_EQUAL: return ">=";
-		case GREATER_THAN: return ">";
-		case LOGICAL_AND: return " AND ";
-		case LOGICAL_NOT: return " NOT ";
-		case LOGICAL_OR: return " OR ";
-		case MINUS: return "-";
-		case MOD: return "%";
-		case MULT: return "*";
-		case NOT_EQUAL: return "!=";
-		case PLUS: return "+";
-		case POW: return "^";
-		case SMALLER_OR_EQUAL: return "<=";
-		case SMALLER_THAN: return "<";
-		default: return "";
-		}
+		return values.get(this);
+	}
+
+	static {
+		values = new HashMap<Operators, String>();
+		values.put(DIVIDE, "/");
+		values.put(EQUAL, "=");
+		values.put(GREATER_OR_EQUAL, ">=");
+		values.put(GREATER_THAN, ">");
+		values.put(LOGICAL_AND, " AND ");
+		values.put(LOGICAL_NOT, " NOT ");
+		values.put(LOGICAL_OR, " OR ");
+		values.put(MINUS, "-");
+		values.put(MOD, "%");
+		values.put(MULT, "*");
+		values.put(NOT_EQUAL, "!=");
+		values.put(PLUS, "+");
+		values.put(POW, "^");
+		values.put(SMALLER_OR_EQUAL, "<=");
+		values.put(SMALLER_THAN, "<");
 	}
 
 }

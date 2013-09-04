@@ -52,7 +52,7 @@ public class ANTLRParserTest {
 
 		parser.program();
 		List<Script> scriptList = parser.getScriptList();
-		System.out.println(scriptList);
+		System.out.println(parser.getVariables().keySet().toArray()[0]);
 
 		assertEquals(controlList, scriptList);
 	}

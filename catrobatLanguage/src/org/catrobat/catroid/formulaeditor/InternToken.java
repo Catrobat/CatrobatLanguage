@@ -32,10 +32,7 @@ public class InternToken {
 	public InternToken(InternTokenType internTokenType) {
 		this.internTokenType = internTokenType;
 	}
-	
-	public InternToken(String value) {
-		// TODO: complete constructor from string
-	}
+
 
 	public InternToken(InternTokenType internTokenType, String tokenStringValue) {
 		this.tokenStringValue = tokenStringValue;
@@ -59,7 +56,8 @@ public class InternToken {
 
 	public boolean isOperator() {
 
-		if (internTokenType == InternTokenType.OPERATOR && Operators.isOperator(tokenStringValue)) {
+		if (internTokenType == InternTokenType.OPERATOR
+				&& Operators.isOperator(tokenStringValue)) {
 			return true;
 		}
 		return false;
@@ -149,22 +147,35 @@ public class InternToken {
 	public InternToken deepCopy() {
 		return new InternToken(internTokenType, tokenStringValue);
 	}
-	
+
 	public String toString() {
 		switch (internTokenType) {
-		case BRACKET_CLOSE: return ")";
-		case BRACKET_OPEN: return "(";
-		case FUNCTION_NAME: return Functions.getFunctionByValue(tokenStringValue).toString();
-		case FUNCTION_PARAMETER_DELIMITER: return ", ";
-		case FUNCTION_PARAMETERS_BRACKET_CLOSE: return ")";
-		case FUNCTION_PARAMETERS_BRACKET_OPEN: return "(";
-		case NUMBER: return tokenStringValue;
-		case OPERATOR: return Operators.getOperatorByValue(tokenStringValue).toString();
-		case PARSER_END_OF_FILE: return "\r\n";
-		case PERIOD: return "";
-		case SENSOR: return Sensors.getSensorByValue(tokenStringValue).toString();
-		case USER_VARIABLE: return "\"" + tokenStringValue+ "\"";
-		default: return "";
+		case BRACKET_CLOSE:
+			return ")";
+		case BRACKET_OPEN:
+			return "(";
+		case FUNCTION_NAME:
+			return Functions.getFunctionByValue(tokenStringValue).toString();
+		case FUNCTION_PARAMETER_DELIMITER:
+			return ", ";
+		case FUNCTION_PARAMETERS_BRACKET_CLOSE:
+			return ")";
+		case FUNCTION_PARAMETERS_BRACKET_OPEN:
+			return "(";
+		case NUMBER:
+			return tokenStringValue;
+		case OPERATOR:
+			return Operators.getOperatorByValue(tokenStringValue).toString();
+		case PARSER_END_OF_FILE:
+			return "\r\n";
+		case PERIOD:
+			return "";
+		case SENSOR:
+			return Sensors.getSensorByValue(tokenStringValue).toString();
+		case USER_VARIABLE:
+			return "\"" + tokenStringValue + "\"";
+		default:
+			return "";
 		}
 	}
 

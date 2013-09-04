@@ -27,11 +27,18 @@ public enum Functions {
 	SIN, COS, TAN, LN, LOG, SQRT, RAND, ROUND, ABS, PI, MOD, ARCSIN, ARCCOS, ARCTAN, EXP, MAX, MIN, TRUE, FALSE;
 
 	public static boolean isFunction(String value) {
-		if (getFunctionByValue(value) == null) {
+		if (getFunctionByValue(value) == null
+				&& getFunctionByValue(value.toUpperCase()) == null) {
 			return false;
 		}
 		return true;
 
+	}
+	
+	public static String getInnerName(String value) {
+		if (isFunction(value))
+			return value.toUpperCase();
+		return null;
 	}
 
 	public static Functions getFunctionByValue(String value) {
@@ -42,7 +49,7 @@ public enum Functions {
 		}
 		return null;
 	}
-	
+
 	public String toString() {
 		if (this == TRUE || this == FALSE)
 			return name();
