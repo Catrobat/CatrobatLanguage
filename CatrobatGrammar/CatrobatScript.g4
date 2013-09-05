@@ -104,8 +104,6 @@ public void setSpriteList(List<Sprite> spriteList) {
   this.spriteList = spriteList;
 }
 
-InternFormulaParser formulaParser;
-
 	private void changeBrick(Script script, Brick oldBrick, Brick newBrick) {
 		int index = script.getBrickList().indexOf(oldBrick);
 		script.getBrickList().remove(oldBrick);
@@ -564,9 +562,11 @@ formula returns [Formula value]
          List<InternToken> tokenList = new ArrayList<InternToken>();
       }
 @after{ 
-         formulaParser = new InternFormulaParser(tokenList);
+         System.out.println(tokenList);
+         InternFormulaParser formulaParser = new InternFormulaParser(tokenList);
          Formula formulaTree = new Formula();
          formulaTree.setFormulaTree(formulaParser.parseFormula());
+         System.out.println(formulaTree);
          $value = formulaTree;
       }
     : '(' (token {tokenList.add($token.value);} )+ ')';

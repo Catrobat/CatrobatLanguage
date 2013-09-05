@@ -165,8 +165,6 @@ public class CatrobatScriptLexer extends Lexer {
 	  this.spriteList = spriteList;
 	}
 
-	InternFormulaParser formulaParser;
-
 		private void changeBrick(Script script, Brick oldBrick, Brick newBrick) {
 			int index = script.getBrickList().indexOf(oldBrick);
 			script.getBrickList().remove(oldBrick);

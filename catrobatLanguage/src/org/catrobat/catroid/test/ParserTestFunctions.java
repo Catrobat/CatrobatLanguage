@@ -36,9 +36,11 @@ import org.catrobat.catroid.formulaeditor.InternFormulaParser;
 import org.catrobat.catroid.formulaeditor.InternToken;
 import org.catrobat.catroid.formulaeditor.InternTokenType;
 import org.catrobat.catroid.formulaeditor.Operators;
+import org.junit.Test;
 
 public class ParserTestFunctions {
 
+	@Test
 	public void testSin() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -53,6 +55,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: sin(90)", parseTree);
 	}
 
+	@Test
 	public void testCos() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -67,6 +70,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: cos(180)", parseTree);
 	}
 
+	@Test
 	public void testTan() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -81,6 +85,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: tan(180)", parseTree);
 	}
 
+	@Test
 	public void testLn() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -95,6 +100,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: ln(e)", parseTree);
 	}
 
+	@Test
 	public void testLog() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -109,6 +115,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: log(10)", parseTree);
 	}
 
+	@Test
 	public void testPi() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -120,6 +127,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: pi", parseTree);
 	}
 
+	@Test
 	public void testSqrt() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -134,6 +142,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: sqrt(100)", parseTree);
 	}
 
+	@Test
 	public void testRandomNaturalNumbers() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -150,6 +159,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: random(0,1)", parseTree);
 	}
 
+	@Test
 	public void testRound() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -164,6 +174,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: round(1.33333)", parseTree);
 	}
 
+	@Test
 	public void testMod() {
 
 		for (int offset = 0; offset < 10; offset += 1) {
@@ -246,6 +257,7 @@ public class ParserTestFunctions {
 		}
 	}
 
+	@Test
 	public void testAbs() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -261,6 +273,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: abs(-1)", parseTree);
 	}
 
+	@Test
 	public void testInvalidFunction() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -275,6 +288,7 @@ public class ParserTestFunctions {
 		assertNull("Formula parsed but should not: INVALID_FUNCTION(1)", parseTree);
 	}
 
+	@Test
 	public void testTrue() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -286,6 +300,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: true", parseTree);
 	}
 
+	@Test
 	public void testFalse() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -297,6 +312,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: false", parseTree);
 	}
 
+	@Test
 	public void testArcsin() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -311,6 +327,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: arcsin(1)", parseTree);
 	}
 
+	@Test
 	public void testArccos() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -325,6 +342,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: arccos(0)", parseTree);
 	}
 
+	@Test
 	public void testArctan() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -339,6 +357,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: arctan(1)", parseTree);
 	}
 
+	@Test
 	public void testExp() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -353,6 +372,7 @@ public class ParserTestFunctions {
 		assertNotNull("Formula is not parsed correctly: exp(2)", parseTree);
 	}
 
+	@Test
 	public void testMax() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 
@@ -370,6 +390,7 @@ public class ParserTestFunctions {
 
 	}
 
+	@Test
 	public void testMin() {
 		List<InternToken> internTokenList = new LinkedList<InternToken>();
 

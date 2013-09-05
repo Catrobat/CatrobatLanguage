@@ -14,6 +14,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.formulaeditor.Functions;
 import org.catrobat.catroid.translator.Translator;
 import org.catrobat.parser.CatrobatScriptLexer;
 import org.catrobat.parser.CatrobatScriptParser;
@@ -109,6 +110,7 @@ public class ANTLRParserTest {
 	public void AirFightTest() throws IOException, SAXException {
 		File inputScript = new File("projects/Air_fight_0.1/scripts.txt");
 		File inputXML = new File("projects/Air_fight_0.1/code.xml");
+		
 		test(inputScript, inputXML);
 	}
 

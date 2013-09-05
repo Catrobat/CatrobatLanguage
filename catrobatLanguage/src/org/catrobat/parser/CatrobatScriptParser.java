@@ -195,8 +195,6 @@ public class CatrobatScriptParser extends Parser {
 	  this.spriteList = spriteList;
 	}
 
-	InternFormulaParser formulaParser;
-
 		private void changeBrick(Script script, Brick oldBrick, Brick newBrick) {
 			int index = script.getBrickList().indexOf(oldBrick);
 			script.getBrickList().remove(oldBrick);
@@ -3416,9 +3414,11 @@ public class CatrobatScriptParser extends Parser {
 			setState(605); match(BRACKET_CLOSE);
 			}
 			 
-			         formulaParser = new InternFormulaParser(tokenList);
+			         System.out.println(tokenList);
+			         InternFormulaParser formulaParser = new InternFormulaParser(tokenList);
 			         Formula formulaTree = new Formula();
 			         formulaTree.setFormulaTree(formulaParser.parseFormula());
+			         System.out.println(formulaTree);
 			         ((FormulaContext)_localctx).value =  formulaTree;
 			      
 		}

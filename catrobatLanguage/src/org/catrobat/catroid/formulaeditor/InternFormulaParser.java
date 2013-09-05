@@ -151,7 +151,6 @@ public class InternFormulaParser {
 		try {
 			formulaParseTree = formula();
 		} catch (InternFormulaParserException parseExeption) {
-
 			errorTokenIndex = currentTokenParseIndex;
 		}
 
@@ -273,7 +272,7 @@ public class InternFormulaParser {
 		functionTree = new FormulaElement(FormulaElement.ElementType.FUNCTION, currentToken.getTokenStringValue(), null);
 		getNextToken();
 
-		if (currentToken.isFunctionParameterBracketOpen()) {
+		if (currentToken.isFunctionParameterBracketOpen() || currentToken.isBracketOpen()) {
 			getNextToken();
 			functionTree.setLeftChild(termList());
 
@@ -282,7 +281,7 @@ public class InternFormulaParser {
 				functionTree.setRightChild(termList());
 			}
 
-			if (!currentToken.isFunctionParameterBracketClose()) {
+			if (!currentToken.isFunctionParameterBracketClose() && !currentToken.isBracketClose()) {
 				throw new InternFormulaParserException("Parse Error");
 			}
 			getNextToken();
