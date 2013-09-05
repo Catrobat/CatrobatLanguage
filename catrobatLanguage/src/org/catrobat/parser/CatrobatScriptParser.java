@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
@@ -38,8 +39,11 @@ import org.catrobat.catroid.content.bricks.LegoNxtMotorActionBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtMotorStopBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtMotorTurnAngleBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtPlayToneBrick;
+import org.catrobat.catroid.content.bricks.LoopBeginBrick;
 import org.catrobat.catroid.content.bricks.LoopEndBrick;
+import org.catrobat.catroid.content.bricks.LoopEndlessBrick;
 import org.catrobat.catroid.content.bricks.MoveNStepsBrick;
+import org.catrobat.catroid.content.bricks.NestingBrick;
 import org.catrobat.catroid.content.bricks.NextLookBrick;
 import org.catrobat.catroid.content.bricks.NoteBrick;
 import org.catrobat.catroid.content.bricks.PlaceAtBrick;
@@ -192,7 +196,84 @@ public class CatrobatScriptParser extends Parser {
 	}
 
 	InternFormulaParser formulaParser;
-	         
+
+		private void changeBrick(Script script, Brick oldBrick, Brick newBrick) {
+			int index = script.getBrickList().indexOf(oldBrick);
+			script.getBrickList().remove(oldBrick);
+			script.getBrickList().add(index, newBrick);
+		}
+
+		private void setAllInnerBricks() {
+			for (Script script : scriptList) {
+				Stack<Brick> stack = new Stack<Brick>();
+				for (int i=0; i<script.getBrickList().size(); i++) {
+					Brick item = script.getBrickList().get(i);
+					if (item instanceof NestingBrick) {
+						if (item instanceof IfLogicEndBrick) {
+							if (stack.peek() instanceof IfLogicBeginBrick) {
+								// TODO: if - end
+								System.out.println("if-end");
+							} else if (stack.peek() instanceof IfLogicElseBrick) {
+								Brick elseBrick = stack.pop();
+
+								if (!(stack.peek() instanceof IfLogicBeginBrick)) {
+									// TODO: exception with nesting
+									System.out.println("exception");
+								}
+								Brick ifBrick = stack.pop();
+								setConditionReferences(item, elseBrick, ifBrick);
+							}
+						} else if (item instanceof LoopEndBrick) {
+							if (stack.peek() instanceof LoopBeginBrick) {
+								Brick beginBrick = stack.pop();
+								if (beginBrick instanceof ForeverBrick) {
+									Brick oldItem = item;
+									item = new LoopEndlessBrick();
+									changeBrick(script, oldItem, item);
+								}
+								setLoopReferences(item, beginBrick);
+							} else {
+								// TODO: exception
+								System.out.println("exception");
+							}
+						} else {
+							stack.push(item);
+						}
+					}
+				}
+				if (!stack.isEmpty()) {
+					// TODO: exception
+					System.out.println("exeption");
+				}
+			}
+		}
+
+		private void setConditionReferences(Brick item, Brick elseBrick,
+				Brick ifBrick) {
+			((IfLogicBeginBrick) ifBrick)
+					.setIfElseBrick((IfLogicElseBrick) elseBrick);
+			((IfLogicBeginBrick) ifBrick)
+					.setIfEndBrick((IfLogicEndBrick) item);
+
+			((IfLogicElseBrick) elseBrick)
+					.setIfBeginBrick((IfLogicBeginBrick) ifBrick);
+			((IfLogicElseBrick) elseBrick)
+					.setIfEndBrick((IfLogicEndBrick) item);
+
+			((IfLogicEndBrick) item)
+					.setIfBeginBrick((IfLogicBeginBrick) ifBrick);
+			((IfLogicEndBrick) item)
+					.setIfElseBrick((IfLogicElseBrick) elseBrick);
+		}
+
+		private void setLoopReferences(Brick item, Brick beginBrick) {
+			((LoopBeginBrick) beginBrick)
+					.setLoopEndBrick((LoopEndBrick) item);
+			((LoopEndBrick) item)
+					.setLoopBeginBrick((LoopBeginBrick) beginBrick);
+		}
+
+
 	public CatrobatScriptParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
@@ -275,6 +356,7 @@ public class CatrobatScriptParser extends Parser {
 				_la = _input.LA(1);
 			}
 			}
+			 setAllInnerBricks();
 		}
 		catch (RecognitionException re) {
 			_localctx.exception = re;
@@ -3517,7 +3599,9 @@ public class CatrobatScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(616); ((MessageContext)_localctx).USER_VARIABLE = match(USER_VARIABLE);
-			((MessageContext)_localctx).value =  (((MessageContext)_localctx).USER_VARIABLE!=null?((MessageContext)_localctx).USER_VARIABLE.getText():null);
+			StringBuffer buf = new StringBuffer((((MessageContext)_localctx).USER_VARIABLE!=null?((MessageContext)_localctx).USER_VARIABLE.getText():null));
+			     String name = buf.substring(1,buf.length()-1).toString();
+			     ((MessageContext)_localctx).value =  name;
 			}
 		}
 		catch (RecognitionException re) {
@@ -3556,7 +3640,9 @@ public class CatrobatScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(619); ((MotorContext)_localctx).USER_VARIABLE = match(USER_VARIABLE);
-			((MotorContext)_localctx).value =  (((MotorContext)_localctx).USER_VARIABLE!=null?((MotorContext)_localctx).USER_VARIABLE.getText():null);
+			StringBuffer buf = new StringBuffer((((MotorContext)_localctx).USER_VARIABLE!=null?((MotorContext)_localctx).USER_VARIABLE.getText():null));
+			     String name = buf.substring(1,buf.length()-1).toString();
+			     ((MotorContext)_localctx).value =  name;
 			}
 		}
 		catch (RecognitionException re) {
@@ -3595,7 +3681,9 @@ public class CatrobatScriptParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(622); ((TextFieldContext)_localctx).USER_VARIABLE = match(USER_VARIABLE);
-			((TextFieldContext)_localctx).value =  (((TextFieldContext)_localctx).USER_VARIABLE!=null?((TextFieldContext)_localctx).USER_VARIABLE.getText():null);
+			StringBuffer buf = new StringBuffer((((TextFieldContext)_localctx).USER_VARIABLE!=null?((TextFieldContext)_localctx).USER_VARIABLE.getText():null));
+			     String name = buf.substring(1,buf.length()-1).toString();
+			     ((TextFieldContext)_localctx).value =  name;
 			}
 		}
 		catch (RecognitionException re) {

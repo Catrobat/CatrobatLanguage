@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
@@ -40,8 +41,11 @@ import org.catrobat.catroid.content.bricks.LegoNxtMotorActionBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtMotorStopBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtMotorTurnAngleBrick;
 import org.catrobat.catroid.content.bricks.LegoNxtPlayToneBrick;
+import org.catrobat.catroid.content.bricks.LoopBeginBrick;
 import org.catrobat.catroid.content.bricks.LoopEndBrick;
+import org.catrobat.catroid.content.bricks.LoopEndlessBrick;
 import org.catrobat.catroid.content.bricks.MoveNStepsBrick;
+import org.catrobat.catroid.content.bricks.NestingBrick;
 import org.catrobat.catroid.content.bricks.NextLookBrick;
 import org.catrobat.catroid.content.bricks.NoteBrick;
 import org.catrobat.catroid.content.bricks.PlaceAtBrick;
@@ -101,10 +105,87 @@ public void setSpriteList(List<Sprite> spriteList) {
 }
 
 InternFormulaParser formulaParser;
-         }
 
+	private void changeBrick(Script script, Brick oldBrick, Brick newBrick) {
+		int index = script.getBrickList().indexOf(oldBrick);
+		script.getBrickList().remove(oldBrick);
+		script.getBrickList().add(index, newBrick);
+	}
+
+	private void setAllInnerBricks() {
+		for (Script script : scriptList) {
+			Stack<Brick> stack = new Stack<Brick>();
+			for (int i=0; i<script.getBrickList().size(); i++) {
+				Brick item = script.getBrickList().get(i);
+				if (item instanceof NestingBrick) {
+					if (item instanceof IfLogicEndBrick) {
+						if (stack.peek() instanceof IfLogicBeginBrick) {
+							// TODO: if - end
+							System.out.println("if-end");
+						} else if (stack.peek() instanceof IfLogicElseBrick) {
+							Brick elseBrick = stack.pop();
+
+							if (!(stack.peek() instanceof IfLogicBeginBrick)) {
+								// TODO: exception with nesting
+								System.out.println("exception");
+							}
+							Brick ifBrick = stack.pop();
+							setConditionReferences(item, elseBrick, ifBrick);
+						}
+					} else if (item instanceof LoopEndBrick) {
+						if (stack.peek() instanceof LoopBeginBrick) {
+							Brick beginBrick = stack.pop();
+							if (beginBrick instanceof ForeverBrick) {
+								Brick oldItem = item;
+								item = new LoopEndlessBrick();
+								changeBrick(script, oldItem, item);
+							}
+							setLoopReferences(item, beginBrick);
+						} else {
+							// TODO: exception
+							System.out.println("exception");
+						}
+					} else {
+						stack.push(item);
+					}
+				}
+			}
+			if (!stack.isEmpty()) {
+				// TODO: exception
+				System.out.println("exeption");
+			}
+		}
+	}
+
+	private void setConditionReferences(Brick item, Brick elseBrick,
+			Brick ifBrick) {
+		((IfLogicBeginBrick) ifBrick)
+				.setIfElseBrick((IfLogicElseBrick) elseBrick);
+		((IfLogicBeginBrick) ifBrick)
+				.setIfEndBrick((IfLogicEndBrick) item);
+
+		((IfLogicElseBrick) elseBrick)
+				.setIfBeginBrick((IfLogicBeginBrick) ifBrick);
+		((IfLogicElseBrick) elseBrick)
+				.setIfEndBrick((IfLogicEndBrick) item);
+
+		((IfLogicEndBrick) item)
+				.setIfBeginBrick((IfLogicBeginBrick) ifBrick);
+		((IfLogicEndBrick) item)
+				.setIfElseBrick((IfLogicElseBrick) elseBrick);
+	}
+
+	private void setLoopReferences(Brick item, Brick beginBrick) {
+		((LoopBeginBrick) beginBrick)
+				.setLoopEndBrick((LoopEndBrick) item);
+		((LoopEndBrick) item)
+				.setLoopBeginBrick((LoopBeginBrick) beginBrick);
+	}
+
+}
 program 
 @init {scriptList = new ArrayList<Script>();}
+@after { setAllInnerBricks();}
     : (startScript {scriptList.add($startScript.value);} | 
        whenScript {scriptList.add($whenScript.value);} |  
        broadcastScript {scriptList.add($broadcastScript.value);})* ;
@@ -523,9 +604,18 @@ objectName returns [Sprite value]: USER_VARIABLE
    }
   };
 
-message returns[String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;};
-motor returns [String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;}; 
-textField returns[String value]: USER_VARIABLE {$value = $USER_VARIABLE.text;};
+message returns[String value]: USER_VARIABLE 
+    {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
+     String name = buf.substring(1,buf.length()-1).toString();
+     $value = name;};
+motor returns [String value]: USER_VARIABLE 
+    {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
+     String name = buf.substring(1,buf.length()-1).toString();
+     $value = name;};
+textField returns[String value]: USER_VARIABLE
+    {StringBuffer buf = new StringBuffer($USER_VARIABLE.text);
+     String name = buf.substring(1,buf.length()-1).toString();
+     $value = name;};
 
 userVariable returns [UserVariable value]
 @init { UserVariable var = new UserVariable(); }

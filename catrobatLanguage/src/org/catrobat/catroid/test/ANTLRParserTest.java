@@ -1,6 +1,7 @@
 package org.catrobat.catroid.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,7 +29,7 @@ public class ANTLRParserTest {
 				inputXML);
 		List<Script> controlList = new ArrayList<Script>();
 
-		if (controlProject.getSpriteList().isEmpty())
+		if (!controlProject.getSpriteList().isEmpty())
 			for (Script item : controlProject.getSpriteList().get(0)
 					.getScriptList()) {
 				controlList.add(item);
@@ -52,8 +53,17 @@ public class ANTLRParserTest {
 
 		parser.program();
 		List<Script> scriptList = parser.getScriptList();
-		System.out.println(parser.getVariables().keySet().toArray()[0]);
 
+		
+		
+		assertNotNull(scriptList);
+		for (int i=0; i<scriptList.size(); i++) {
+			Script script = scriptList.get(i);
+			Script control = controlList.get(i);
+			for (int j=0; j<script.getBrickList().size(); j++) {
+				assertEquals(control.getBrickList().get(j), script.getBrickList().get(j));
+			}
+		}
 		assertEquals(controlList, scriptList);
 	}
 
