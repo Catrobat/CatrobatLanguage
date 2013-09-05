@@ -3414,11 +3414,9 @@ public class CatrobatScriptParser extends Parser {
 			setState(605); match(BRACKET_CLOSE);
 			}
 			 
-			         System.out.println(tokenList);
 			         InternFormulaParser formulaParser = new InternFormulaParser(tokenList);
 			         Formula formulaTree = new Formula();
 			         formulaTree.setFormulaTree(formulaParser.parseFormula());
-			         System.out.println(formulaTree);
 			         ((FormulaContext)_localctx).value =  formulaTree;
 			      
 		}

@@ -562,11 +562,9 @@ formula returns [Formula value]
          List<InternToken> tokenList = new ArrayList<InternToken>();
       }
 @after{ 
-         System.out.println(tokenList);
          InternFormulaParser formulaParser = new InternFormulaParser(tokenList);
          Formula formulaTree = new Formula();
          formulaTree.setFormulaTree(formulaParser.parseFormula());
-         System.out.println(formulaTree);
          $value = formulaTree;
       }
     : '(' (token {tokenList.add($token.value);} )+ ')';
