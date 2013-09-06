@@ -29,6 +29,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.TreeMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.catrobat.catroid.common.LookData;
@@ -203,12 +204,12 @@ public class Translator {
 		yamlConfig.writeConfig.setEscapeUnicode(false);
 		yamlConfig.writeConfig.setIndentSize(2);
 		yamlConfig.setClassTag("program", YamlProject.class);
-		yamlConfig.setPropertyElementType(YamlProject.class, "objects",
-				YamlSprite.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "looks",
-				LookData.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds",
-				SoundInfo.class);
+		yamlConfig.setPropertyDefaultType(YamlProject.class, "objects", TreeMap.class);
+		yamlConfig.setPropertyElementType(YamlProject.class, "objects",	YamlSprite.class);
+		yamlConfig.setPropertyElementType(YamlProject.class, "projectVariables", UserVariable.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds", SoundInfo.class);
+	
 	}
 
 	public synchronized static Translator getInstance() {
