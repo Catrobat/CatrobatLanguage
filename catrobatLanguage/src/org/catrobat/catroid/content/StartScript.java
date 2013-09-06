@@ -31,6 +31,7 @@ public class StartScript extends Script {
 	}
 
 	public boolean equals(Object arg) {
+		System.out.println(getBrickList().equals(((Script) arg).getBrickList()));
 		return ((arg instanceof StartScript)
 				&& super.equals(arg));
 	}

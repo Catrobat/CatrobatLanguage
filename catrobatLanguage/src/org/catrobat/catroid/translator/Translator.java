@@ -318,4 +318,17 @@ public class Translator {
 		}
 	}
 
+	public void convertFromCatrobatLanguageToXML(File catrobatFile) {
+		saveLoadLock.lock();
+		try {
+			YamlProject catrobatProject = loadProjectFromCatrobatLanguage(catrobatFile);
+			Project project = new Project(catrobatProject);
+			saveProjectToXML(project);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			saveLoadLock.unlock();
+		}
+
+	}
 }

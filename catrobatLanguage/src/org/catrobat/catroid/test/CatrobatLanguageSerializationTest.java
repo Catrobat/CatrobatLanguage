@@ -26,11 +26,17 @@ public class CatrobatLanguageSerializationTest {
 
 		Translator.getInstance().saveProjectToCatrobatLanguage(controlProject);
 
-		Translator.getInstance().saveProjectToCatrobatLanguage(controlProject);
-		YamlProject testProject = Translator.getInstance().loadProjectFromCatrobatLanguage(
-				outputYAML);
+		Project testProject = null;
+		try {
+			testProject = new Project(Translator.getInstance()
+					.loadProjectFromCatrobatLanguage(outputYAML));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		assertTrue(controlProject.equals(testProject));
+		assertNotNull(testProject);
+		//System.out.println(testProject.getSpriteList().get(0).getScriptList().toString());
+		assertTrue(xmlProject.equals(testProject));
 	}
 
 	@Test

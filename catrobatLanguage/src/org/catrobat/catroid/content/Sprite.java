@@ -28,6 +28,7 @@ import java.util.List;
 
 import org.catrobat.catroid.common.LookData;
 import org.catrobat.catroid.common.SoundInfo;
+import org.catrobat.catroid.yaml.YamlSprite;
 
 public class Sprite implements Serializable {
 
@@ -38,33 +39,28 @@ public class Sprite implements Serializable {
 	private ArrayList<LookData> lookList;
 	private ArrayList<SoundInfo> soundList;
 
-	
-	// Set sprite to scripts!
-	//TODO: complete
-	/*public Sprite(String name, YamlSprite sprite) {
-		name = "";
+	public Sprite(String name, YamlSprite sprite) {
+		this.name = "";
 		scriptList = new ArrayList<Script>();
 		lookList = new ArrayList<LookData>();
 		soundList = new ArrayList<SoundInfo>();
 		
 		if (!(name == null))
 			this.name = name;
-		if (!(sprite.getScripts() == null))
-			scriptList = sprite.getScripts();
 		if (!(sprite.getLooks() == null))
 			lookList = sprite.getLooks();
 		if (!(sprite.getSounds() == null))
 			soundList = sprite.getSounds();
 	}
-*/
+
 	public Sprite() {
 		name = "";
 		scriptList = new ArrayList<Script>();
 		lookList = new ArrayList<LookData>();
 		soundList = new ArrayList<SoundInfo>();
 	}
-
-
+	
+	
 	public String getName() {
 		return name;
 		
@@ -100,14 +96,13 @@ public class Sprite implements Serializable {
 	}
 
 	public boolean equals(Object arg0) {
-
 		if (!(arg0 instanceof Sprite))
 			return false;
 		Sprite arg = (Sprite) arg0;
-
-		return (name.equals(arg.name) && scriptList.equals(arg.scriptList)
-				&& lookList.equals(arg.lookList) && soundList
-					.equals(arg.soundList));
+		return (name.equals(arg.name) && 
+				scriptList.equals(arg.scriptList) && 
+				lookList.equals(arg.lookList) && 
+				soundList.equals(arg.soundList));
 	}
 
 	public int hashCode() {

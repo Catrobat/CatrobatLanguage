@@ -34,16 +34,14 @@ public enum Functions {
 		return true;
 
 	}
-	
+
 	public static String getInnerName(String value) {
-		if (isFunction(value))
-			return value.toUpperCase();
-		return null;
+		return value.toUpperCase();
 	}
 
 	public static Functions getFunctionByValue(String value) {
 		try {
-			return valueOf(value);
+			return valueOf(getInnerName(value));
 		} catch (IllegalArgumentException exception) {
 
 		}

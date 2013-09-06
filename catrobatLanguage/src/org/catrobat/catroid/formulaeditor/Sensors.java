@@ -43,17 +43,14 @@ public enum Sensors {
 		}
 		return true;
 	}
-	
 
 	public static String getInnerName(String value) {
-		if (isSensor(value))
-			return value.toUpperCase();
-		return null;
+		return value.toUpperCase();
 	}
 
 	public static Sensors getSensorByValue(String value) {
 		try {
-			return valueOf(value);
+			return valueOf(getInnerName(value));
 		} catch (IllegalArgumentException exception) {
 
 		}

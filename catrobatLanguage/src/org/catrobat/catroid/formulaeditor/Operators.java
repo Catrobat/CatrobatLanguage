@@ -64,12 +64,12 @@ public enum Operators {
 			if (values.get(item).equals(value))
 				return item.name();
 		}
-		return null;		
+		return value;		
 	}
 
 	public static Operators getOperatorByValue(String value) {
 		try {
-			return valueOf(value);
+			return valueOf(getInnerName(value));
 		} catch (IllegalArgumentException exception) {
 		
 		}

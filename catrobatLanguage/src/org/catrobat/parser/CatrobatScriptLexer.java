@@ -141,8 +141,17 @@ public class CatrobatScriptLexer extends Lexer {
 	 
 	private Map<String,UserVariable> variables = new HashMap<String,UserVariable>();
 
-	public Map<String,UserVariable> getVariables() {
-	   return variables;
+	public List<UserVariable> getVariables() {
+	   return new ArrayList<UserVariable>(variables.values());
+	}
+
+	private Map<String, UserVariable> programVariables;
+
+	public void setProgramVariables(List<UserVariable> list) {
+	   programVariables = new HashMap<String, UserVariable>();                                                          
+	   for (UserVariable item: list) {
+	     programVariables.put(item.getName(), item);                             
+	   }
 	}
 
 	private List<Script> scriptList;

@@ -127,7 +127,6 @@ public class InternFormulaParser {
 	public FormulaElement parseFormula() {
 		errorTokenIndex = PARSER_OK;
 		currentTokenParseIndex = 0;
-
 		if (internTokensToParse == null) {
 			errorTokenIndex = PARSER_NO_INPUT;
 			return null;
@@ -153,7 +152,6 @@ public class InternFormulaParser {
 		} catch (InternFormulaParserException parseExeption) {
 			errorTokenIndex = currentTokenParseIndex;
 		}
-
 		return formulaParseTree;
 
 	}
@@ -174,6 +172,7 @@ public class InternFormulaParser {
 
 		FormulaElement loopTermTree;
 		String operatorStringValue;
+		
 		while (currentToken.isOperator() && !currentToken.getTokenStringValue().equals(Operators.LOGICAL_NOT.name())) {
 
 			operatorStringValue = currentToken.getTokenStringValue();
@@ -271,7 +270,7 @@ public class InternFormulaParser {
 
 		functionTree = new FormulaElement(FormulaElement.ElementType.FUNCTION, currentToken.getTokenStringValue(), null);
 		getNextToken();
-
+		
 		if (currentToken.isFunctionParameterBracketOpen() || currentToken.isBracketOpen()) {
 			getNextToken();
 			functionTree.setLeftChild(termList());

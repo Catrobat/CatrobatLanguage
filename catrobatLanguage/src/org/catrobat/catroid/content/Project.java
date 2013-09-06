@@ -24,9 +24,17 @@ package org.catrobat.catroid.content;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.formulaeditor.UserVariablesContainer;
+import org.catrobat.catroid.yaml.YamlProject;
+import org.catrobat.parser.CatrobatScriptLexer;
+import org.catrobat.parser.CatrobatScriptParser;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
@@ -41,24 +49,24 @@ public class Project implements Serializable {
 	private List<Sprite> spriteList;
 	@XStreamAlias("variables")
 	private UserVariablesContainer userVariables;
-	
+
+	@SuppressWarnings("unused")
 	private Sprite getSpriteByName(String name) throws Exception {
-		for (Sprite item: spriteList) {
+		for (Sprite item : spriteList) {
 			if (item.getName().equals(name))
 				return item;
 		}
 		throw new Exception("Sprite named " + name + "not found.");
 	}
 
-	// TODO: complete
-	/*public Project(YamlProject project) throws Exception {
+	public Project(YamlProject project) throws Exception {
 		xmlHeader = new XmlHeader();
 		spriteList = new ArrayList<Sprite>();
 		userVariables = new UserVariablesContainer();
-		
+
 		if (project.getHeader() != null)
 			xmlHeader = project.getHeader();
-		else if (project.getObjects() != null) {
+		if (project.getObjects() != null) {
 			for (String name : project.getObjects().keySet()) {
 				spriteList.add(new Sprite(name, project.getObjects().get(name)));
 			}
@@ -66,14 +74,31 @@ public class Project implements Serializable {
 		if (project.getProjectVariables() != null) {
 			userVariables.setProjectVariables(project.getProjectVariables());
 		}
+		Map<Sprite, List<UserVariable>> spriteVariables = new HashMap<Sprite, List<UserVariable>>();
 		
-		if (project.getSpriteVariables()!=null) {
-			Map<String, List<UserVariable>> buffer =project.getSpriteVariables();
-			for (String item: buffer.keySet()) {
-				userVariables.getSpriteVariables().put(getSpriteByName(item), buffer.get(item));
-			}
+		for (int i = 0; i < spriteList.size(); i++) {
+			Sprite sprite = spriteList.get(i);
+			
+			ANTLRInputStream input = new ANTLRInputStream(project.getObjects()
+					.get(sprite.getName()).getScripts());
+			CatrobatScriptLexer lexer = new CatrobatScriptLexer(input);
+			CommonTokenStream tokens = new CommonTokenStream(lexer);
+			CatrobatScriptParser parser = new CatrobatScriptParser(tokens);
+
+			parser.setSpriteList(spriteList);
+			parser.setCurrentSprite(sprite);
+			parser.setProgramVariables(userVariables.getProjectVariables());
+
+			parser.program();
+
+			sprite.setScriptList(parser.getScriptList());
+			spriteVariables.put(sprite, parser.getVariables());
+
 		}
-	}*/
+
+		userVariables.setSpriteVariables(spriteVariables);
+
+	}
 
 	public Project() {
 		xmlHeader = new XmlHeader();
@@ -81,7 +106,6 @@ public class Project implements Serializable {
 		userVariables = new UserVariablesContainer();
 	}
 
-	
 	public XmlHeader getXmlHeader() {
 		return xmlHeader;
 	}
@@ -107,9 +131,9 @@ public class Project implements Serializable {
 	}
 
 	public boolean equals(Project arg) {
-		return (xmlHeader.equals(arg.xmlHeader) && 
-				spriteList.equals(arg.spriteList) && 
-				userVariables.equals(arg.userVariables));
+		return (xmlHeader.equals(arg.xmlHeader)
+				&& spriteList.equals(arg.spriteList) && userVariables
+					.equals(arg.userVariables));
 	}
 
 }

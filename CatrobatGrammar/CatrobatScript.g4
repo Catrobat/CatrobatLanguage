@@ -80,8 +80,17 @@ import org.catrobat.catroid.formulaeditor.UserVariable;
 @members { 
 private Map<String,UserVariable> variables = new HashMap<String,UserVariable>();
 
-public Map<String,UserVariable> getVariables() {
-   return variables;
+public List<UserVariable> getVariables() {
+   return new ArrayList<UserVariable>(variables.values());
+}
+
+private Map<String, UserVariable> programVariables;
+
+public void setProgramVariables(List<UserVariable> list) {
+   programVariables = new HashMap<String, UserVariable>();                                                          
+   for (UserVariable item: list) {
+     programVariables.put(item.getName(), item);                             
+   }
 }
 
 private List<Script> scriptList;
@@ -654,7 +663,7 @@ token returns [InternToken value]
       BRACKET_CLOSE 
       { $value = new InternToken(InternTokenType.BRACKET_CLOSE,$text);}| 
       FUNCTION_PARAMETER_DELIMITER 
-      { $value = new InternToken(InternTokenType.FUNCTION_PARAMETERS_BRACKET_OPEN,$text);};           
+      { $value = new InternToken(InternTokenType.FUNCTION_PARAMETER_DELIMITER,$text);};           
 
 USER_VARIABLE: '"' STRING '"';
 NUMBER: (DIGIT)+('.' DIGIT+)?;
