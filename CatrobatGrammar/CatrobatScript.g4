@@ -685,10 +685,10 @@ ACTION: 'Tapped';
 
 WS : ('\t' | '\r'? '\n' | ' ') {skip();} ;
 
-fragment STRING: (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL | WS)+;
+fragment STRING: (DIGIT | LETTER | SYMBOL | OPERATOR_SYMBOL | ' ')+;
 fragment OPERATOR_SYMBOL: '=' | '<' | '>' |'+' | '-' | '*' | '/' | '%' | '^';
 fragment ADDITIONAL_SYMBOL: '"';
-fragment SYMBOL: ('!' | '@' | '#' | '$' | '_' | '\'' | ';' | '~' |
+fragment SYMBOL: ('!' | '@' | '#' | '$' | '_' | '\'' | ';' | '~' | '?' | '&' |
                   '[' | ']' | '{' | '}' | ':' | ',' | '(' | ')' | '\'');
 fragment DIGIT: ('0'..'9');
 fragment LETTER: ('a'..'z') | ('A'..'Z');

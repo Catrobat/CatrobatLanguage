@@ -42,7 +42,6 @@ public class WhenScript extends Script {
 	}
 
 	public boolean equals(Object arg) {
-		System.out.println(getBrickList().equals(((Script) arg).getBrickList()));
 		return ((arg instanceof WhenScript) && super.equals(arg) 
 				&& action.equals(((WhenScript) arg).action));
 	}
