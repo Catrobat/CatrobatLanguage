@@ -61,8 +61,9 @@ public enum Operators {
 	
 	public static String getInnerName(String value) {
 		for (Operators item: values.keySet()) {
-			if (values.get(item).equals(value))
+			if (values.get(item).equals(value)) {
 				return item.name();
+			}
 		}
 		return value;		
 	}
@@ -85,6 +86,8 @@ public enum Operators {
 	}
 
 	public String toString() {
+		if (this == LOGICAL_AND || this== LOGICAL_NOT || this == LOGICAL_OR)
+			return ' '+values.get(this)+' ';
 		return values.get(this);
 	}
 
@@ -94,9 +97,9 @@ public enum Operators {
 		values.put(EQUAL, "=");
 		values.put(GREATER_OR_EQUAL, ">=");
 		values.put(GREATER_THAN, ">");
-		values.put(LOGICAL_AND, " AND ");
-		values.put(LOGICAL_NOT, " NOT ");
-		values.put(LOGICAL_OR, " OR ");
+		values.put(LOGICAL_AND, "AND");
+		values.put(LOGICAL_NOT, "NOT");
+		values.put(LOGICAL_OR, "OR");
 		values.put(MINUS, "-");
 		values.put(MOD, "%");
 		values.put(MULT, "*");

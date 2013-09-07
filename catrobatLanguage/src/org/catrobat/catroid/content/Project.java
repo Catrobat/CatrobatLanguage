@@ -25,6 +25,7 @@ package org.catrobat.catroid.content;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -68,17 +69,18 @@ public class Project implements Serializable {
 			xmlHeader = project.getHeader();
 		if (project.getObjects() != null) {
 			for (String name : project.getObjects().keySet()) {
-				spriteList.add(new Sprite(name, project.getObjects().get(name)));
+				spriteList
+						.add(new Sprite(name, project.getObjects().get(name)));
 			}
 		}
 		if (project.getProjectVariables() != null) {
 			userVariables.setProjectVariables(project.getProjectVariables());
 		}
 		Map<Sprite, List<UserVariable>> spriteVariables = new HashMap<Sprite, List<UserVariable>>();
-		
+
 		for (int i = 0; i < spriteList.size(); i++) {
 			Sprite sprite = spriteList.get(i);
-			
+
 			ANTLRInputStream input = new ANTLRInputStream(project.getObjects()
 					.get(sprite.getName()).getScripts());
 			CatrobatScriptLexer lexer = new CatrobatScriptLexer(input);
@@ -131,9 +133,11 @@ public class Project implements Serializable {
 	}
 
 	public boolean equals(Project arg) {
+		System.out.println(spriteList.containsAll(arg.spriteList));
 		return (xmlHeader.equals(arg.xmlHeader)
-				&& spriteList.equals(arg.spriteList) && userVariables
+				&& spriteList.containsAll(arg.spriteList)
+				&& arg.spriteList.containsAll(spriteList)
+				&& userVariables
 					.equals(arg.userVariables));
 	}
-
 }

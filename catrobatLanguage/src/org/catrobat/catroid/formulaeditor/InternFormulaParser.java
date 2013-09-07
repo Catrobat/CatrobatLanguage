@@ -151,7 +151,10 @@ public class InternFormulaParser {
 			formulaParseTree = formula();
 		} catch (InternFormulaParserException parseExeption) {
 			errorTokenIndex = currentTokenParseIndex;
+			System.out.println(internTokensToParse);
+			System.out.println("Error parsing at token " + errorTokenIndex);
 		}
+		
 		return formulaParseTree;
 
 	}
@@ -210,13 +213,13 @@ public class InternFormulaParser {
 
 			curElem.replaceElement(FormulaElement.ElementType.NUMBER, number());
 
-		} else if (currentToken.isBracketOpen()) {
+		} else if (currentToken.isBracketOpen() || currentToken.isFunctionParameterBracketOpen()) {
 
 			getNextToken();
 
 			curElem.replaceElement(new FormulaElement(FormulaElement.ElementType.BRACKET, null, null, null, termList()));
 
-			if (!currentToken.isBracketClose()) {
+			if (!currentToken.isBracketClose() && !currentToken.isFunctionParameterBracketClose()) {
 				throw new InternFormulaParserException("Parse Error");
 			}
 			getNextToken();

@@ -43,7 +43,7 @@ public class FormulaElement implements Serializable {
 
 	public FormulaElement() {
 		type = ElementType.NUMBER;
-		value = "";
+		value = null;
 		leftChild = null;
 		rightChild = null;
 
@@ -250,12 +250,26 @@ public class FormulaElement implements Serializable {
 				null, leftChildClone, rightChildClone);
 	}
 
-	public boolean equals(FormulaElement arg) {
-		return (type.equals(arg.type)
-				&& value.equals(arg.value)
-				&& ((leftChild == null && arg.leftChild == null) || leftChild
-						.equals(arg.leftChild)) && ((rightChild == null && arg.rightChild == null) || rightChild
-				.equals(arg.rightChild)));
+	public boolean equals(Object arg0) {
+		if (arg0==null || !(arg0 instanceof FormulaElement))
+			return false;
+		FormulaElement arg = (FormulaElement) arg0;
+		
+		boolean leftFlag = (leftChild == null && arg.leftChild == null);
+		if (leftChild!=null) 
+			leftFlag |=leftChild.equals(arg.leftChild);
+		boolean rightFlag = (rightChild == null && arg.rightChild == null);
+		if (rightChild!=null) 
+			rightFlag |=rightChild.equals(arg.rightChild);
+		boolean valFlag = (value == null && arg.value == null);
+		if (value!=null) {
+			valFlag |=value.equals(arg.value);
+		}
+		
+		return (type.equals(arg.type) && 
+				valFlag &&
+				leftFlag &&
+				rightFlag);
 	}
 
 }
