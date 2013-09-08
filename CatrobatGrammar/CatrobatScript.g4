@@ -84,6 +84,15 @@ public List<UserVariable> getVariables() {
    return new ArrayList<UserVariable>(variables.values());
 }
 
+public void setVariables(List<String> list) {
+   variables = new HashMap<String, UserVariable>();                                                          
+   for (String item: list) {
+     UserVariable var = new UserVariable();
+     var.setName(item);
+     variables.put(item, var );                             
+   }
+}
+
 private Map<String, UserVariable> programVariables;
 
 public void setProgramVariables(List<UserVariable> list) {
@@ -635,8 +644,7 @@ userVariable returns [UserVariable value]
         } else if (variables.containsKey(name))  {
            var = variables.get(name);
         } else {
-           var.setName(name);
-           variables.put(name, var);
+           System.out.println("New Variable!!!");
         }    
        };
 
@@ -658,8 +666,7 @@ token returns [InternToken value]
         } else if (variables.containsKey(name))  {
            var = variables.get(name);
         } else {
-           var.setName(name);
-           variables.put(name, var);
+           System.out.println("New Variable!!!");
         }    
        $value = new InternToken(InternTokenType.USER_VARIABLE,name);}|
       BRACKET_OPEN 

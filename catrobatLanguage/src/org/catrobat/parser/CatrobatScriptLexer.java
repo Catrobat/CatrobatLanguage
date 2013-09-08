@@ -145,6 +145,15 @@ public class CatrobatScriptLexer extends Lexer {
 	   return new ArrayList<UserVariable>(variables.values());
 	}
 
+	public void setVariables(List<String> list) {
+	   variables = new HashMap<String, UserVariable>();                                                          
+	   for (String item: list) {
+	     UserVariable var = new UserVariable();
+	     var.setName(item);
+	     variables.put(item, var );                             
+	   }
+	}
+
 	private Map<String, UserVariable> programVariables;
 
 	public void setProgramVariables(List<UserVariable> list) {

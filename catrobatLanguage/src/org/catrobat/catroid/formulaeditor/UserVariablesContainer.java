@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.catrobat.catroid.content.Sprite;
 
@@ -68,25 +69,27 @@ public class UserVariablesContainer implements Serializable {
 			return false;
 		UserVariablesContainer arg = (UserVariablesContainer) arg0;
 
-		boolean flag = spriteVariables.keySet().equals(
+		boolean flag = spriteVariables.keySet().containsAll(
 				arg.spriteVariables.keySet());
-		for (Sprite item : spriteVariables.keySet()) {
-			if (!(arg.spriteVariables.get(item).containsAll(spriteVariables.get(item)) && 
-					spriteVariables.get(item).containsAll(arg.spriteVariables.get(item)))) {
-				System.out.println(item.getName());
-				for (UserVariable var: spriteVariables.get(item) ) {
-					System.out.println(var.getName());
-				}
-				System.out.println();
-				for (UserVariable var: arg.spriteVariables.get(item) ) {
-					System.out.println(var.getName());
-				}
-				
-				flag = false;
-				break;
-			}
+		if (flag)
+			for (Sprite item : arg.spriteVariables.keySet()) {
+				if (!(arg.spriteVariables.get(item).containsAll(
+						spriteVariables.get(item)) && spriteVariables.get(item)
+						.containsAll(arg.spriteVariables.get(item)))) {
+					System.out.println(item.getName());
+					for (UserVariable var : spriteVariables.get(item)) {
+						System.out.println(var.getName());
+					}
+					System.out.println();
+					for (UserVariable var : arg.spriteVariables.get(item)) {
+						System.out.println(var.getName());
+					}
 
-		}
+					flag = false;
+					break;
+				}
+
+			}
 
 		return (projectVariables.equals(arg.projectVariables) && flag);
 	}

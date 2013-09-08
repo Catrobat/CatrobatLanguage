@@ -90,6 +90,7 @@ public class Project implements Serializable {
 			parser.setSpriteList(spriteList);
 			parser.setCurrentSprite(sprite);
 			parser.setProgramVariables(userVariables.getProjectVariables());
+			parser.setVariables(project.getObjects().get(sprite.getName()).getVariables());
 
 			parser.program();
 
@@ -135,7 +136,7 @@ public class Project implements Serializable {
 	public boolean equals(Project arg) {
 		return (xmlHeader.equals(arg.xmlHeader)
 				&& spriteList.containsAll(arg.spriteList)
-				&& arg.spriteList.containsAll(spriteList) && 
-				userVariables.equals(arg.userVariables));
+				&& arg.spriteList.containsAll(spriteList) && userVariables
+					.equals(arg.userVariables));
 	}
 }
