@@ -58,7 +58,8 @@ public class UserVariablesContainer implements Serializable {
 		return spriteVariables;
 	}
 
-	public void setSpriteVariables(Map<Sprite, List<UserVariable>> spriteVariables) {
+	public void setSpriteVariables(
+			Map<Sprite, List<UserVariable>> spriteVariables) {
 		this.spriteVariables = spriteVariables;
 	}
 
@@ -66,8 +67,22 @@ public class UserVariablesContainer implements Serializable {
 		if (!(arg0 instanceof UserVariablesContainer))
 			return false;
 		UserVariablesContainer arg = (UserVariablesContainer) arg0;
-		
-		return (projectVariables.equals(arg.projectVariables) && 
-				spriteVariables.equals(arg.spriteVariables));
+
+		boolean flag = true;
+		for (Sprite item : spriteVariables.keySet()) {
+			if (!arg.spriteVariables.containsKey(item)) {
+				flag = false;
+				break;
+			} else if (!(arg.spriteVariables.get(item).containsAll(
+					spriteVariables.get(item)) && arg.spriteVariables.get(item)
+					.size() == spriteVariables.get(item).size())) {
+				flag = false;
+				break;
+			}
+
+		}
+
+		return (projectVariables.equals(arg.projectVariables) && spriteVariables
+				.equals(arg.spriteVariables));
 	}
 }

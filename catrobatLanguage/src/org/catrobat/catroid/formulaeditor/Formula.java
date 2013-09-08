@@ -44,7 +44,7 @@ public class Formula implements Serializable {
 	}
 
 	public boolean equals(Formula arg) {
-		return (formulaTree.equals(arg.formulaTree));
+		return (formulaTree.getInternTokenList().equals(arg.formulaTree.getInternTokenList()));
 	}
 	
 	public String toString() {

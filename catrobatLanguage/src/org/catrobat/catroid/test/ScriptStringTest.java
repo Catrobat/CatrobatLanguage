@@ -23,11 +23,11 @@ public class ScriptStringTest {
 
 		Writer writer = new BufferedWriter(new FileWriter(outputTXT));
 	
-//		if (!xmlProject.getSpriteList().isEmpty())
-//			writer.write(xmlProject.getSpriteList().get(0).toString()+"\r\n");
-		for (Sprite item: xmlProject.getSpriteList()) {
-			writer.write(item.toString());
-		}
+		if (!xmlProject.getSpriteList().isEmpty())
+			writer.write(xmlProject.getSpriteList().get(0).toString()+"\r\n");
+//		for (Sprite item: xmlProject.getSpriteList()) {
+//		writer.write(item.toString());
+//		}
 		writer.close();
 	}
 

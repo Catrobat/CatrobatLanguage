@@ -179,4 +179,14 @@ public class InternToken {
 		}
 	}
 
+	public boolean equals(Object arg0) {
+		if (arg0 == null || !(arg0 instanceof InternToken))
+			return false;
+		InternToken arg = (InternToken) arg0;
+
+		return (internTokenType.equals(arg.internTokenType) &&
+				tokenStringValue.equals(arg.tokenStringValue));
+	}
+
+	
 }

@@ -36,7 +36,7 @@ public class CatrobatLanguageSerializationTest {
 
 		assertNotNull(testProject);
 		//System.out.println(testProject.getSpriteList().get(0).getScriptList().toString());
-		assertTrue(xmlProject.equals(testProject));
+		assertTrue(testProject.equals(xmlProject));
 	}
 
 	@Test
@@ -96,6 +96,9 @@ public class CatrobatLanguageSerializationTest {
 	}
 
 	@Test
+	/**A stupid project where strange object not included into objectList 
+	 * appears in UserVariableContainer and 
+	 * forever brick has LoopEndBrick instead of  LoopEndlessBrick*/
 	public void Whack_A_MoleTest() throws IOException, SAXException {
 		File inputXML = new File("projects/Whack_A_Mole/code.xml");
 		test(inputXML);

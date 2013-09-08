@@ -133,11 +133,9 @@ public class Project implements Serializable {
 	}
 
 	public boolean equals(Project arg) {
-		System.out.println(spriteList.containsAll(arg.spriteList));
 		return (xmlHeader.equals(arg.xmlHeader)
 				&& spriteList.containsAll(arg.spriteList)
-				&& arg.spriteList.containsAll(spriteList)
-				&& userVariables
-					.equals(arg.userVariables));
+				&& arg.spriteList.containsAll(spriteList) && 
+				userVariables.equals(arg.userVariables));
 	}
 }

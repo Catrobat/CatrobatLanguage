@@ -63,20 +63,18 @@ public abstract class Script implements Serializable {
 	}
 
 	public boolean equals(Object arg) {
-		return ((arg instanceof Script) && 
-				brickList.equals(((Script)arg).brickList));
+		return ((arg instanceof Script) && brickList
+				.equals(((Script) arg).brickList));
 	}
 
 	private boolean hasLeftShift(Brick brick) {
 		return (brick instanceof IfLogicElseBrick
-				|| brick instanceof IfLogicEndBrick
-				|| brick instanceof LoopEndBrick);
+				|| brick instanceof IfLogicEndBrick || brick instanceof LoopEndBrick);
 	}
 
 	private boolean nextHasRightShift(Brick brick) {
 		return (brick instanceof IfLogicBeginBrick
-				|| brick instanceof IfLogicElseBrick 
-				|| brick instanceof LoopBeginBrick);
+				|| brick instanceof IfLogicElseBrick || brick instanceof LoopBeginBrick);
 	}
 
 	private String getIndentation(int layer) {

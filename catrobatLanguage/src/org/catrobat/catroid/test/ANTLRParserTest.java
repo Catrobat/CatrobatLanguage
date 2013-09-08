@@ -53,10 +53,9 @@ public class ANTLRParserTest {
 
 		parser.program();
 		List<Script> scriptList = parser.getScriptList();
-
-		
 		
 		assertNotNull(scriptList);
+		assertEquals(scriptList.size(), controlList.size());
 		for (int i=0; i<scriptList.size(); i++) {
 			Script script = scriptList.get(i);
 			Script control = controlList.get(i);

@@ -224,7 +224,7 @@ public class FormulaElement implements Serializable {
 		}
 		return false;
 	}
-	
+
 	public boolean containsElement(ElementType elementType) {
 		if (type.equals(elementType)) {
 			return true;
@@ -251,25 +251,26 @@ public class FormulaElement implements Serializable {
 	}
 
 	public boolean equals(Object arg0) {
-		if (arg0==null || !(arg0 instanceof FormulaElement))
+		if (arg0 == null || !(arg0 instanceof FormulaElement))
 			return false;
 		FormulaElement arg = (FormulaElement) arg0;
-		
+
 		boolean leftFlag = (leftChild == null && arg.leftChild == null);
-		if (leftChild!=null) 
-			leftFlag |=leftChild.equals(arg.leftChild);
+		if (leftChild != null)
+			leftFlag |= leftChild.equals(arg.leftChild);
 		boolean rightFlag = (rightChild == null && arg.rightChild == null);
-		if (rightChild!=null) 
-			rightFlag |=rightChild.equals(arg.rightChild);
+		if (rightChild != null)
+			rightFlag |= rightChild.equals(arg.rightChild);
 		boolean valFlag = (value == null && arg.value == null);
-		if (value!=null) {
-			valFlag |=value.equals(arg.value);
+		if (value != null) {
+			valFlag |= value.equals(arg.value);
 		}
-		
-		return (type.equals(arg.type) && 
-				valFlag &&
-				leftFlag &&
-				rightFlag);
+
+		if (!type.equals(arg.type)) {
+			System.out.println(type + " " + arg.type);			
+		}
+
+		return (type.equals(arg.type) && valFlag && leftFlag && rightFlag);
 	}
 
 }
