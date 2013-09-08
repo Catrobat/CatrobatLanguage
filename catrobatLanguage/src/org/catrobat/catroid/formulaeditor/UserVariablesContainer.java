@@ -68,21 +68,26 @@ public class UserVariablesContainer implements Serializable {
 			return false;
 		UserVariablesContainer arg = (UserVariablesContainer) arg0;
 
-		boolean flag = true;
+		boolean flag = spriteVariables.keySet().equals(
+				arg.spriteVariables.keySet());
 		for (Sprite item : spriteVariables.keySet()) {
-			if (!arg.spriteVariables.containsKey(item)) {
-				flag = false;
-				break;
-			} else if (!(arg.spriteVariables.get(item).containsAll(
-					spriteVariables.get(item)) && arg.spriteVariables.get(item)
-					.size() == spriteVariables.get(item).size())) {
+			if (!(arg.spriteVariables.get(item).containsAll(spriteVariables.get(item)) && 
+					spriteVariables.get(item).containsAll(arg.spriteVariables.get(item)))) {
+				System.out.println(item.getName());
+				for (UserVariable var: spriteVariables.get(item) ) {
+					System.out.println(var.getName());
+				}
+				System.out.println();
+				for (UserVariable var: arg.spriteVariables.get(item) ) {
+					System.out.println(var.getName());
+				}
+				
 				flag = false;
 				break;
 			}
 
 		}
 
-		return (projectVariables.equals(arg.projectVariables) && spriteVariables
-				.equals(arg.spriteVariables));
+		return (projectVariables.equals(arg.projectVariables) && flag);
 	}
 }

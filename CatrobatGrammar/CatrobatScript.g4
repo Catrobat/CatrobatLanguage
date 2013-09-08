@@ -627,12 +627,14 @@ textField returns[String value]: USER_VARIABLE
 userVariable returns [UserVariable value]
 @init { UserVariable var = new UserVariable(); }
 @after {$value = var;}
-    :USER_VARIABLE {
-        StringBuffer buf = new StringBuffer($text);
+    :USER_VARIABLE 
+     {  StringBuffer buf = new StringBuffer($text);
         String name = buf.substring(1, buf.length()-1).toString();
-        if (variables.containsKey(name)) 
+        if (programVariables.containsKey(name)) {
+           var = programVariables.get(name);
+        } else if (variables.containsKey(name))  {
            var = variables.get(name);
-        else {
+        } else {
            var.setName(name);
            variables.put(name, var);
         }    
@@ -648,12 +650,14 @@ token returns [InternToken value]
       FUNCTION_NAME 
       { $value = new InternToken(InternTokenType.FUNCTION_NAME,Functions.getInnerName($text));}|
       USER_VARIABLE 
-      {UserVariable var = new UserVariable();
-       StringBuffer buf = new StringBuffer($text);
-       String name = buf.substring(1,buf.length()-1).toString(); 
-       if (variables.containsKey(name)) 
+      { UserVariable var = new UserVariable();
+        StringBuffer buf = new StringBuffer($text);
+        String name = buf.substring(1, buf.length()-1).toString();
+        if (programVariables.containsKey(name)) {
+           var = programVariables.get(name);
+        } else if (variables.containsKey(name))  {
            var = variables.get(name);
-        else {
+        } else {
            var.setName(name);
            variables.put(name, var);
         }    
