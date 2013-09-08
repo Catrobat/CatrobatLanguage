@@ -90,8 +90,6 @@ public class CatrobatLanguageSerializationTest {
 	}
 
 	@Test
-	/** Where is object "restart"??? Why do not it exist in UserVariableContainer? 
-	 * */
 	public void Tic_Tac_Toe_MasterTest() throws IOException, SAXException {
 		File inputXML = new File("projects/Tic-Tac-Toe_Master/code.xml");
 		test(inputXML);

@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.catrobat.catroid.content.Sprite;
 
@@ -76,15 +75,6 @@ public class UserVariablesContainer implements Serializable {
 				if (!(arg.spriteVariables.get(item).containsAll(
 						spriteVariables.get(item)) && spriteVariables.get(item)
 						.containsAll(arg.spriteVariables.get(item)))) {
-					System.out.println(item.getName());
-					for (UserVariable var : spriteVariables.get(item)) {
-						System.out.println(var.getName());
-					}
-					System.out.println();
-					for (UserVariable var : arg.spriteVariables.get(item)) {
-						System.out.println(var.getName());
-					}
-
 					flag = false;
 					break;
 				}
