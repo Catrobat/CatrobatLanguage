@@ -68,7 +68,7 @@ public class XStreamSerializationTest {
 		test(xmlProject);
 	}
 
-	@Ignore
+	@Test
 	public void Lego_NXT_Robot_ControlTest() throws IOException, SAXException {
 		File xmlProject = new File("projects/Lego_NXT_Robot_Control/code.xml");
 		test(xmlProject);

@@ -46,6 +46,6 @@ public class LegoNxtMotorStopBrick extends BrickBaseType {
 	}
 	
 	public String toString() {
-		return ("NXT stop motor + \"" + motor + "\"\r\n");
+		return ("NXT stop motor \"" + motor + "\"\r\n");
 	}
 }

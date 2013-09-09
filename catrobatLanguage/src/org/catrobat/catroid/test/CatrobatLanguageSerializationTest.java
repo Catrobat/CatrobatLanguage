@@ -35,7 +35,6 @@ public class CatrobatLanguageSerializationTest {
 		}
 
 		assertNotNull(testProject);
-		//System.out.println(testProject.getSpriteList().get(0).getScriptList().toString());
 		assertTrue(testProject.equals(xmlProject));
 	}
 
@@ -77,7 +76,8 @@ public class CatrobatLanguageSerializationTest {
 		test(inputXML);
 	}
 
-	@Ignore
+	@Test
+	/** Also a stupid project where strange object appears in SpriteVariables*/
 	public void Lego_NXT_Robot_ControlTest() throws IOException, SAXException {
 		File inputXML = new File("projects/Lego_NXT_Robot_Control/code.xml");
 		test(inputXML);

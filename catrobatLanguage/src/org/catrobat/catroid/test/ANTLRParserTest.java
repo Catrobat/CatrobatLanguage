@@ -14,6 +14,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.content.Script;
 import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.translator.Translator;
 import org.catrobat.parser.CatrobatScriptLexer;
 import org.catrobat.parser.CatrobatScriptParser;
@@ -48,19 +49,30 @@ public class ANTLRParserTest {
 			currentSprite = controlProject.getSpriteList().get(0);
 		}
 
+		List<String> var = new ArrayList<String>();
+		if (controlProject.getUserVariables().getSpriteVariables()
+				.containsKey(currentSprite))
+			for (UserVariable item : controlProject.getUserVariables()
+					.getSpriteVariables().get(currentSprite)) {
+				var.add(item.getName());
+			}
+
 		parser.setCurrentSprite(currentSprite);
 		parser.setSpriteList(spriteList);
+		parser.setProgramVariables(controlProject.getUserVariables().getProjectVariables());
+		parser.setVariables(var);
 
 		parser.program();
 		List<Script> scriptList = parser.getScriptList();
-		
+
 		assertNotNull(scriptList);
 		assertEquals(scriptList.size(), controlList.size());
-		for (int i=0; i<scriptList.size(); i++) {
+		for (int i = 0; i < scriptList.size(); i++) {
 			Script script = scriptList.get(i);
 			Script control = controlList.get(i);
-			for (int j=0; j<script.getBrickList().size(); j++) {
-				assertEquals(control.getBrickList().get(j), script.getBrickList().get(j));
+			for (int j = 0; j < script.getBrickList().size(); j++) {
+				assertEquals(control.getBrickList().get(j), script
+						.getBrickList().get(j));
 			}
 		}
 		assertEquals(controlList, scriptList);
@@ -108,11 +120,11 @@ public class ANTLRParserTest {
 	public void AirFightTest() throws IOException, SAXException {
 		File inputScript = new File("projects/Air_fight_0.1/scripts.txt");
 		File inputXML = new File("projects/Air_fight_0.1/code.xml");
-		
+
 		test(inputScript, inputXML);
 	}
 
-	@Ignore
+	@Test
 	public void Lego_NXT_Robot_ControlTest() throws IOException, SAXException {
 		File inputScript = new File(
 				"projects/Lego_NXT_Robot_Control/scripts.txt");

@@ -59,6 +59,6 @@ public class LegoNxtMotorActionBrick extends BrickBaseType{
 	}
 	
 	public String toString() {
-		return ("NXT move motor \"" + motor + "\", speed (" + speed.toString() + "\r\n");
+		return ("NXT move motor \"" + motor + "\", speed (" + speed.toString() + ")\r\n");
 	}
 }

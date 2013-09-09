@@ -212,7 +212,7 @@ public class ProjectComparisonTest {
 		
 		assertTrue(a.equals(c));
 		assertFalse(a.equals(b));
-		assertFalse(b.equals(c));	
+		assertTrue(b.equals(c));	
 	}
 	
 	@Test
@@ -237,8 +237,11 @@ public class ProjectComparisonTest {
 		Formula c = new Formula();
 		
 		a.getFormulaTree().setType(ElementType.NUMBER);
+		a.getFormulaTree().setValue("2");
 		b.getFormulaTree().setType(ElementType.NUMBER);
+		b.getFormulaTree().setValue("2");
 		c.getFormulaTree().setType(ElementType.OPERATOR);
+		c.getFormulaTree().setValue("MULT");
 		
 		assertTrue(a.equals(b));
 		assertFalse(a.equals(c));
