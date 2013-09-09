@@ -206,7 +206,6 @@ public class Translator {
 		yamlConfig.setClassTag("program", YamlProject.class);
 		yamlConfig.setPropertyDefaultType(YamlProject.class, "objects", TreeMap.class);
 		yamlConfig.setPropertyElementType(YamlProject.class, "objects",	YamlSprite.class);
-		yamlConfig.setPropertyElementType(YamlProject.class, "projectVariables", UserVariable.class);
 		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
 		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds", SoundInfo.class);
 	

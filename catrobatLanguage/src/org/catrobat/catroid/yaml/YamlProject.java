@@ -14,11 +14,11 @@ public class YamlProject {
 
 	private XmlHeader header;
 	private Map<String, YamlSprite> objects;
-	private List<UserVariable> projectVariables;
+	private List<String> projectVariables;
 
 	public YamlProject(Project project) {
 		header = new XmlHeader();
-		projectVariables = new ArrayList<UserVariable>();
+		projectVariables = new ArrayList<String>();
 		
 		header = project.getXmlHeader();
 		objects = new TreeMap<String, YamlSprite>();
@@ -30,7 +30,7 @@ public class YamlProject {
 		
 		if (project.getUserVariables().getProjectVariables()!=null) {
 			for (UserVariable item : project.getUserVariables().getProjectVariables()) {
-				projectVariables.add(item);
+				projectVariables.add(item.getName());
 			}
 		}
 	}
@@ -38,7 +38,7 @@ public class YamlProject {
 	public YamlProject() {
 		header = new XmlHeader();
 		objects = new TreeMap<String, YamlSprite>();
-		projectVariables = new ArrayList<UserVariable>();
+		projectVariables = new ArrayList<String>();
 	}
 	
 	public XmlHeader getHeader() {
@@ -57,11 +57,11 @@ public class YamlProject {
 		this.objects = objects;
 	}
 	
-	public List<UserVariable> getProjectVariables() {
+	public List<String> getProjectVariables() {
 		return projectVariables;
 	}
 
-	public void setProjectVariables(List<UserVariable> projectVariables) {
+	public void setProjectVariables(List<String> projectVariables) {
 		this.projectVariables = projectVariables;
 	}
 	

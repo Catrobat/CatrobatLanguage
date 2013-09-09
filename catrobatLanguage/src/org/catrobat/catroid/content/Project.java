@@ -68,12 +68,15 @@ public class Project implements Serializable {
 			xmlHeader = project.getHeader();
 		if (project.getObjects() != null) {
 			for (String name : project.getObjects().keySet()) {
-				spriteList
-						.add(new Sprite(name, project.getObjects().get(name)));
+				spriteList.add(new Sprite(name, project.getObjects().get(name)));
 			}
 		}
 		if (project.getProjectVariables() != null) {
-			userVariables.setProjectVariables(project.getProjectVariables());
+			for (String name : project.getProjectVariables()) {
+				UserVariable var = new UserVariable();
+				var.setName(name);
+				userVariables.getProjectVariables().add(var);
+			}
 		}
 		Map<Sprite, List<UserVariable>> spriteVariables = new HashMap<Sprite, List<UserVariable>>();
 
@@ -89,7 +92,8 @@ public class Project implements Serializable {
 			parser.setSpriteList(spriteList);
 			parser.setCurrentSprite(sprite);
 			parser.setProgramVariables(userVariables.getProjectVariables());
-			parser.setVariables(project.getObjects().get(sprite.getName()).getVariables());
+			parser.setVariables(project.getObjects().get(sprite.getName())
+					.getVariables());
 
 			parser.program();
 
