@@ -3,3 +3,7 @@
 *.yml
 *.txt
 .metadata/
+RemoteSystemsTempFiles/
+*/target/
+*.settings/
+bin/
