@@ -1,9 +1,9 @@
 *.class
-*.xml
-*.yml
-*.txt
+code.xml
+code.yml
+scripts.txt
 .metadata/
 RemoteSystemsTempFiles/
-*/target/
-*.settings/
+target/
+.settings/
 bin/
