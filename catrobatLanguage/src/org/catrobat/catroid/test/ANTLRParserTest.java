@@ -18,7 +18,6 @@ import org.catrobat.catroid.formulaeditor.UserVariable;
 import org.catrobat.catroid.translator.Translator;
 import org.catrobat.parser.CatrobatScriptLexer;
 import org.catrobat.parser.CatrobatScriptParser;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 

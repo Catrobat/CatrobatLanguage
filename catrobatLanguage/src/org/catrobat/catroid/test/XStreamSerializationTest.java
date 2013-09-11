@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.translator.Translator;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
