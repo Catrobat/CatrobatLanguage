@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import net.lingala.zip4j.core.ZipFile;
+import net.lingala.zip4j.exception.ZipException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +29,22 @@ public class HomeController {
 			throws IOException {
 		// TODO: check type .catrobat
 
+		
+		String fileName = file.getOriginalFilename();
+		String projectName = new StringBuffer(fileName).substring(0,
+				fileName.length() - 9);
+		System.out.println(projectName);
+		
+		// String tempFolder = System.getProperty("java.io.tmpdir");
+		String tempFolder = "D:/Users/TDiva/Desktop/temp/" + projectName;
+		File projectDir = new File(tempFolder);
+		if (projectDir.exists())
+			projectDir.delete();
+		if (!projectDir.mkdir()) 
+			System.out.println("Cannot create project directory.");
+
+		String filePath = tempFolder + "/" + file.getOriginalFilename();
 		FileOutputStream outputStream = null;
-		String filePath = System.getProperty("java.io.tmpdir") + "/"
-				+ file.getOriginalFilename();
 		try {
 			outputStream = new FileOutputStream(new File(filePath));
 			outputStream.write(file.getBytes());
@@ -37,6 +53,14 @@ public class HomeController {
 			// TODO: create error page
 			System.out.println("Error while saving file");
 			return "error";
+		}
+
+		ZipFile zip;
+		try {
+			zip = new ZipFile(filePath);
+			zip.extractAll(tempFolder);
+		} catch (ZipException e) {
+			e.printStackTrace();
 		}
 
 		return "home";
