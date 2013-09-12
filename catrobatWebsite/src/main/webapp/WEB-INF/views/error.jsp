@@ -6,6 +6,6 @@
 </head>
 <body>
 	<h1>error</h1>
-	<%@include file="upload.jspf"%>
+	
 </body>
 </html>
