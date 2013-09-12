@@ -7,6 +7,7 @@ import java.io.IOException;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +34,12 @@ public class HomeController {
 		String fileName = file.getOriginalFilename();
 		String projectName = new StringBuffer(fileName).substring(0,
 				fileName.length() - 9);
-		System.out.println(projectName);
 		
 		// String tempFolder = System.getProperty("java.io.tmpdir");
 		String tempFolder = "D:/Users/TDiva/Desktop/temp/" + projectName;
 		File projectDir = new File(tempFolder);
 		if (projectDir.exists())
-			projectDir.delete();
+			FileUtils.deleteDirectory(projectDir);
 		if (!projectDir.mkdir()) 
 			System.out.println("Cannot create project directory.");
 
