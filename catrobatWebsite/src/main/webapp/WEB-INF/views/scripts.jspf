@@ -1,0 +1,11 @@
+<title> Catrobat Website</title>
+<script type="text/javascript"
+	src="http://scriptjava.net/source/scriptjava/scriptjava.js"></script>
+<script type="text/javascript">
+	function SendFile() {
+		$$f({
+			formid : 'upload_form',
+			url : 'upload',
+		});
+	}
+</script>

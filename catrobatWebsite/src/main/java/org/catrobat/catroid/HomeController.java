@@ -1,5 +1,7 @@
 package org.catrobat.catroid;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,21 @@ public class HomeController {
 	public String Upload(
 			@RequestParam(value = "file", required = true) MultipartFile file)
 			throws IOException {
-		System.out.println(file.getOriginalFilename());
+		// TODO: check type .catrobat
+
+		FileOutputStream outputStream = null;
+		String filePath = System.getProperty("java.io.tmpdir") + "/"
+				+ file.getOriginalFilename();
+		try {
+			outputStream = new FileOutputStream(new File(filePath));
+			outputStream.write(file.getBytes());
+			outputStream.close();
+		} catch (Exception e) {
+			// TODO: create error page
+			System.out.println("Error while saving file");
+			return "error";
+		}
+
 		return "home";
 	}
 

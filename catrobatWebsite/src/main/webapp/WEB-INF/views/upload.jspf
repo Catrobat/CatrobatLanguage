@@ -1,0 +1,10 @@
+<form id="upload_form" method="post" enctype="multipart/form-data"
+	onSubmit="">
+	<input class="file_form" type="file" name="file"/>
+</form>
+<br />
+<div id="result">Status</div>
+<br />
+<br />
+<div onclick="SendFile();">Upload file</div>
+<br />
