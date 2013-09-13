@@ -10,12 +10,13 @@
 			<br> <img src="resources/catrobat_logo.png"
 				class="pull-left  img-rounded">
 			<div class="well well-mini pull-right">
-				<form id="upload_form" method="post" enctype="multipart/form-data"
-					onSubmit="">
+				<form id="upload_form" method="post" action="upload"
+					enctype="multipart/form-data" onSubmit="">
 					<input class="file_form btn-default btn-block" type="file"
-						name="file" />
+						name="file"> <input type="submit"
+						class="btn pull-right btn-primary">
 				</form>
-				<div class="btn pull-right" onclick="SendFile();">Upload file</div>
+
 			</div>
 		</div>
 	</div>
@@ -30,7 +31,7 @@
 						<li class="nav-header"><h3>ObjectList</h3></li>
 
 						<li class="active"><a href="#"><h4>Object1</h4></a></li>
-						
+
 						<li class="nav-header"><a href="#"><h3>Variables</h3></a></li>
 					</ul>
 				</div>
@@ -40,7 +41,12 @@
 			<div class="well">
 				<div class="container-fluid">
 					<div class="row-fluid" id="menu">
-					<h3><c:out value="${requestScope.Project}"/></h3>
+						<dl class="dl-horizontal">
+						<c:forEach var="entry" items="${xmlHeader}">
+							<dt>${entry.key}</dt>
+							<dd>${entry.value}</dd>
+							</c:forEach>
+						</dl>
 					</div>
 				</div>
 			</div>

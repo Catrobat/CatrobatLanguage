@@ -5,6 +5,7 @@
 <script type="text/javascript"
 	src="http://scriptjava.net/source/scriptjava/scriptjava.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 	function SendFile() {
 		$$f({
