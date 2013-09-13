@@ -8,6 +8,8 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 import org.apache.commons.io.FileUtils;
+import org.catrobat.catroid.content.Project;
+import org.catrobat.catroid.translator.Translator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,20 +32,19 @@ public class HomeController {
 			throws IOException {
 		// TODO: check type .catrobat
 
-		
 		String fileName = file.getOriginalFilename();
 		String projectName = new StringBuffer(fileName).substring(0,
 				fileName.length() - 9);
-		
+
 		// String tempFolder = System.getProperty("java.io.tmpdir");
 		String tempFolder = "D:/Users/TDiva/Desktop/temp/" + projectName;
 		File projectDir = new File(tempFolder);
 		if (projectDir.exists())
 			FileUtils.deleteDirectory(projectDir);
-		if (!projectDir.mkdir()) 
+		if (!projectDir.mkdir())
 			System.out.println("Cannot create project directory.");
 
-		String filePath = tempFolder + "/" + file.getOriginalFilename();
+		String filePath = tempFolder + "/" + fileName;
 		FileOutputStream outputStream = null;
 		try {
 			outputStream = new FileOutputStream(new File(filePath));
@@ -63,7 +64,10 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
+		Project project = Translator.getInstance().loadProjectFromXML(
+				new File(tempFolder + "/code.xml"));
+		System.out.println(Translator.getInstance().getCatrobatLanguageStringOfAProject(project));
+
 		return "home";
 	}
-
 }
