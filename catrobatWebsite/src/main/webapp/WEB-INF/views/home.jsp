@@ -19,8 +19,32 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-	Hi!
+
+
+	<div class="tabbable tabs-left">
+		<ul class="nav nav-tabs">
+			<li>
+				<div class="well pull-left">
+					<ul class="nav nav-list navbar-inner">
+						<li class="nav-header"><a href="#"><h3>Header</h3></a></li>
+						<li class="nav-header"><h3>ObjectList</h3></li>
+
+						<li class="active"><a href="#"><h4>Object1</h4></a></li>
+						
+						<li class="nav-header"><a href="#"><h3>Variables</h3></a></li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+		<div class="tab-content">
+			<div class="well">
+				<div class="container-fluid">
+					<div class="row-fluid" id="menu">
+					<h3><c:out value="${requestScope.Project}"/></h3>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </body>

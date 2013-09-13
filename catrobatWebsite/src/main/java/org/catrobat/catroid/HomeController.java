@@ -28,7 +28,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public String Upload(
-			@RequestParam(value = "file", required = true) MultipartFile file)
+			@RequestParam(value = "file", required = true) MultipartFile file, Model model)
 			throws IOException {
 		// TODO: check type .catrobat
 
@@ -64,9 +64,10 @@ public class HomeController {
 			e.printStackTrace();
 		}
 
-		Project project = Translator.getInstance().loadProjectFromXML(
-				new File(tempFolder + "/code.xml"));
-		System.out.println(Translator.getInstance().getCatrobatLanguageStringOfAProject(project));
+		File xmlProject = new File(tempFolder + "/code.xml");
+		Project project = Translator.getInstance().loadProjectFromXML(xmlProject);
+		
+		model.addAttribute("Project", new String("hello!"));
 
 		return "home";
 	}

@@ -25,12 +25,10 @@ package org.catrobat.catroid.translator;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.TreeMap;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -231,11 +229,10 @@ public class Translator {
 	public Project loadProjectFromXML(File xmlProject) {
 		saveLoadLock.lock();
 		try {
-
-			InputStream projectFileStream = new FileInputStream(xmlProject);
-			Project returned = (Project) xstream.fromXML(projectFileStream);
+			BufferedReader projectReader = new BufferedReader(new FileReader(xmlProject));
+			Project returned = (Project) xstream.fromXML(projectReader);
+			projectReader.close();
 			return returned;
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -403,7 +400,7 @@ public class Translator {
 			saveLoadLock.unlock();
 		}
 	}
-	
+
 	public void convertFromXMLToCatrobatLanguage(File xmlProject) {
 		saveLoadLock.lock();
 		try {
@@ -427,7 +424,7 @@ public class Translator {
 			saveLoadLock.unlock();
 		}
 	}
-	
+
 	public void convertFromCatrobatLanguageToXML(File catrobatFile) {
 		saveLoadLock.lock();
 		try {
