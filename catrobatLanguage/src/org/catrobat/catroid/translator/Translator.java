@@ -22,9 +22,11 @@
  */
 package org.catrobat.catroid.translator;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -204,11 +206,15 @@ public class Translator {
 		yamlConfig.writeConfig.setEscapeUnicode(false);
 		yamlConfig.writeConfig.setIndentSize(2);
 		yamlConfig.setClassTag("program", YamlProject.class);
-		yamlConfig.setPropertyDefaultType(YamlProject.class, "objects", TreeMap.class);
-		yamlConfig.setPropertyElementType(YamlProject.class, "objects",	YamlSprite.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "looks", LookData.class);
-		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds", SoundInfo.class);
-	
+		yamlConfig.setPropertyDefaultType(YamlProject.class, "objects",
+				TreeMap.class);
+		yamlConfig.setPropertyElementType(YamlProject.class, "objects",
+				YamlSprite.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "looks",
+				LookData.class);
+		yamlConfig.setPropertyElementType(YamlSprite.class, "sounds",
+				SoundInfo.class);
+
 	}
 
 	public synchronized static Translator getInstance() {
@@ -233,6 +239,30 @@ public class Translator {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		} finally {
+			saveLoadLock.unlock();
+		}
+	}
+
+	public boolean saveProjectToXML(Project project, String destFolder) {
+		saveLoadLock.lock();
+		if (project == null) {
+			saveLoadLock.unlock();
+			return false;
+		}
+		try {
+			String projectFile = xstream.toXML(project);
+			File projectXML = new File(destFolder + "/code.xml");
+
+			BufferedWriter writer = new BufferedWriter(new FileWriter(
+					projectXML));
+			writer.write(XML_HEADER.concat(projectFile));
+			writer.flush();
+			writer.close();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		} finally {
 			saveLoadLock.unlock();
 		}
@@ -264,6 +294,61 @@ public class Translator {
 
 	public String getXMLStringOfAProject(Project project) {
 		return xstream.toXML(project);
+	}
+
+	public String getCatrobatLanguageStringOfAProject(Project project) {
+
+		saveProjectToCatrobatLanguage(new YamlProject(project),
+				System.getProperty("java.io.tmpdir"));
+		BufferedReader input = null;
+		try {
+			input = new BufferedReader(new FileReader(new File(
+					System.getProperty("java.io.tmpdir") + "/code.yml")));
+			StringBuffer buf = new StringBuffer();
+			while (input.ready()) {
+				buf.append(input.readLine());
+			}
+			return buf.toString();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (input != null)
+					input.close();
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		return null;
+	}
+
+	public boolean saveProjectToCatrobatLanguage(YamlProject project,
+			String destFolder) {
+		saveLoadLock.lock();
+		if (project == null) {
+			saveLoadLock.unlock();
+			return false;
+		}
+		try {
+			File projectYAML = new File(destFolder + "/code.yml");
+
+			YamlWriter yamlWriter = new YamlWriter(new FileWriter(projectYAML),
+					yamlConfig);
+
+			yamlWriter.write(project);
+			yamlWriter.close();
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			saveLoadLock.unlock();
+		}
 	}
 
 	public boolean saveProjectToCatrobatLanguage(YamlProject project) {
@@ -308,6 +393,17 @@ public class Translator {
 		}
 	}
 
+	public void convertFromXMLToCatrobatLanguage(File xmlProject,
+			String destFolder) {
+		saveLoadLock.lock();
+		try {
+			Project project = loadProjectFromXML(xmlProject);
+			saveProjectToCatrobatLanguage(new YamlProject(project), destFolder);
+		} finally {
+			saveLoadLock.unlock();
+		}
+	}
+	
 	public void convertFromXMLToCatrobatLanguage(File xmlProject) {
 		saveLoadLock.lock();
 		try {
@@ -318,6 +414,20 @@ public class Translator {
 		}
 	}
 
+	public void convertFromCatrobatLanguageToXML(File catrobatFile,
+			String destFolder) {
+		saveLoadLock.lock();
+		try {
+			YamlProject catrobatProject = loadProjectFromCatrobatLanguage(catrobatFile);
+			Project project = new Project(catrobatProject);
+			saveProjectToXML(project, destFolder);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			saveLoadLock.unlock();
+		}
+	}
+	
 	public void convertFromCatrobatLanguageToXML(File catrobatFile) {
 		saveLoadLock.lock();
 		try {
@@ -329,6 +439,5 @@ public class Translator {
 		} finally {
 			saveLoadLock.unlock();
 		}
-
 	}
 }
