@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.UUID;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
@@ -22,6 +23,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class HomeController {
+
+	private String tempFolder = null;
+
+	public String getTempFolder() {
+		if (tempFolder == null)
+			// String tempFolder = System.getProperty("java.io.tmpdir") +
+			// UUID.randomUUID().toString();
+			tempFolder = "D:/Users/TDiva/Desktop/temp/"
+					+ UUID.randomUUID().toString();
+
+		return tempFolder;
+
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -62,27 +76,24 @@ public class HomeController {
 		return headerMap;
 	}
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String Upload(
-			@RequestParam(value = "file", required = true) MultipartFile file, Model model)
-			throws IOException {
+			@RequestParam(value = "file", required = true) MultipartFile file,
+			Model model) throws IOException {
+
 		// TODO: check type .catrobat
 		// TODO: quick click -> internal error change folder to random name!
-		if (file == null) return "error";
+		if (file == null)
+			return "home";
 
-		String fileName = file.getOriginalFilename();
-		String projectName = new StringBuffer(fileName).substring(0,
-				fileName.length() - 9);
-
-		// String tempFolder = System.getProperty("java.io.tmpdir");
-		String tempFolder = "D:/Users/TDiva/Desktop/temp/" + projectName;
-		File projectDir = new File(tempFolder);
+		File projectDir = new File(getTempFolder());
 		if (projectDir.exists())
 			FileUtils.deleteDirectory(projectDir);
 		if (!projectDir.mkdir())
 			System.out.println("Cannot create project directory.");
 
-		String filePath = tempFolder + "/" + fileName;
+		String filePath = getTempFolder() + "/" + file.getOriginalFilename();
+		;
 		FileOutputStream outputStream = null;
 		try {
 			outputStream = new FileOutputStream(new File(filePath));
@@ -97,19 +108,25 @@ public class HomeController {
 		ZipFile zip;
 		try {
 			zip = new ZipFile(filePath);
-			zip.extractAll(tempFolder);
+			zip.extractAll(getTempFolder());
 		} catch (ZipException e) {
 			e.printStackTrace();
 		}
 
-		File xmlProject = new File(tempFolder + "/code.xml");
-		YamlProject project = new YamlProject(Translator.getInstance().loadProjectFromXML(
-				xmlProject));
+		return getHeader(model);
+	}
+
+	@RequestMapping(value = "xmlHeader", method = RequestMethod.GET)
+	public String getHeader(Model model) {
+
+		File xmlProject = new File(getTempFolder() + "/code.xml");
+		YamlProject project = new YamlProject(Translator.getInstance()
+				.loadProjectFromXML(xmlProject));
 
 		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
-		model.addAttribute("objectNames", project.getObjects().keySet()); 
+		model.addAttribute("objectNames", project.getObjects().keySet());
 		model.addAttribute("activeTab", "xmlHeader");
 
 		return "home";
-	}
+	};
 }

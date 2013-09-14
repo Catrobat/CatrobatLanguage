@@ -10,7 +10,7 @@
 			<br> <img src="resources/catrobat_logo.png"
 				class="pull-left  img-rounded">
 			<div class="well well-mini pull-right">
-				<form id="upload_form" method="post" action="upload"
+				<form id="upload_form" method="post" action=""
 					enctype="multipart/form-data" onSubmit="">
 					<input class="file_form btn-default btn-block" type="file"
 						name="file"> <input type="submit"
@@ -27,7 +27,7 @@
 			<li>
 				<div class="well pull-left">
 					<ul class="nav nav-list navbar-inner">
-						<li class="nav-header" id="xmlHeader"><a href="header"><h3>Header</h3></a></li>
+						<li class="nav-header" id="xmlHeader"><a href="xmlHeader"><h3>Header</h3></a></li>
 						<li class="nav-header"><h3>ObjectList</h3></li>
 						<c:forEach var="name" items="${objectNames}">
 							<li id="${name}"><a href="${name}"> ${name}</a></li>
