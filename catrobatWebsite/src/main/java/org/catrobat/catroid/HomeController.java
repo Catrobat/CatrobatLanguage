@@ -123,6 +123,7 @@ public class HomeController {
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 
+		model.addAttribute("programName", project.getHeader().getProgramName());
 		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
 		model.addAttribute("objectNames", project.getObjects().keySet());
 		model.addAttribute("activeTab", "xmlHeader");

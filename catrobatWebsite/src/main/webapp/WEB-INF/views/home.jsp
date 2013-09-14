@@ -7,8 +7,10 @@
 <body>
 	<div class="navbar">
 		<div class="navbar-inner">
-			<br> <img src="resources/catrobat_logo.png"
-				class="pull-left  img-rounded">
+			<div>
+				<br> <img src="resources/catrobat_logo.png"
+					class="pull-left  img-rounded">
+			</div>
 			<div class="well well-mini pull-right">
 				<form id="upload_form" method="post" action=""
 					enctype="multipart/form-data" onSubmit="">
@@ -27,12 +29,16 @@
 			<li>
 				<div class="well pull-left">
 					<ul class="nav nav-list navbar-inner">
-						<li class="nav-header" id="xmlHeader"><a href="xmlHeader"><h3>Header</h3></a></li>
+						<li class="nav-header" id="xmlHeader"><h3>
+								<a href="xmlHeader">Header</a>
+							</h3></li>
 						<li class="nav-header"><h3>ObjectList</h3></li>
 						<c:forEach var="name" items="${objectNames}">
 							<li id="${name}"><a href="${name}"> ${name}</a></li>
 						</c:forEach>
-						<li class="nav-header" id="variables"><a href="variables"><h3>Variables</h3></a></li>
+						<li class="nav-header" id="variables"><h3>
+								<a href="variables">Variables</a>
+							</h3></li>
 					</ul>
 				</div>
 			</li>
@@ -40,7 +46,10 @@
 		<div class="tab-content">
 			<div class="well">
 				<div class="container-fluid">
-					<div class="row-fluid" id="menu">
+					<div class="row-fluid">
+						<div class="nav-header">
+							<h1>${programName}</h1>
+						</div>
 						<dl class="dl-horizontal">
 							<c:forEach var="entry" items="${xmlHeader}">
 								<dt>${entry.key}</dt>
@@ -53,6 +62,6 @@
 		</div>
 	</div>
 
-<%@include file="bottom-scripts.jspf"%>
+	<%@include file="bottom-scripts.jspf"%>
 </body>
 </html>
