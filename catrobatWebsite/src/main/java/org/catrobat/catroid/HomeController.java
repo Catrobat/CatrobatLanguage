@@ -3,6 +3,8 @@ package org.catrobat.catroid;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.UUID;
@@ -72,6 +74,14 @@ public class HomeController {
 		headerMap.put("tags", header.getTags());
 		headerMap.put("url", header.getUrl());
 		headerMap.put("userHandle", header.getUserHandle());
+
+		List<String> emptyValues = new ArrayList<String>();
+		for (String item : headerMap.keySet())
+			if (headerMap.get(item) == null || headerMap.get(item) == "") {
+				emptyValues.add(item);
+			}
+		for (String item : emptyValues)
+			headerMap.remove(item);
 
 		return headerMap;
 	}
