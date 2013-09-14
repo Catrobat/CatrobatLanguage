@@ -10,16 +10,15 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 import org.apache.commons.io.FileUtils;
-import org.catrobat.catroid.content.Project;
 import org.catrobat.catroid.content.XmlHeader;
 import org.catrobat.catroid.translator.Translator;
+import org.catrobat.catroid.yaml.YamlProject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -104,10 +103,11 @@ public class HomeController {
 		}
 
 		File xmlProject = new File(tempFolder + "/code.xml");
-		Project project = Translator.getInstance().loadProjectFromXML(
-				xmlProject);
+		YamlProject project = new YamlProject(Translator.getInstance().loadProjectFromXML(
+				xmlProject));
 
-		model.addAttribute("xmlHeader", createrHeaderMap(project.getXmlHeader()));
+		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
+		model.addAttribute("objectNames", project.getObjects().keySet()); 
 		model.addAttribute("activeTab", "header");
 
 		return "home";

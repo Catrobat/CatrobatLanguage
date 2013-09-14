@@ -27,12 +27,12 @@
 			<li>
 				<div class="well pull-left">
 					<ul class="nav nav-list navbar-inner">
-						<li class="nav-header"><a href="#"><h3>Header</h3></a></li>
+						<li class="nav-header" id="xmlHeader"><a href="header"><h3>Header</h3></a></li>
 						<li class="nav-header"><h3>ObjectList</h3></li>
-
-						<li class="active"><a href="#"><h4>Object1</h4></a></li>
-
-						<li class="nav-header"><a href="#"><h3>Variables</h3></a></li>
+						<c:forEach var="name" items="${objectNames}">
+							<li id="${name}"><a href="${name}"> ${name}</a></li>
+						</c:forEach>
+						<li class="nav-header" id="variables"><a href="variables"><h3>Variables</h3></a></li>
 					</ul>
 				</div>
 			</li>
@@ -42,9 +42,9 @@
 				<div class="container-fluid">
 					<div class="row-fluid" id="menu">
 						<dl class="dl-horizontal">
-						<c:forEach var="entry" items="${xmlHeader}">
-							<dt>${entry.key}</dt>
-							<dd>${entry.value}</dd>
+							<c:forEach var="entry" items="${xmlHeader}">
+								<dt>${entry.key}</dt>
+								<dd>${entry.value}</dd>
 							</c:forEach>
 						</dl>
 					</div>
