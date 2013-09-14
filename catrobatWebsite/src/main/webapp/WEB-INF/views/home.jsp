@@ -33,9 +33,11 @@
 								<a href="xmlHeader">Header</a>
 							</h3></li>
 						<li class="nav-header"><h3>ObjectList</h3></li>
-						<c:forEach var="name" items="${objectNames}">
-							<li id="${name}"><a href="${name}"> ${name}</a></li>
-						</c:forEach>
+						<ul type="circle">
+							<c:forEach var="name" items="${objectNames}">
+								<li id="${name}"><a href="${name}"> ${name}</a></li>
+							</c:forEach>
+						</ul>
 						<li class="nav-header" id="variables"><h3>
 								<a href="variables">Variables</a>
 							</h3></li>
