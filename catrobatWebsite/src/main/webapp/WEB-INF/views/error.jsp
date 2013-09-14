@@ -2,7 +2,6 @@
 <%@ page session="false"%>
 <html>
 <head>
-<%@include file="scripts.jspf"%>
 </head>
 <body>
 	<h1>error</h1>

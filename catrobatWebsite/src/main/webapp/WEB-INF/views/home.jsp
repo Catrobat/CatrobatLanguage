@@ -2,7 +2,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<%@include file="scripts.jspf"%>
+<%@include file="top-scripts.jspf"%>
 </head>
 <body>
 	<div class="navbar">
@@ -53,5 +53,6 @@
 		</div>
 	</div>
 
+<%@include file="bottom-scripts.jspf"%>
 </body>
 </html>

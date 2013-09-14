@@ -108,7 +108,7 @@ public class HomeController {
 
 		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
 		model.addAttribute("objectNames", project.getObjects().keySet()); 
-		model.addAttribute("activeTab", "header");
+		model.addAttribute("activeTab", "xmlHeader");
 
 		return "home";
 	}
