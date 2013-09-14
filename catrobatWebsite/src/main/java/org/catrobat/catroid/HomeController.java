@@ -130,4 +130,20 @@ public class HomeController {
 
 		return "home";
 	};
+
+	@RequestMapping(value = "variables", method = RequestMethod.GET)
+	public String getVariables(Model model) {
+
+		File xmlProject = new File(getTempFolder() + "/code.xml");
+		YamlProject project = new YamlProject(Translator.getInstance()
+				.loadProjectFromXML(xmlProject));
+
+		model.addAttribute("programName", project.getHeader().getProgramName());
+		model.addAttribute("variables", project.getProjectVariables());
+		model.addAttribute("objectNames", project.getObjects().keySet());
+		model.addAttribute("activeTab", "variables");
+
+		return "home";
+	};
+
 }

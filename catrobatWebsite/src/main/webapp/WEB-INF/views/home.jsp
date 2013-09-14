@@ -52,12 +52,24 @@
 						<div class="nav-header">
 							<h1>${programName}</h1>
 						</div>
-						<dl class="dl-horizontal">
-							<c:forEach var="entry" items="${xmlHeader}">
-								<dt>${entry.key}</dt>
-								<dd>${entry.value}</dd>
-							</c:forEach>
-						</dl>
+						<c:choose>
+							<c:when test="${activeTab == 'xmlHeader'}">
+								<dl class="dl-horizontal">
+									<c:forEach var="entry" items="${xmlHeader}">
+										<dt>${entry.key}</dt>
+										<dd>${entry.value}</dd>
+									</c:forEach>
+								</dl>
+							</c:when>
+							<c:when test="${activeTab == 'variables'}">
+								<ul type="circle">
+									<c:forEach var="var" items="${variables}">
+										<li>${var}</li>
+									</c:forEach>
+								</ul>
+							</c:when>
+							<c:otherwise> ${activeTab}</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
