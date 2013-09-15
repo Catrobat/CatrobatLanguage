@@ -24,7 +24,7 @@
 	</div>
 
 	<div class="tabbable tabs-left">
-		<ul class="nav nav-tabs">
+		<ul class="nav nav-tabs nav-list">
 
 			<li class="nav-header" id="xmlHeader"><h3>
 					<a href="xmlHeader">Header</a>

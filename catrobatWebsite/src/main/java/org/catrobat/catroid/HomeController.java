@@ -155,7 +155,13 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) {
-		return "home";
+		try {
+			YamlProject project = getProject(request);
+			setDefaultModelAttributes(model, "home", project);
+		} catch (UploadException e) {
+			return "home";
+		}
+		return getHeader(model, request);
 	}
 
 	@RequestMapping(value = "/*", method = RequestMethod.POST)
