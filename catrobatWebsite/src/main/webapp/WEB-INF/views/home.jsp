@@ -26,31 +26,30 @@
 
 	<div class="tabbable tabs-left">
 		<ul class="nav nav-tabs">
+
+
+			<li class="nav-header" id="xmlHeader"><h3>
+					<a href="xmlHeader">Header</a>
+				</h3></li>
+			<li class="nav-header"><h3>ObjectList</h3></li>
 			<li>
-				<div class="well pull-left">
-					<ul class="nav nav-list navbar-inner">
-						<li class="nav-header" id="xmlHeader"><h3>
-								<a href="xmlHeader">Header</a>
-							</h3></li>
-						<li class="nav-header"><h3>ObjectList</h3></li>
-						<ul type="circle">
-							<c:forEach var="name" items="${objectNames}">
-								<li id="${name}"><a href="${name}"> ${name}</a></li>
-							</c:forEach>
-						</ul>
-						<li class="nav-header" id="variables"><h3>
-								<a href="variables">Variables</a>
-							</h3></li>
-					</ul>
-				</div>
-			</li>
+				<ul type="circle">
+					<c:forEach var="name" items="${objectNames}">
+						<li id="${name}"><a href="${name}"> ${name}</a></li>
+					</c:forEach>
+				</ul>
+			<li>
+			<li class="nav-header" id="variables"><h3>
+					<a href="variables">Variables</a>
+				</h3></li>
+
 		</ul>
 		<div class="tab-content">
 			<div class="well">
 				<div class="container-fluid">
 					<div class="row-fluid">
 						<div class="nav-header">
-							<h1>${programName}</h1>
+							<h2>${programName}</h2>
 						</div>
 						<c:choose>
 							<c:when test="${activeTab == 'xmlHeader'}">

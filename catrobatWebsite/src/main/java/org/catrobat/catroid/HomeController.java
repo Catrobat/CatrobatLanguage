@@ -39,12 +39,6 @@ public class HomeController {
 
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-
-		return "home";
-	}
-
 	private Map<String, String> createrHeaderMap(XmlHeader header) {
 		Map<String, String> headerMap = new TreeMap<String, String>();
 		headerMap.put("programName", header.getProgramName());
@@ -86,7 +80,13 @@ public class HomeController {
 		return headerMap;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model) {
+
+		return "home";
+	}
+
+	@RequestMapping(value="/*", method = RequestMethod.POST)
 	public String Upload(
 			@RequestParam(value = "file", required = true) MultipartFile file,
 			Model model) throws IOException {
