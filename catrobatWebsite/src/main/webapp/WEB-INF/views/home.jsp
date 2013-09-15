@@ -72,6 +72,18 @@
 							</c:when>
 							<c:otherwise>
 								<h3>${name}</h3>
+								
+								<ul class="thumbnails">
+									<c:forEach var="entry" items="${looks}">
+										<li class="span4">
+										<div class="thumbnail">
+											<img src="${entry.value}" alt="" height="100px">
+											<p>${entry.key}</p>
+										</div>
+									</li>
+									</c:forEach>
+
+								</ul>
 								<pre> ${scripts} </pre>
 								<hr>
 								<ul type="circle">
