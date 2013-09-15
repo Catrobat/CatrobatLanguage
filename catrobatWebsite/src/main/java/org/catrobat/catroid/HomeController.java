@@ -35,19 +35,6 @@ public class HomeController {
 	private class UploadException extends Exception {
 
 		private static final long serialVersionUID = 1L;
-		private String msg;
-
-		public UploadException(String msg) {
-			this.setMsg(msg);
-		}
-
-		public String getMsg() {
-			return msg;
-		}
-
-		public void setMsg(String msg) {
-			this.msg = msg;
-		}
 	}
 
 	private boolean isCatrobatFile(String name) {
@@ -146,14 +133,18 @@ public class HomeController {
 				.getObjects().keySet()));
 	}
 
+	private void setErrorModelAttributes(Model model, String title, String msg) {
+		model.addAttribute("errorTitle", title);
+		model.addAttribute("errorMsg", msg);
+	}
+
 	private YamlProject getProject(HttpServletRequest request)
 			throws UploadException {
 		File xmlProject = new File((String) request.getSession().getAttribute(
 				"fullPathToProject")
 				+ "\\code.xml");
 		if (!xmlProject.exists())
-			throw new UploadException("ProjectFileWasNotFound");
-
+			throw new UploadException();
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 		return project;
@@ -177,6 +168,10 @@ public class HomeController {
 		if (file == null)
 			return home(model, request);
 		if (!isCatrobatFile(file.getOriginalFilename())) {
+			setErrorModelAttributes(
+					model,
+					"Illegal file!",
+					"File you tried to upload is not .catrobat file. Please, upload catrobat project (e. g.\"project.catrobat\")");
 			return "error";
 		}
 		// TODO: quick click -> internal error change folder to random name!
@@ -207,7 +202,8 @@ public class HomeController {
 			outputStream.close();
 		} catch (Exception e) {
 			// TODO: create error page
-			System.out.println("Error while saving file");
+			setErrorModelAttributes(model, "Cannot save file", e
+					.getStackTrace().toString());
 			return "error";
 		}
 
@@ -221,7 +217,9 @@ public class HomeController {
 			zip = new ZipFile(filePath);
 			zip.extractAll(appFolder + uploadFolder);
 		} catch (ZipException e) {
-			e.printStackTrace();
+			setErrorModelAttributes(model, "Cannot unzip project file", e
+					.getStackTrace().toString());
+			return "error";
 		}
 
 		return getHeader(model, request);
@@ -234,6 +232,8 @@ public class HomeController {
 		try {
 			project = getProject(request);
 		} catch (UploadException e) {
+			setErrorModelAttributes(model, "Cannot find project",
+					e.getMessage());
 			return "error";
 		}
 
@@ -251,6 +251,8 @@ public class HomeController {
 		try {
 			project = getProject(request);
 		} catch (UploadException e) {
+			setErrorModelAttributes(model, "Cannot find project",
+					e.getMessage());
 			return "error";
 		}
 
@@ -269,14 +271,20 @@ public class HomeController {
 		try {
 			project = getProject(request);
 		} catch (UploadException e) {
-			System.out.println("project was not found");
+			setErrorModelAttributes(model, "Cannot find project",
+					e.getMessage());
 			return "error";
 		}
 
 		Map<String, String> escapedNames = createObjectNamesMap(project
 				.getObjects().keySet());
-		if (!escapedNames.containsValue(escapedObjectName))
+		if (!escapedNames.containsValue(escapedObjectName)) {
+			setErrorModelAttributes(model, "Cannot find object",
+					"It seems, that object \"" + escapedObjectName
+							+ "\" do not exist");
 			return "error";
+		}
+
 		String objectName = null;
 		for (String item : escapedNames.keySet()) {
 			if (escapedNames.get(item).equals(escapedObjectName)) {
