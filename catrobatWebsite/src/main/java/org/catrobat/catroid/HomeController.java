@@ -51,7 +51,7 @@ public class HomeController {
 	}
 	
 	private boolean isCatrobatFile(String name) {
-		return (name.substring(name.length()-9, name.length()).toLowerCase().equals("catrobat"));
+		return (name.substring(name.length()-8, name.length()).toLowerCase().equals("catrobat"));
 		
 	}
 
