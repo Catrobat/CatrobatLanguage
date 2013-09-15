@@ -49,6 +49,11 @@ public class HomeController {
 			this.msg = msg;
 		}
 	}
+	
+	private boolean isCatrobatFile(String name) {
+		return (name.substring(name.length()-9, name.length()).toLowerCase().equals("catrobat"));
+		
+	}
 
 	private Map<String, String> createrHeaderMap(XmlHeader header) {
 		Map<String, String> headerMap = new TreeMap<String, String>();
@@ -169,6 +174,9 @@ public class HomeController {
 			@RequestParam(value = "file", required = true) MultipartFile file,
 			Model model, HttpServletRequest request) throws IOException {
 
+		if (!isCatrobatFile(file.getOriginalFilename())) {
+			return "error";
+		}
 		// TODO: check type .catrobat
 		// TODO: quick click -> internal error change folder to random name!
 		if (file == null)
