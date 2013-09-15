@@ -71,47 +71,52 @@
 								</ul>
 							</c:when>
 							<c:otherwise>
-								<div class="nav-header">
-									<h3>Object: ${name}</h3>
+
+								<div class=container>
+									<div class="text-muted">
+										<h4>Looks:</h4>
+									</div>
+
+									<ul class="thumbnails">
+										<c:forEach var="entry" items="${looks}">
+											<li><img src="${entry.value}" alt="${entry.key}"
+												title="${entry.key}" class="thumbnail img=rounded"
+												height="100" width="100"></li>
+										</c:forEach>
+									</ul>
 								</div>
+								<div class=container>
+									<div class="text-muted">
+										<h4>Sounds:</h4>
+									</div>
 
-								<div class="nav-header">
-									<h4>Looks:</h4>
+									<ul class="thumbnails">
+										<c:forEach var="entry" items="${sounds}">
+											<li><a href="${entry.value}"> <img
+													src="resources/play.png" width="48" class="img-circled"></a>
+												${entry.key}</li>
+										</c:forEach>
+									</ul>
+
 								</div>
+								<div class=container>
+									<div class="text-muted">
+										<h4>Scripts:</h4>
+									</div>
 
-								<ul class="thumbnails">
-									<c:forEach var="entry" items="${looks}">
-										<li><img src="${entry.value}" alt="${entry.key}"
-											title="${entry.key}" class="thumbnail img=rounded"
-											height="100" width="100"></li>
-									</c:forEach>
-								</ul>
-
-								<div class="nav-header">
-									<h4>Sounds:</h4>
+									<pre>${scripts}</pre>
 								</div>
+								<div class=container>
+									<div class="text-muted">
+										<h4>Variables:</h4>
+									</div>
 
-								<ul class="thumbnails">
-									<c:forEach var="entry" items="${sounds}">
-										<li><audio controls>
-												<source src="horse.mp3" type="${entry.value}">
-												<embed height="50" width="100" src="${entry.value}">
-											</audio>
-									</c:forEach>
-								</ul>
-
-
-								<div class="nav-header">
-									<h4>Scripts:</h4>
+									<ul type="circle">
+										<c:forEach var="var" items="${variables}">
+											<li>${var}</li>
+										</c:forEach>
+									</ul>
 								</div>
-
-								<pre>${scripts}</pre>
-								<hr>
-								<ul type="circle">
-									<c:forEach var="var" items="${variables}">
-										<li>${var}</li>
-									</c:forEach>
-								</ul>
 							</c:otherwise>
 						</c:choose>
 					</div>

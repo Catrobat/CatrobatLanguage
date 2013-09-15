@@ -109,8 +109,8 @@ public class HomeController {
 
 		for (SoundInfo item : sounds) {
 			soundsMap.put(item.getName(),
-					request.getSession().getAttribute("fullPathToProject")
-							+ "\\sounds\\" + item.getFileName());
+					request.getSession().getAttribute("projectFolder")
+							+ "/sounds/" + item.getFileName());
 		}
 		return soundsMap;
 	}

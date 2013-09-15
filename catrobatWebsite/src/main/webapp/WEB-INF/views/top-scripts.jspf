@@ -1,7 +1,7 @@
 <title>Catrobat Website</title>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="resources/css/bootstrap-player.css" rel="stylesheet"/>
 
-<script type="text/javascript"
-	src="http://scriptjava.net/source/scriptjava/scriptjava.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
+<script src="resources/js/bootstrap-player.js"></script>
 <script src="resources/js/jquery-1.9.1.js"></script>
