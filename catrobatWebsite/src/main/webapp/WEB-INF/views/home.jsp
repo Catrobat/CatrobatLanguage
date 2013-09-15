@@ -71,20 +71,41 @@
 								</ul>
 							</c:when>
 							<c:otherwise>
-								<h3>${name}</h3>
-								
+								<div class="nav-header">
+									<h3>Object: ${name}</h3>
+								</div>
+
+								<div class="nav-header">
+									<h4>Looks:</h4>
+								</div>
+
 								<ul class="thumbnails">
 									<c:forEach var="entry" items="${looks}">
-										<li class="span4">
-										<div class="thumbnail">
-											<img src="${entry.value}" alt="" height="100px">
-											<p>${entry.key}</p>
-										</div>
-									</li>
+										<li><img src="${entry.value}" alt="${entry.key}"
+											title="${entry.key}" class="thumbnail img=rounded"
+											height="100" width="100"></li>
 									</c:forEach>
-
 								</ul>
-								<pre> ${scripts} </pre>
+
+								<div class="nav-header">
+									<h4>Sounds:</h4>
+								</div>
+
+								<ul class="thumbnails">
+									<c:forEach var="entry" items="${sounds}">
+										<li><audio controls>
+												<source src="horse.mp3" type="${entry.value}">
+												<embed height="50" width="100" src="${entry.value}">
+											</audio>
+									</c:forEach>
+								</ul>
+
+
+								<div class="nav-header">
+									<h4>Scripts:</h4>
+								</div>
+
+								<pre>${scripts}</pre>
 								<hr>
 								<ul type="circle">
 									<c:forEach var="var" items="${variables}">

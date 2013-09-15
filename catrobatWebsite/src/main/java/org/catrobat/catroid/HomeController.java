@@ -50,19 +50,6 @@ public class HomeController {
 		}
 	}
 
-	private String tempFolder = null;
-
-	public String getTempFolder() {
-		if (tempFolder == null)
-			// String tempFolder = System.getProperty("java.io.tmpdir") +
-			// UUID.randomUUID().toString();
-			tempFolder = "D:/Users/TDiva/Desktop/temp/"
-					+ UUID.randomUUID().toString();
-
-		return tempFolder;
-
-	}
-
 	private Map<String, String> createrHeaderMap(XmlHeader header) {
 		Map<String, String> headerMap = new TreeMap<String, String>();
 		headerMap.put("programName", header.getProgramName());
@@ -104,20 +91,26 @@ public class HomeController {
 		return headerMap;
 	}
 
-	private Map<String, String> createLooksMap(List<LookData> looks) {
+	private Map<String, String> createLooksMap(List<LookData> looks,
+			HttpServletRequest request) {
 		Map<String, String> looksMap = new TreeMap<String, String>();
 
 		for (LookData item : looks) {
-			looksMap.put(item.getName(), item.getFileName());
+			looksMap.put(item.getName(),
+					request.getSession().getAttribute("projectFolder")
+							+ "/images/" + item.getFileName());
 		}
 		return looksMap;
 	}
 
-	private Map<String, String> createSoundsMap(List<SoundInfo> sounds) {
+	private Map<String, String> createSoundsMap(List<SoundInfo> sounds,
+			HttpServletRequest request) {
 		Map<String, String> soundsMap = new TreeMap<String, String>();
 
 		for (SoundInfo item : sounds) {
-			soundsMap.put(item.getName(), item.getFileName());
+			soundsMap.put(item.getName(),
+					request.getSession().getAttribute("fullPathToProject")
+							+ "\\sounds\\" + item.getFileName());
 		}
 		return soundsMap;
 	}
@@ -147,39 +140,48 @@ public class HomeController {
 				.getObjects().keySet()));
 	}
 
-	private YamlProject getProject() throws UploadException {
-		File xmlProject = new File(getTempFolder() + "/code.xml");
+	private YamlProject getProject(HttpServletRequest request)
+			throws UploadException {
+		File xmlProject = new File((String) request.getSession().getAttribute(
+				"fullPathToProject")+"\\code.xml");
 		if (!xmlProject.exists())
 			throw new UploadException("ProjectFileWasNotFound");
+		
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 		return project;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-
+	public String home(Model model, HttpServletRequest request) {
 		return "home";
 	}
 
 	@RequestMapping(value = "/*", method = RequestMethod.POST)
 	public String Upload(
 			@RequestParam(value = "file", required = true) MultipartFile file,
-			Model model) throws IOException {
+			Model model, HttpServletRequest request) throws IOException {
 
 		// TODO: check type .catrobat
 		// TODO: quick click -> internal error change folder to random name!
 		if (file == null)
 			return "home";
 
-		File projectDir = new File(getTempFolder());
+		String appFolder = request.getSession().getServletContext()
+				.getRealPath("/");
+		String uploadFolder = "resources\\upload\\"
+				+ UUID.randomUUID().toString();
+
+		File projectDir = new File(appFolder + uploadFolder);
 		if (projectDir.exists())
 			FileUtils.deleteDirectory(projectDir);
 		if (!projectDir.mkdir())
-			System.out.println("Cannot create project directory.");
+			System.out.println("Cannot create project directory."
+					+ projectDir.getAbsolutePath());
 
-		String filePath = getTempFolder() + "/" + file.getOriginalFilename();
-		;
+		String filePath = appFolder + uploadFolder + "\\"
+				+ file.getOriginalFilename();
+
 		FileOutputStream outputStream = null;
 		try {
 			outputStream = new FileOutputStream(new File(filePath));
@@ -191,23 +193,26 @@ public class HomeController {
 			return "error";
 		}
 
+		request.getSession().setAttribute("projectFolder", uploadFolder.replace("\\", "/"));
+		request.getSession().setAttribute("fullPathToProject", appFolder+uploadFolder);
+
 		ZipFile zip;
 		try {
 			zip = new ZipFile(filePath);
-			zip.extractAll(getTempFolder());
+			zip.extractAll(appFolder + uploadFolder);
 		} catch (ZipException e) {
 			e.printStackTrace();
 		}
 
-		return getHeader(model);
+		return getHeader(model, request);
 	}
 
 	@RequestMapping(value = "xmlHeader", method = RequestMethod.GET)
-	public String getHeader(Model model) {
+	public String getHeader(Model model, HttpServletRequest request) {
 
 		YamlProject project = null;
 		try {
-			project = getProject();
+			project = getProject(request);
 		} catch (UploadException e) {
 			return "error";
 		}
@@ -220,11 +225,11 @@ public class HomeController {
 	};
 
 	@RequestMapping(value = "variables", method = RequestMethod.GET)
-	public String getVariables(Model model) {
+	public String getVariables(Model model, HttpServletRequest request) {
 
 		YamlProject project = null;
 		try {
-			project = getProject();
+			project = getProject(request);
 		} catch (UploadException e) {
 			return "error";
 		}
@@ -238,16 +243,16 @@ public class HomeController {
 
 	@RequestMapping(value = "/*", method = RequestMethod.GET)
 	public String getObject(Model model, HttpServletRequest request) {
-		String escapedObjectName = request.getRequestURI().replaceAll(
-				request.getContextPath() + "/", "");
+		String escapedObjectName = request.getServletPath().substring(1);
 
 		YamlProject project = null;
 		try {
-			project = getProject();
+			project = getProject(request);
 		} catch (UploadException e) {
+			System.out.println("project was not found");
 			return "error";
 		}
-		
+
 		Map<String, String> escapedNames = createObjectNamesMap(project
 				.getObjects().keySet());
 		if (!escapedNames.containsValue(escapedObjectName))
@@ -263,8 +268,8 @@ public class HomeController {
 		setDefaultModelAttributes(model, escapedObjectName, project);
 
 		model.addAttribute("name", objectName);
-		model.addAttribute("looks", createLooksMap(sprite.getLooks()));
-		model.addAttribute("sounds", createSoundsMap(sprite.getSounds()));
+		model.addAttribute("looks", createLooksMap(sprite.getLooks(), request));
+		model.addAttribute("sounds",createSoundsMap(sprite.getSounds(), request));
 		model.addAttribute("scripts", sprite.getScripts());
 		model.addAttribute("variables", sprite.getVariables());
 		return "home";
