@@ -23,20 +23,23 @@
 		</div>
 	</div>
 
+
 	<div class="tabbable tabs-left">
-		<ul class="nav nav-tabs nav-list">
+		<c:if test="${programName != null}">
+			<ul class="nav nav-tabs nav-list">
 
-			<li class="nav-header" id="xmlHeader"><a href="xmlHeader">Header</a></li>
-			<li></li>
-			<li class="nav-header">ObjectList</li>
+				<li class="nav-header" id="xmlHeader"><a href="xmlHeader">Header</a></li>
+				<li></li>
+				<li class="nav-header">ObjectList</li>
 
-			<c:forEach var="entry" items="${objectNames}">
-				<li id="${entry.value}"><a href="${entry.value}">${entry.key}</a></li>
-			</c:forEach>
-			<li></li>
-			<li id="variables" class="nav-header">
-		<a href="variables">Variables</a>
-			</li></ul>
+				<c:forEach var="entry" items="${objectNames}">
+					<li id="${entry.value}"><a href="${entry.value}">${entry.key}</a></li>
+				</c:forEach>
+				<li></li>
+				<li id="variables" class="nav-header"><a href="variables">Variables</a>
+				</li>
+			</ul>
+		</c:if>
 		<div class="tab-content">
 			<div class="well">
 				<div class="container-fluid">
@@ -47,6 +50,7 @@
 						<c:choose>
 							<c:when test="${activeTab == null}">
 								<h2>Welcome to Catrobat Website!</h2>
+								Please, upload your project.
 							</c:when>
 							<c:when test="${activeTab == 'xmlHeader'}">
 								<dl class="dl-horizontal">
