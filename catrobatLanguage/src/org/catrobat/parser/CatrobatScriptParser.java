@@ -201,14 +201,12 @@ public class CatrobatScriptParser extends Parser {
 
 	private Sprite currentSprite;
 
-	// TODO: set current Sprite
 	public void setCurrentSprite(Sprite sprite) {
 	  currentSprite = sprite;
 	}
 
 	private List<Sprite> spriteList;
 
-	// TODO: set SpriteList
 	public void setSpriteList(List<Sprite> spriteList) {
 	  this.spriteList = spriteList;
 	}

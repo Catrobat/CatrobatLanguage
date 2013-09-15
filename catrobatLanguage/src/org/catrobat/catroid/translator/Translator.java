@@ -199,7 +199,6 @@ public class Translator {
 		xstream.alias("whenStartedBrick", WhenStartedBrick.class);
 	}
 
-	// TODO
 	private void setYamlConfig() {
 		yamlConfig.writeConfig.setEscapeUnicode(false);
 		yamlConfig.writeConfig.setIndentSize(2);
