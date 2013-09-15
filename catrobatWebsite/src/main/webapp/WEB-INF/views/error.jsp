@@ -22,7 +22,9 @@
 			</div>
 		</div>
 	</div>
+	<div class="hero-unit">
 	<h3> ${errorTitle}</h3>
 	<div> ${errorMsg}</div>
+	</div>
 </body>
 </html>
