@@ -23,10 +23,8 @@
 		</div>
 	</div>
 
-
 	<div class="tabbable tabs-left">
 		<ul class="nav nav-tabs">
-
 
 			<li class="nav-header" id="xmlHeader"><h3>
 					<a href="xmlHeader">Header</a>
@@ -79,9 +77,10 @@
 
 									<ul class="thumbnails">
 										<c:forEach var="entry" items="${looks}">
-											<li><img src="${entry.value}" alt="${entry.key}"
-												title="${entry.key}" class="thumbnail img=rounded"
-												height="100" width="100"></li>
+											<li><a href="${entry.value}"><img
+													src="${entry.value}" alt="${entry.key}"
+													title="${entry.key}" class="thumbnail img=rounded"
+													height="140px" width="140px"> </a></li>
 										</c:forEach>
 									</ul>
 								</div>

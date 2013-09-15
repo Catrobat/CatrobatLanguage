@@ -143,10 +143,11 @@ public class HomeController {
 	private YamlProject getProject(HttpServletRequest request)
 			throws UploadException {
 		File xmlProject = new File((String) request.getSession().getAttribute(
-				"fullPathToProject")+"\\code.xml");
+				"fullPathToProject")
+				+ "\\code.xml");
 		if (!xmlProject.exists())
 			throw new UploadException("ProjectFileWasNotFound");
-		
+
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 		return project;
@@ -169,8 +170,12 @@ public class HomeController {
 
 		String appFolder = request.getSession().getServletContext()
 				.getRealPath("/");
-		String uploadFolder = "resources\\upload\\"
-				+ UUID.randomUUID().toString();
+		String uploadFolder = null;
+		if (request.getSession().getAttribute("projectFolder") != null)
+			uploadFolder = ((String) request.getSession().getAttribute(
+					"projectFolder")).replace("/", "\\");
+		else
+			uploadFolder = "resources\\upload\\" + UUID.randomUUID().toString();
 
 		File projectDir = new File(appFolder + uploadFolder);
 		if (projectDir.exists())
@@ -193,8 +198,10 @@ public class HomeController {
 			return "error";
 		}
 
-		request.getSession().setAttribute("projectFolder", uploadFolder.replace("\\", "/"));
-		request.getSession().setAttribute("fullPathToProject", appFolder+uploadFolder);
+		request.getSession().setAttribute("projectFolder",
+				uploadFolder.replace("\\", "/"));
+		request.getSession().setAttribute("fullPathToProject",
+				appFolder + uploadFolder);
 
 		ZipFile zip;
 		try {
@@ -269,7 +276,8 @@ public class HomeController {
 
 		model.addAttribute("name", objectName);
 		model.addAttribute("looks", createLooksMap(sprite.getLooks(), request));
-		model.addAttribute("sounds",createSoundsMap(sprite.getSounds(), request));
+		model.addAttribute("sounds",
+				createSoundsMap(sprite.getSounds(), request));
 		model.addAttribute("scripts", sprite.getScripts());
 		model.addAttribute("variables", sprite.getVariables());
 		return "home";
