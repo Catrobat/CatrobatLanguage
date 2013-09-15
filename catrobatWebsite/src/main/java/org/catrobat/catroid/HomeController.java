@@ -6,16 +6,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 
 import org.apache.commons.io.FileUtils;
+import org.catrobat.catroid.common.LookData;
+import org.catrobat.catroid.common.SoundInfo;
 import org.catrobat.catroid.content.XmlHeader;
 import org.catrobat.catroid.translator.Translator;
 import org.catrobat.catroid.yaml.YamlProject;
+import org.catrobat.catroid.yaml.YamlSprite;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -80,13 +86,56 @@ public class HomeController {
 		return headerMap;
 	}
 
+	private Map<String, String> createLooksMap(List<LookData> looks) {
+		Map<String, String> looksMap = new TreeMap<String, String>();
+
+		for (LookData item : looks) {
+			looksMap.put(item.getName(), item.getFileName());
+		}
+		return looksMap;
+	}
+
+	private Map<String, String> createSoundsMap(List<SoundInfo> sounds) {
+		Map<String, String> soundsMap = new TreeMap<String, String>();
+
+		for (SoundInfo item : sounds) {
+			soundsMap.put(item.getName(), item.getFileName());
+		}
+		return soundsMap;
+	}
+
+	public Map<String, String> createObjectNamesMap(Set<String> names) {
+		Map<String, String> map = new TreeMap<String, String>();
+		for (String item : names) {
+			map.put(item, escape(item));
+		}
+		return map;
+	}
+
+	private String escape(String str) {
+		// TODO: add all characters which we need to escape
+		str = str.replace(" ", "");
+		str = str.replace("\"", "");
+		str = str.replace("&", "");
+		str = str.replace("?", "");
+		return str;
+	}
+
+	private void setDefaultModelAttributes(Model model, String activeTab,
+			YamlProject project) {
+		model.addAttribute("programName", project.getHeader().getProgramName());
+		model.addAttribute("activeTab", escape(activeTab));
+		model.addAttribute("objectNames", createObjectNamesMap(project
+				.getObjects().keySet()));
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 
 		return "home";
 	}
 
-	@RequestMapping(value="/*", method = RequestMethod.POST)
+	@RequestMapping(value = "/*", method = RequestMethod.POST)
 	public String Upload(
 			@RequestParam(value = "file", required = true) MultipartFile file,
 			Model model) throws IOException {
@@ -133,10 +182,9 @@ public class HomeController {
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 
-		model.addAttribute("programName", project.getHeader().getProgramName());
+		setDefaultModelAttributes(model, "xmlHeader", project);
+
 		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
-		model.addAttribute("objectNames", project.getObjects().keySet());
-		model.addAttribute("activeTab", "xmlHeader");
 
 		return "home";
 	};
@@ -148,12 +196,42 @@ public class HomeController {
 		YamlProject project = new YamlProject(Translator.getInstance()
 				.loadProjectFromXML(xmlProject));
 
-		model.addAttribute("programName", project.getHeader().getProgramName());
+		setDefaultModelAttributes(model, "variables", project);
+
 		model.addAttribute("variables", project.getProjectVariables());
-		model.addAttribute("objectNames", project.getObjects().keySet());
-		model.addAttribute("activeTab", "variables");
 
 		return "home";
 	};
+
+	@RequestMapping(value = "/*", method = RequestMethod.GET)
+	public String getObject(Model model, HttpServletRequest request) {
+		String escapedObjectName = request.getRequestURI().replaceAll(
+				request.getContextPath() + "/", "");
+		System.out.println(escapedObjectName);
+
+		File xmlProject = new File(getTempFolder() + "/code.xml");
+		YamlProject project = new YamlProject(Translator.getInstance()
+				.loadProjectFromXML(xmlProject));
+		Map<String, String> escapedNames = createObjectNamesMap(project
+				.getObjects().keySet());
+		if (!escapedNames.containsValue(escapedObjectName))
+			return "error";
+		String objectName = null;
+		for (String item : escapedNames.keySet()) {
+			if (escapedNames.get(item).equals(escapedObjectName)) {
+				objectName = item;
+				break;
+			}
+		}
+		YamlSprite sprite = project.getObjects().get(objectName);
+		setDefaultModelAttributes(model, escapedObjectName, project);
+
+		model.addAttribute("name", objectName);
+		model.addAttribute("looks", createLooksMap(sprite.getLooks()));
+		model.addAttribute("sounds", createSoundsMap(sprite.getSounds()));
+		model.addAttribute("scripts", sprite.getScripts());
+		model.addAttribute("variables", sprite.getVariables());
+		return "home";
+	}
 
 }

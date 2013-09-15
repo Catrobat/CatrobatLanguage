@@ -34,8 +34,8 @@
 			<li class="nav-header"><h3>ObjectList</h3></li>
 			<li>
 				<ul type="circle">
-					<c:forEach var="name" items="${objectNames}">
-						<li id="${name}"><a href="${name}"> ${name}</a></li>
+					<c:forEach var="entry" items="${objectNames}">
+						<li id="${entry.value}"><a href="${entry.value}">${entry.key}</a></li>
 					</c:forEach>
 				</ul>
 			<li>
@@ -52,6 +52,9 @@
 							<h2>${programName}</h2>
 						</div>
 						<c:choose>
+							<c:when test="${activeTab == null}">
+								<h2>Welcome to Catrobat Website!</h2>
+							</c:when>
 							<c:when test="${activeTab == 'xmlHeader'}">
 								<dl class="dl-horizontal">
 									<c:forEach var="entry" items="${xmlHeader}">
@@ -67,7 +70,17 @@
 									</c:forEach>
 								</ul>
 							</c:when>
-							<c:otherwise> ${activeTab}</c:otherwise>
+							<c:otherwise>
+								<h3>${name}</h3>
+								<pre> ${scripts} 
+								</pre>
+								<hr>
+								<ul type="circle">
+									<c:forEach var="var" items="${variables}">
+										<li>${var}</li>
+									</c:forEach>
+								</ul>
+							</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
