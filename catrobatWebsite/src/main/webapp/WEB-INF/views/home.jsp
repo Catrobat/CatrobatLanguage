@@ -26,22 +26,17 @@
 	<div class="tabbable tabs-left">
 		<ul class="nav nav-tabs nav-list">
 
-			<li class="nav-header" id="xmlHeader"><h3>
-					<a href="xmlHeader">Header</a>
-				</h3></li>
-			<li class="nav-header"><h3>ObjectList</h3></li>
-			<li>
-				<ul type="circle">
-					<c:forEach var="entry" items="${objectNames}">
-						<li id="${entry.value}"><a href="${entry.value}">${entry.key}</a></li>
-					</c:forEach>
-				</ul>
-			<li>
-			<li class="nav-header" id="variables"><h3>
-					<a href="variables">Variables</a>
-				</h3></li>
+			<li class="nav-header" id="xmlHeader"><a href="xmlHeader">Header</a></li>
+			<li></li>
+			<li class="nav-header">ObjectList</li>
 
-		</ul>
+			<c:forEach var="entry" items="${objectNames}">
+				<li id="${entry.value}"><a href="${entry.value}">${entry.key}</a></li>
+			</c:forEach>
+			<li></li>
+			<li id="variables" class="nav-header">
+		<a href="variables">Variables</a>
+			</li></ul>
 		<div class="tab-content">
 			<div class="well">
 				<div class="container-fluid">
