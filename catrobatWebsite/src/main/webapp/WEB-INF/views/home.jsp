@@ -72,8 +72,7 @@
 							</c:when>
 							<c:otherwise>
 								<h3>${name}</h3>
-								<pre> ${scripts} 
-								</pre>
+								<pre> ${scripts} </pre>
 								<hr>
 								<ul type="circle">
 									<c:forEach var="var" items="${variables}">

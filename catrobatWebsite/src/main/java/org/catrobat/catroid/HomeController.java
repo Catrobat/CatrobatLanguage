@@ -32,6 +32,24 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HomeController {
 
+	private class UploadException extends Exception {
+
+		private static final long serialVersionUID = 1L;
+		private String msg;
+
+		public UploadException(String msg) {
+			this.setMsg(msg);
+		}
+
+		public String getMsg() {
+			return msg;
+		}
+
+		public void setMsg(String msg) {
+			this.msg = msg;
+		}
+	}
+
 	private String tempFolder = null;
 
 	public String getTempFolder() {
@@ -129,6 +147,15 @@ public class HomeController {
 				.getObjects().keySet()));
 	}
 
+	private YamlProject getProject() throws UploadException {
+		File xmlProject = new File(getTempFolder() + "/code.xml");
+		if (!xmlProject.exists())
+			throw new UploadException("ProjectFileWasNotFound");
+		YamlProject project = new YamlProject(Translator.getInstance()
+				.loadProjectFromXML(xmlProject));
+		return project;
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 
@@ -178,9 +205,12 @@ public class HomeController {
 	@RequestMapping(value = "xmlHeader", method = RequestMethod.GET)
 	public String getHeader(Model model) {
 
-		File xmlProject = new File(getTempFolder() + "/code.xml");
-		YamlProject project = new YamlProject(Translator.getInstance()
-				.loadProjectFromXML(xmlProject));
+		YamlProject project = null;
+		try {
+			project = getProject();
+		} catch (UploadException e) {
+			return "error";
+		}
 
 		setDefaultModelAttributes(model, "xmlHeader", project);
 
@@ -192,9 +222,12 @@ public class HomeController {
 	@RequestMapping(value = "variables", method = RequestMethod.GET)
 	public String getVariables(Model model) {
 
-		File xmlProject = new File(getTempFolder() + "/code.xml");
-		YamlProject project = new YamlProject(Translator.getInstance()
-				.loadProjectFromXML(xmlProject));
+		YamlProject project = null;
+		try {
+			project = getProject();
+		} catch (UploadException e) {
+			return "error";
+		}
 
 		setDefaultModelAttributes(model, "variables", project);
 
@@ -207,11 +240,14 @@ public class HomeController {
 	public String getObject(Model model, HttpServletRequest request) {
 		String escapedObjectName = request.getRequestURI().replaceAll(
 				request.getContextPath() + "/", "");
-		System.out.println(escapedObjectName);
 
-		File xmlProject = new File(getTempFolder() + "/code.xml");
-		YamlProject project = new YamlProject(Translator.getInstance()
-				.loadProjectFromXML(xmlProject));
+		YamlProject project = null;
+		try {
+			project = getProject();
+		} catch (UploadException e) {
+			return "error";
+		}
+		
 		Map<String, String> escapedNames = createObjectNamesMap(project
 				.getObjects().keySet());
 		if (!escapedNames.containsValue(escapedObjectName))
