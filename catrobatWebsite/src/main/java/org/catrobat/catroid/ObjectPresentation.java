@@ -8,7 +8,7 @@ public class ObjectPresentation {
 	public Map<String, String> looks;
 	public Map<String, String> sounds;
 	public String code;
-	public List<String> variableList;
+	public List<String> variables;
 
 	public ObjectPresentation() {
 	}
@@ -45,11 +45,11 @@ public class ObjectPresentation {
 		this.code = code;
 	}
 
-	public List<String> getVariableList() {
-		return variableList;
+	public List<String> getVariables() {
+		return variables;
 	}
 
-	public void setVariableList(List<String> variableList) {
-		this.variableList = variableList;
+	public void setVariables(List<String> variables) {
+		this.variables = variables;
 	}
 }

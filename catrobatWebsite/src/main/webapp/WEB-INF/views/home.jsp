@@ -83,6 +83,17 @@
 											</div>
 											<pre>${entry.value.code}</pre>
 										</div>
+										<div class="span10">
+											<div class="text-muted">
+												<h4>Variables:</h4>
+											</div>
+
+											<ul type="circle">
+												<c:forEach var="var" items="${entry.value.variables}">
+													<li>${var}</li>
+												</c:forEach>
+											</ul>
+										</div>
 									</div>
 								</c:forEach>
 

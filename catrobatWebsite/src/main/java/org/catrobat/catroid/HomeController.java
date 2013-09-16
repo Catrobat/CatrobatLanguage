@@ -175,7 +175,7 @@ public class HomeController {
 			buf.setLooks(createLooksMap(sprite.getLooks(), request));
 			buf.setSounds(createSoundsMap(sprite.getSounds(), request));
 			buf.setCode(sprite.getScripts());
-			buf.setVariableList(sprite.getVariables());
+			buf.setVariables(sprite.getVariables());
 			
 			objectMap.put(escape(item), buf);
 		}
