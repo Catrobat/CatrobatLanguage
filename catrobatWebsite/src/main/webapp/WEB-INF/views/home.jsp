@@ -71,13 +71,14 @@
 												<h4>Sounds:</h4>
 											</div>
 
-											<ul class="thumbnails">
+											<div class="span5">
 												<c:forEach var="sound" items="${entry.value.sounds}">
-													<li><a href="${sound.value}"> <img
-															src="resources/play.png" width="48" class="img-circled"></a>
-														${sound.key}</li>
+													<audio controls data-info-att="${sound.key}">
+														<source src="${sound.value}" type="audio/mpeg" />
+														<a href="${sound.value}">${sound.key}</a>
+													</audio>
 												</c:forEach>
-											</ul>
+											</div>
 
 										</div>
 										<div class="span10">
