@@ -11,15 +11,16 @@
 			<div class="span2">
 				<div class="well">
 					<ul class="nav nav-tabs nav-stacked" id="myTab">
-						<li class="active"><a href="#home" data-toggle="pill">1</a></li>
-						<li><a href="#profile" data-toggle="pill">2</a></li>
+						<li><a href="#xmlHeader" data-toggle="pill">Header</a></li>
+
 						<li class="dropdown"><a class="dropdown-toggle"
-							data-toggle="dropdown" href="#"> Dropdown 3-4 <b
-								class="caret"></b></a>
+							data-toggle="dropdown" href="#">Object<b class="caret"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="#messages" data-toggle="pill">3</a></li>
-								<li><a href="#settings" data-toggle="pill">4</a></li>
+								<c:forEach var="entry" items="${objectNames}">
+									<li><a href="#${entry.value}" data-toggle="pill">${entry.key}</a></li>
+								</c:forEach>
 							</ul></li>
+						<li><a href="#variables" data-toggle="pill">Variables</a></li>
 
 					</ul>
 				</div>
@@ -27,10 +28,9 @@
 			<div class="span10">
 				<div class="well">
 					<div class="tab-content">
-						<div class="tab-pane active" id="home">1</div>
-						<div class="tab-pane" id="profile">2</div>
-						<div class="tab-pane" id="messages">3</div>
-						<div class="tab-pane" id="settings">4</div>
+						<div class="tab-pane" id="xmlHeader">1</div>
+						<div class="tab-pane" id="variables">2</div>
+
 					</div>
 				</div>
 			</div>
