@@ -8,7 +8,7 @@
 	<%@include file="header.jspf"%>
 
 	<c:choose>
-		<c:when test="${activeTab == null}">
+		<c:when test="${programName == null}">
 			<div class="hero-unit">
 				<h2>Welcome to Catrobat Website!</h2>
 				Please, upload your project.
@@ -38,8 +38,21 @@
 
 						<div class="well">
 							<div class="tab-content">
-								<div class="tab-pane" id="xmlHeader">1</div>
-								<div class="tab-pane" id="variables">2</div>
+								<div class="tab-pane" id="xmlHeader">
+									<dl class="dl-horizontal">
+										<c:forEach var="entry" items="${xmlHeader}">
+											<dt>${entry.key}</dt>
+											<dd>${entry.value}</dd>
+										</c:forEach>
+									</dl>
+								</div>
+								<div class="tab-pane" id="variables">
+									<ul type="circle">
+										<c:forEach var="var" items="${variables}">
+											<li>${var}</li>
+										</c:forEach>
+									</ul>
+								</div>
 
 							</div>
 						</div>
