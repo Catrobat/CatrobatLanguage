@@ -37,6 +37,7 @@ public class HomeController {
 		private static final long serialVersionUID = 1L;
 	}
 
+
 	private boolean isCatrobatFile(String name) {
 		return (name.substring(name.length() - 8, name.length()).toLowerCase()
 				.equals("catrobat"));
@@ -108,7 +109,7 @@ public class HomeController {
 		return soundsMap;
 	}
 
-	public Map<String, String> createObjectNamesMap(Set<String> names) {
+	private Map<String, String> createObjectNamesMap(Set<String> names) {
 		Map<String, String> map = new TreeMap<String, String>();
 		for (String item : names) {
 			map.put(item, escape(item));
@@ -152,13 +153,36 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) {
+		YamlProject project;
 		try {
-			YamlProject project = getProject(request);
+			project = getProject(request);
 			setDefaultModelAttributes(model, "home", project);
 		} catch (UploadException e) {
 			return "home";
 		}
-		return getHeader(model, request);
+
+		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
+		model.addAttribute("variables", project.getProjectVariables());
+		
+		Map<String, ObjectPresentation> objectMap = new TreeMap<String, ObjectPresentation>();
+		ObjectPresentation buf;
+		YamlSprite sprite;
+		
+		for (String item : project.getObjects().keySet()) {
+			sprite = project.getObjects().get(item);
+			buf = new ObjectPresentation();
+			buf.setName(item);
+			buf.setLooks(createLooksMap(sprite.getLooks(), request));
+			buf.setSounds(createSoundsMap(sprite.getSounds(), request));
+			buf.setCode(sprite.getScripts());
+			buf.setVariableList(sprite.getVariables());
+			
+			objectMap.put(escape(item), buf);
+		}
+		
+		model.addAttribute("objects", objectMap);
+
+		return "home";
 	}
 
 	@RequestMapping(value = "/*", method = RequestMethod.POST)
@@ -222,86 +246,7 @@ public class HomeController {
 			return "error";
 		}
 
-		return getHeader(model, request);
-	}
-
-	@RequestMapping(value = "xmlHeader", method = RequestMethod.GET)
-	public String getHeader(Model model, HttpServletRequest request) {
-
-		YamlProject project = null;
-		try {
-			project = getProject(request);
-		} catch (UploadException e) {
-			setErrorModelAttributes(model, "Cannot find project",
-					e.getMessage());
-			return "error";
-		}
-
-		setDefaultModelAttributes(model, "xmlHeader", project);
-
-		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
-
-		return "home";
-	};
-
-	@RequestMapping(value = "variables", method = RequestMethod.GET)
-	public String getVariables(Model model, HttpServletRequest request) {
-
-		YamlProject project = null;
-		try {
-			project = getProject(request);
-		} catch (UploadException e) {
-			setErrorModelAttributes(model, "Cannot find project",
-					e.getMessage());
-			return "error";
-		}
-
-		setDefaultModelAttributes(model, "variables", project);
-
-		model.addAttribute("variables", project.getProjectVariables());
-
-		return "home";
-	};
-
-	@RequestMapping(value = "/*", method = RequestMethod.GET)
-	public String getObject(Model model, HttpServletRequest request) {
-		String escapedObjectName = request.getServletPath().substring(1);
-
-		YamlProject project = null;
-		try {
-			project = getProject(request);
-		} catch (UploadException e) {
-			setErrorModelAttributes(model, "Cannot find project",
-					e.getMessage());
-			return "error";
-		}
-
-		Map<String, String> escapedNames = createObjectNamesMap(project
-				.getObjects().keySet());
-		if (!escapedNames.containsValue(escapedObjectName)) {
-			setErrorModelAttributes(model, "Cannot find object",
-					"It seems, that object \"" + escapedObjectName
-							+ "\" do not exist");
-			return "error";
-		}
-
-		String objectName = null;
-		for (String item : escapedNames.keySet()) {
-			if (escapedNames.get(item).equals(escapedObjectName)) {
-				objectName = item;
-				break;
-			}
-		}
-		YamlSprite sprite = project.getObjects().get(objectName);
-		setDefaultModelAttributes(model, escapedObjectName, project);
-
-		model.addAttribute("name", objectName);
-		model.addAttribute("looks", createLooksMap(sprite.getLooks(), request));
-		model.addAttribute("sounds",
-				createSoundsMap(sprite.getSounds(), request));
-		model.addAttribute("scripts", sprite.getScripts());
-		model.addAttribute("variables", sprite.getVariables());
-		return "home";
+		return home(model, request);
 	}
 
 }

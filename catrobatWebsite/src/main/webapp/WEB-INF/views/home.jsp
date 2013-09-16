@@ -20,10 +20,10 @@
 					<div class="span2">
 						<div class="well">
 							<ul class="nav nav-tabs nav-stacked" id="myTab">
-								<li><a href="#xmlHeader" data-toggle="pill">Header</a></li>
+								<li class="active"><a href="#xmlHeader" data-toggle="pill">Header</a></li>
 
 								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="#">Object<b class="caret"></b></a>
+									data-toggle="dropdown" href="#" id="objectName">Object<b class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<c:forEach var="entry" items="${objectNames}">
 											<li><a href="#${entry.value}" data-toggle="pill">${entry.key}</a></li>
@@ -35,10 +35,9 @@
 						</div>
 					</div>
 					<div class="span11">
-
 						<div class="well">
 							<div class="tab-content">
-								<div class="tab-pane" id="xmlHeader">
+								<div class="tab-pane active" id="xmlHeader">
 									<dl class="dl-horizontal">
 										<c:forEach var="entry" items="${xmlHeader}">
 											<dt>${entry.key}</dt>
@@ -46,6 +45,26 @@
 										</c:forEach>
 									</dl>
 								</div>
+
+								<c:forEach var="entry" items="${objects}">
+									<div class="tab-pane" id="${entry.key}">
+										<div class="span10">
+											<div class="text-muted">
+												<h4>Looks:</h4>
+											</div>
+
+											<ul class="thumbnails">
+												<c:forEach var="look" items="${entry.value.looks}">
+													<li><a href="${look.value}"><img
+															src="${look.value}" alt="${look.key}"
+															title="${look.key}" class="thumbnail img=rounded"
+															height="140px" width="140px"> </a></li>
+												</c:forEach>
+											</ul>
+										</div>
+									</div>
+								</c:forEach>
+
 								<div class="tab-pane" id="variables">
 									<ul type="circle">
 										<c:forEach var="var" items="${variables}">
