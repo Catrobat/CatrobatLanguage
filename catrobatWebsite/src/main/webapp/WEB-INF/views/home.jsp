@@ -23,7 +23,8 @@
 								<li class="active"><a href="#xmlHeader" data-toggle="pill">Header</a></li>
 
 								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="#" id="objectName">Object<b class="caret"></b></a>
+									data-toggle="dropdown" href="#" id="objectName">Object<b
+										class="caret"></b></a>
 									<ul class="dropdown-menu">
 										<c:forEach var="entry" items="${objectNames}">
 											<li><a href="#${entry.value}" data-toggle="pill">${entry.key}</a></li>
@@ -56,11 +57,25 @@
 											<ul class="thumbnails">
 												<c:forEach var="look" items="${entry.value.looks}">
 													<li><a href="${look.value}"><img
-															src="${look.value}" alt="${look.key}"
-															title="${look.key}" class="thumbnail img=rounded"
-															height="140px" width="140px"> </a></li>
+															src="${look.value}" alt="${look.key}" title="${look.key}"
+															class="thumbnail img=rounded" height="140px"
+															width="140px"> </a></li>
 												</c:forEach>
 											</ul>
+										</div>
+										<div class="span10">
+											<div class="text-muted">
+												<h4>Sounds:</h4>
+											</div>
+
+											<ul class="thumbnails">
+												<c:forEach var="sound" items="${entry.value.sounds}">
+													<li><a href="${sound.value}"> <img
+															src="resources/play.png" width="48" class="img-circled"></a>
+														${sound.key}</li>
+												</c:forEach>
+											</ul>
+
 										</div>
 									</div>
 								</c:forEach>
