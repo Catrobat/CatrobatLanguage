@@ -77,6 +77,12 @@
 											</ul>
 
 										</div>
+										<div class="span10">
+											<div class="text-muted">
+												<h4>Scripts:</h4>
+											</div>
+											<pre>${entry.value.code}</pre>
+										</div>
 									</div>
 								</c:forEach>
 
