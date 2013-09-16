@@ -49,6 +49,9 @@
 
 								<c:forEach var="entry" items="${objects}">
 									<div class="tab-pane" id="${entry.key}">
+										<div>
+											<h3>Name: ${entry.value.name}</h3>
+										</div>
 										<div class="span10">
 											<div class="text-muted">
 												<h4>Looks:</h4>

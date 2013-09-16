@@ -2,6 +2,3 @@
 <script src="resources/js/bootstrap.js"></script>
 <script src="resources/js/bootstrap-player.js"></script>
 
-<script type="text/javascript">
-	$("#${activeTab}").addClass("active");
-</script>
