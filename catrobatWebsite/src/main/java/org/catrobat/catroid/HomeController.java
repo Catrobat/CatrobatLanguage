@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.UUID;
 
@@ -37,11 +36,18 @@ public class HomeController {
 		private static final long serialVersionUID = 1L;
 	}
 
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Model model, HttpServletRequest request) {
+		YamlProject project;
+		try {
+			project = getProject(request);
+		} catch (UploadException e) {
+			return "home";
+		}
 
-	private boolean isCatrobatFile(String name) {
-		return (name.substring(name.length() - 8, name.length()).toLowerCase()
-				.equals("catrobat"));
+		setModelAttributes(model, request, project);
 
+		return "home";
 	}
 
 	private Map<String, String> createrHeaderMap(XmlHeader header) {
@@ -109,14 +115,6 @@ public class HomeController {
 		return soundsMap;
 	}
 
-	private Map<String, String> createObjectNamesMap(Set<String> names) {
-		Map<String, String> map = new TreeMap<String, String>();
-		for (String item : names) {
-			map.put(item, escape(item));
-		}
-		return map;
-	}
-
 	private String escape(String str) {
 		// TODO: add all characters which we need to escape
 		str = str.replace(" ", "");
@@ -124,19 +122,6 @@ public class HomeController {
 		str = str.replace("&", "");
 		str = str.replace("?", "");
 		return str;
-	}
-
-	private void setDefaultModelAttributes(Model model, String activeTab,
-			YamlProject project) {
-		model.addAttribute("programName", project.getHeader().getProgramName());
-		model.addAttribute("activeTab", escape(activeTab));
-		model.addAttribute("objectNames", createObjectNamesMap(project
-				.getObjects().keySet()));
-	}
-
-	private void setErrorModelAttributes(Model model, String title, String msg) {
-		model.addAttribute("errorTitle", title);
-		model.addAttribute("errorMsg", msg);
 	}
 
 	private YamlProject getProject(HttpServletRequest request)
@@ -151,23 +136,17 @@ public class HomeController {
 		return project;
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, HttpServletRequest request) {
-		YamlProject project;
-		try {
-			project = getProject(request);
-			setDefaultModelAttributes(model, "home", project);
-		} catch (UploadException e) {
-			return "home";
-		}
+	private void setModelAttributes(Model model, HttpServletRequest request,
+			YamlProject project) {
+		model.addAttribute("programName", project.getHeader().getProgramName());
 
 		model.addAttribute("xmlHeader", createrHeaderMap(project.getHeader()));
 		model.addAttribute("variables", project.getProjectVariables());
-		
+
 		Map<String, ObjectPresentation> objectMap = new TreeMap<String, ObjectPresentation>();
 		ObjectPresentation buf;
 		YamlSprite sprite;
-		
+
 		for (String item : project.getObjects().keySet()) {
 			sprite = project.getObjects().get(item);
 			buf = new ObjectPresentation();
@@ -176,45 +155,40 @@ public class HomeController {
 			buf.setSounds(createSoundsMap(sprite.getSounds(), request));
 			buf.setCode(sprite.getScripts());
 			buf.setVariables(sprite.getVariables());
-			
+
 			objectMap.put(escape(item), buf);
 		}
-		
-		model.addAttribute("objects", objectMap);
 
-		return "home";
+		model.addAttribute("objects", objectMap);
 	}
 
 	@RequestMapping(value = "/*", method = RequestMethod.POST)
 	public String Upload(
 			@RequestParam(value = "file", required = true) MultipartFile file,
 			Model model, HttpServletRequest request) throws IOException {
+
 		if (file == null)
 			return home(model, request);
 		if (!isCatrobatFile(file.getOriginalFilename())) {
-			setErrorModelAttributes(
+			return error(
 					model,
 					"Illegal file!",
 					"File you tried to upload is not .catrobat file. Please, upload catrobat project (e. g.\"project.catrobat\")");
-			return "error";
+
 		}
-		// TODO: quick click -> internal error change folder to random name!
 
 		String appFolder = request.getSession().getServletContext()
 				.getRealPath("/");
-		String uploadFolder = null;
-		if (request.getSession().getAttribute("projectFolder") != null)
-			uploadFolder = ((String) request.getSession().getAttribute(
-					"projectFolder")).replace("/", "\\");
-		else
-			uploadFolder = "resources\\upload\\" + UUID.randomUUID().toString();
+		String uploadFolder = getUploadFolder(request);
 
-		File projectDir = new File(appFolder + uploadFolder);
-		if (projectDir.exists())
-			FileUtils.deleteDirectory(projectDir);
-		if (!projectDir.mkdir())
-			System.out.println("Cannot create project directory."
-					+ projectDir.getAbsolutePath());
+		try {
+			createProjectDir(appFolder, uploadFolder);
+		} catch (UploadException e1) {
+			return error(
+					model,
+					"Cannot create directory for project",
+					"Oops, it seems we have some internal error. Please, try one more time and do mot hurry.");
+		}
 
 		String filePath = appFolder + uploadFolder + "\\"
 				+ file.getOriginalFilename();
@@ -225,28 +199,60 @@ public class HomeController {
 			outputStream.write(file.getBytes());
 			outputStream.close();
 		} catch (Exception e) {
-			// TODO: create error page
-			setErrorModelAttributes(model, "Cannot save file", e
-					.getStackTrace().toString());
-			return "error";
+			return error(model, "Cannot save file", e.getStackTrace()
+					.toString());
 		}
 
-		request.getSession().setAttribute("projectFolder",
-				uploadFolder.replace("\\", "/"));
-		request.getSession().setAttribute("fullPathToProject",
-				appFolder + uploadFolder);
+		setPathsToSesisionAttributes(request, appFolder, uploadFolder);
 
 		ZipFile zip;
 		try {
 			zip = new ZipFile(filePath);
 			zip.extractAll(appFolder + uploadFolder);
 		} catch (ZipException e) {
-			setErrorModelAttributes(model, "Cannot unzip project file", e
-					.getStackTrace().toString());
-			return "error";
+			return error(model, "Cannot unzip project file", e.getStackTrace()
+					.toString());
 		}
 
 		return home(model, request);
 	}
 
+	private void setPathsToSesisionAttributes(HttpServletRequest request,
+			String appFolder, String uploadFolder) {
+		request.getSession().setAttribute("projectFolder",
+				uploadFolder.replace("\\", "/"));
+		request.getSession().setAttribute("fullPathToProject",
+				appFolder + uploadFolder);
+	}
+
+	private void createProjectDir(String appFolder, String uploadFolder)
+			throws IOException, UploadException {
+		File projectDir = new File(appFolder + uploadFolder);
+		if (projectDir.exists())
+			FileUtils.deleteDirectory(projectDir);
+		if (!projectDir.mkdir())
+			throw new UploadException();
+	}
+
+	private boolean isCatrobatFile(String name) {
+		return (name.substring(name.length() - 8, name.length()).toLowerCase()
+				.equals("catrobat"));
+
+	}
+
+	private String getUploadFolder(HttpServletRequest request) {
+		String uploadFolder = null;
+		if (request.getSession().getAttribute("projectFolder") != null)
+			uploadFolder = ((String) request.getSession().getAttribute(
+					"projectFolder")).replace("/", "\\");
+		else
+			uploadFolder = "resources\\upload\\" + UUID.randomUUID().toString();
+		return uploadFolder;
+	}
+
+	private String error(Model model, String title, String msg) {
+		model.addAttribute("errorTitle", title);
+		model.addAttribute("errorMsg", msg);
+		return "error";
+	}
 }
