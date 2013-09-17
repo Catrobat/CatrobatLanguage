@@ -35,7 +35,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="span11">
+					<div class="span10">
 						<div class="well">
 							<div class="tab-content">
 								<div class="tab-pane active" id="xmlHeader">
